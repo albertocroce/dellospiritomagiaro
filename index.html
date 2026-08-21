@@ -3,137 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dello Spirito Magiaro | Allevamento Bracco Ungherese</title>
+    <title>The Golden Aristocrat | Bracco Ungherese (Vizsla)</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+    <!-- FontAwesome per icone moderne -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    
     <style>
         :root {
-            --bg-deep: #0a0b0d;
-            --bg-card: #12141c;
-            --gold-matte: #c5a059;
-            --gold-bright: #f1cd8a;
-            --text-light: #f8f9fa;
-            --text-muted: #a0a5b5;
+            --bg-dark: #0f1115;
+            --bg-card: #161920;
+            --gold-primary: #dfa857;
+            --gold-light: #f3cf98;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: var(--bg-deep); color: var(--text-light); font-family: var(--font-sans); overflow-x: hidden; line-height: 1.7; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 5%; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(10,11,13,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
-        .logo { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--text-light); text-decoration: none; }
-        .logo span { color: var(--gold-matte); font-style: italic; }
-        .nav-container { display: flex; gap: 2rem; list-style: none; }
-        .nav-item { position: relative; }
-        .nav-link { color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.5rem 0; display: flex; align-items: center; gap: 0.4rem; }
-        .nav-link:hover, .nav-item:hover .nav-link { color: var(--gold-bright); }
-        .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background-color: var(--bg-card); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 12px; padding: 1rem 0; min-width: 240px; opacity: 0; visibility: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); transition: all 0.3s ease; }
-        .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .dropdown a { color: var(--text-muted); text-decoration: none; display: block; padding: 0.7rem 1.5rem; font-size: 0.9rem; }
-        .dropdown a:hover { color: var(--gold-bright); background: rgba(197, 160, 89, 0.05); }
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; background: radial-gradient(circle at center, rgba(197, 160, 89, 0.12) 0%, rgba(10, 11, 13, 0) 75%); }
-        .hero-badge { border: 1px solid var(--gold-matte); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--gold-bright); margin-bottom: 2rem; margin-top: 6rem; }
-        .hero h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; font-weight: 800; max-width: 1100px; margin-bottom: 1.5rem; }
-        .hero h1 em { font-style: normal; color: var(--gold-matte); }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin-bottom: 3rem; }
-        .hero-btn { padding: 1.2rem 3rem; background: linear-gradient(135deg, var(--gold-matte) 0%, #9e7b3b 100%); color: var(--bg-deep); text-decoration: none; font-weight: 700; border-radius: 4px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
-        .section { padding: 8rem 8%; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
-        .section-header { text-align: center; margin-bottom: 5rem; }
-        .section-header span { color: var(--gold-matte); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 3px; display: block; margin-bottom: 0.8rem; }
-        .section-header h2 { font-family: var(--font-serif); font-size: 3rem; }
-        .grid-two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 5rem; align-items: center; }
-        .content-box h3 { font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--gold-bright); }
-        .content-box p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
-        .visual-container { background: var(--bg-card); border: 1px solid rgba(197, 160, 89, 0.15); height: 400px; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
-        .visual-container i { font-size: 4rem; color: var(--gold-matte); margin-bottom: 1.5rem; }
-        .visual-container span { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; }
-        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .spec-item { background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 2rem; border-radius: 8px; }
-        .spec-item h4 { font-family: var(--font-serif); color: var(--gold-bright); font-size: 1.3rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
-        .spec-item p { color: var(--text-muted); font-size: 0.95rem; }
-        footer { padding: 5rem 8% 3rem 8%; background: #060708; text-align: center; }
-        .footer-logo { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 1rem; }
-        .footer-logo span { color: var(--gold-matte); }
-        .footer-text { color: var(--text-muted); max-width: 500px; margin: 0 auto 3rem auto; }
-        .copyright { font-size: 0.85rem; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.03); padding-top: 2rem; }
-        @media (max-width: 992px) { .nav-container { display: none; } .grid-two-col { grid-template-columns: 1fr; gap: 3rem; } .section { padding: 5rem 5%; } }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header / Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--gold-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(223, 168, 87, 0.08) 0%, rgba(15, 17, 21, 0) 70%);
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            font-weight: 400;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-light);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--gold-primary);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(223, 168, 87, 0.2);
+        }
+
+        .hero-cta:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(223, 168, 87, 0.4);
+        }
+
+        /* Dual Section (Varianti) */
+        .varieties {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .section-title span {
+            color: var(--gold-primary);
+        }
+
+        .grid-split {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 4rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(223, 168, 87, 0.2);
+        }
+
+        /* Sostituti per immagini reali con placeholder grafici CSS di alto livello */
+        .card-img-placeholder {
+            width: 100%;
+            height: 380px;
+            background: linear-gradient(135deg, #1f242e 0%, #111318 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: var(--gold-primary);
+        }
+
+        /* Effetto mesh geometrico di sfondo */
+        .card-img-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(223, 168, 87, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(223, 168, 87, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .card-img-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .card-img-placeholder span {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .card-content {
+            padding: 3rem;
+        }
+
+        .card-content h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-content h3 small {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--gold-primary);
+            background: rgba(223, 168, 87, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .specs-list li i {
+            color: var(--gold-primary);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p span {
+            color: var(--gold-primary);
+        }
+
+        /* Responsive Mobile */
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            .grid-split { grid-template-columns: 1fr; }
+            .card-content { padding: 2rem; }
+            .section-title { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Navigazione minimale -->
     <header>
-        <a href="#hero" class="logo">Dello Spirito Magiaro<span>.</span></a>
-        <ul class="nav-container">
-            <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Storia Razza <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
-                <div class="dropdown">
-                    <a href="#storia-corto">Pelo Corto (Rövidszőrű)</a>
-                    <a href="#storia-duro">Pelo Duro (Drótszőrű)</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Standard Enci/FCI <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
-                <div class="dropdown">
-                    <a href="#standard-corto">Standard Pelo Corto</a>
-                    <a href="#standard-duro">Standard Pelo Duro</a>
-                </div>
-            </li>
+        <div class="logo">VIZSLA<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#varianti">Le Varianti</a></li>
+            <li><a href="https://github.com" target="_blank">Repository</a></li>
         </ul>
     </header>
 
-    <section class="hero" id="hero">
-        <div class="hero-badge">Linee di Sangue Selezionate & Nobiltà d'Animo</div>
-        <h1>Allevamento d'Eccellenza <em>Dello Spirito Magiaro</em></h1>
-        <p>Custodi della purezza, dell'eleganza statuaria e del superbo istinto venatorio del Bracco Ungherese.</p>
-        <a href="#storia-corto" class="hero-btn">Scopri la Stirpe</a>
+    <!-- Sezione Principale (Hero) -->
+    <section class="hero" id="home">
+        <div class="hero-tag">Nobile per Natura, Eccellente per Attitudine</div>
+        <h1>Il Bracco Ungherese. Elegante Aristocrazia, <span>Doppia Anima.</span></h1>
+        <a href="#varianti" class="hero-cta">Esplora le Varianti</a>
     </section>
 
-    <section class="section" id="storia-corto">
-        <div class="section-header">
-            <span>Le Origini Antiche</span>
-            <h2>La Storia del Pelo Corto</h2>
-        </div>
-        <div class="grid-two-col">
-            <div class="content-box">
-                <h3>Rövidszőrű Vizsla</h3>
-                <p>La storia del Bracco Ungherese a Pelo Corto affonda le sue radici nei secoli, legandosi in modo indissolubile alle migrazioni delle tribù dei Magiari.</p>
-                <p>Cane prediletto dell'aristocrazia ungherese, ha rischiato l'estinzione ma è sopravvissuto grazie alla sua straordinaria versatilità.</p>
-            </div>
-            <div class="visual-container">
-                <i class="fa-solid fa-crown"></i>
-                <span>Aristocrazia Classica</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="storia-duro">
-        <div class="section-header">
-            <span>La Selezione Moderna</span>
-            <h2>La Storia del Pelo Duro</h2>
-        </div>
-        <div class="grid-two-col">
-            <div class="visual-container">
-                <i class="fa-solid fa-shield-halved"></i>
-                <span>Forza e Resilienza</span>
-            </div>
-            <div class="content-box">
-                <h3>Drótszőrű Vizsla</h3>
-                <p>Nato negli anni '30 del Novecento, il Pelo Duro è il frutto di un'accurata selezione con il Pointer Tedesco a Pelo Duro.</p>
-                <p>Il risultato è una razza distinta e fiera, plasmata appositamente per resistere ai climi più rigidi e ai terreni impervi.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="standard-corto">
-        <div class="section-header">
-            <span>Morfologia e Carattere</span>
-            <h2>Standard Pelo Corto (FCI N. 57)</h2>
-        </div>
-        <div class="specs-grid">
-            <div class="spec-item">
-                <h4><i class="fa-solid fa-dog"></i> Aspetto Generale</h4>
-                <p>Cane da caccia di taglia media, elegante, nobile e dalle linee asciutte. La muscolatura è scultorea.</p>
-            </div>
-            <div class="spec-item">
+    <!-- Sezione Varianti Split -->
+    <section class="varieties" id="varianti">
+        <h2 class="section-title">Due Stili, <span>Stessa Eccellenza</span></h2>
+        
+        <div class="grid-split">
+            <!-- Pelo Corto -->
+            <div class="card">
+                <!-- Se hai delle foto tue inserisci il link in <img src="..." >, altrimenti questo segnaposto grafico è già ottimizzato e lussuoso -->
+                <div class="card-img-placeholder">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                    <span>Rovidszoru Vizsla</span>
+                </div>
+                <div class="card-content">
+                    <h3>Pelo Corto <small>Classico</small></h3>
+                    <p>La quintessenza della fluidità muscolare e dell'aerodinamicità. Un mantello fitto, liscio e lucente color oro-ammantato che definisce linee statuarie ed un'eleganza senza tempo nelle movenze.</p>
+                    <ul class="specs-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Mantello liscio, corto e setoso privo di sottopelo</li>
