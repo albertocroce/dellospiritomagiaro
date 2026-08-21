@@ -3,82 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Golden Aristocrat | Bracco Ungherese (Vizsla)</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-    <!-- FontAwesome per icone moderne -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Dello Spirito Magiaro | Allevamento Bracco Ungherese (Vizsla)</title>
+    <!-- Google Fonts: Playfair Display per i titoli gloriosi, Plus Jakarta Sans per i testi moderni -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300..700&display=swap" rel="stylesheet">
+    <!-- FontAwesome per icone -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
         :root {
-            --bg-dark: #0f1115;
-            --bg-card: #161920;
-            --gold-primary: #dfa857;
-            --gold-light: #f3cf98;
-            --text-light: #f3f4f6;
-            --text-muted: #9ca3af;
+            --bg-deep: #0a0b0d;
+            --bg-card: #12141c;
+            --gold-matte: #c5a059;
+            --gold-bright: #f1cd8a;
+            --text-light: #f8f9fa;
+            --text-muted: #a0a5b5;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --border-glow: rgba(197, 160, 89, 0.15);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-deep);
             color: var(--text-light);
             font-family: var(--font-sans);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* Header / Nav */
+        /* --- NAVIGAZIONE AVANZATA --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 5%;
-            position: absolute;
+            padding: 1.8rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            z-index: 100;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10,11,13,0.95) 60%, rgba(10,11,13,0));
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            text-decoration: none;
         }
         
         .logo span {
-            color: var(--gold-primary);
+            color: var(--gold-matte);
+            font-style: italic;
         }
 
-        .nav-links {
+        .nav-container {
             display: flex;
+            gap: 2rem;
             list-style: none;
-            gap: 2.5rem;
         }
 
-        .nav-links a {
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
             transition: color 0.3s ease;
-            letter-spacing: 0.5px;
         }
 
-        .nav-links a:hover {
-            color: var(--gold-primary);
+        .nav-link:hover, .nav-item:hover .nav-link {
+            color: var(--gold-bright);
         }
 
-        /* Hero Section */
+        /* Menu a tendina (Dropdown) */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            background-color: var(--bg-card);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 12px;
+            padding: 1rem 0;
+            min-width: 240px;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown a:hover {
+            color: var(--gold-bright);
+            background: rgba(197, 160, 89, 0.05);
+            padding-left: 1.8rem;
+        }
+
+        /* --- HERO GLORIOSA --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -86,267 +143,194 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 1rem;
+            padding: 0 10%;
             position: relative;
-            background: radial-gradient(circle at center, rgba(223, 168, 87, 0.08) 0%, rgba(15, 17, 21, 0) 70%);
+            background: radial-gradient(circle at center, rgba(197, 160, 89, 0.12) 0%, rgba(10, 11, 13, 0) 75%);
         }
 
-        .hero-tag {
-            font-size: 0.9rem;
+        .hero-badge {
+            border: 1px solid var(--gold-matte);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-primary);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--gold-bright);
+            margin-bottom: 2rem;
+            background: rgba(197, 160, 89, 0.03);
+            margin-top: 6rem;
         }
 
         .hero h1 {
             font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
             line-height: 1.1;
             font-weight: 800;
-            margin-bottom: 2rem;
-            max-width: 900px;
+            max-width: 1100px;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
         }
 
-        .hero h1 span {
-            font-style: italic;
+        .hero h1 em {
             font-weight: 400;
             color: transparent;
-            -webkit-text-stroke: 1px var(--text-light);
+            -webkit-text-stroke: 1px rgba(255,255,255,0.7);
         }
 
-        .hero-cta {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: var(--gold-primary);
-            color: var(--bg-dark);
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-btn {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--gold-matte) 0%, #9e7b3b 100%);
+            color: var(--bg-deep);
             text-decoration: none;
             font-weight: 700;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+            border-radius: 4px;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 2px;
-            box-shadow: 0 10px 30px rgba(223, 168, 87, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
         }
 
-        .hero-cta:hover {
-            background-color: var(--gold-light);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(223, 168, 87, 0.4);
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.3);
+            background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-matte) 100%);
         }
 
-        /* Dual Section (Varianti) */
-        .varieties {
-            padding: 8rem 5%;
+        /* --- SEZIONE GENERICA STRUTTURATA --- */
+        .section {
+            padding: 8rem 8%;
             max-width: 1400px;
             margin: 0 auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            font-family: var(--font-serif);
-            font-size: 3rem;
             margin-bottom: 5rem;
         }
 
-        .section-title span {
-            color: var(--gold-primary);
+        .section-header span {
+            color: var(--gold-matte);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.8rem;
         }
 
-        .grid-split {
+        .section-header h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        /* Layout a due colonne speculari */
+        .grid-two-col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 5rem;
+            align-items: center;
         }
 
-        .card {
+        .content-box h3 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-bright);
+        }
+
+        .content-box p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Segnaposto grafici di lusso per l'allevamento */
+        .visual-container {
             background: var(--bg-card);
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(223, 168, 87, 0.2);
-        }
-
-        /* Sostituti per immagini reali con placeholder grafici CSS di alto livello */
-        .card-img-placeholder {
-            width: 100%;
-            height: 380px;
-            background: linear-gradient(135deg, #1f242e 0%, #111318 100%);
+            border: 1px solid var(--border-glow);
+            height: 450px;
+            border-radius: 16px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            color: var(--gold-primary);
+            overflow: hidden;
         }
 
-        /* Effetto mesh geometrico di sfondo */
-        .card-img-placeholder::before {
+        .visual-container::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(rgba(223, 168, 87, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(223, 168, 87, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
+            width: 150%; height: 150%;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.05) 0%, transparent 60%);
         }
 
-        .card-img-placeholder i {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
+        .visual-container i {
+            font-size: 4.5rem;
+            color: var(--gold-matte);
+            margin-bottom: 1.5rem;
+            z-index: 1;
         }
 
-        .card-img-placeholder span {
+        .visual-container span {
             font-family: var(--font-serif);
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
-
-        .card-content {
-            padding: 3rem;
-        }
-
-        .card-content h3 {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-content h3 small {
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--gold-primary);
-            background: rgba(223, 168, 87, 0.1);
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            letter-spacing: 1px;
+            color: var(--text-light);
+            z-index: 1;
         }
 
-        .card-content p {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
+        /* --- SCHEDE STANDARD DI RAZZA --- */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .specs-list {
-            list-style: none;
+        .spec-item {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
-        .specs-list li {
+        .spec-item:hover {
+            border-color: rgba(197, 160, 89, 0.3);
+            background: rgba(197, 160, 89, 0.02);
+        }
+
+        .spec-item h4 {
+            font-family: var(--font-serif);
+            color: var(--gold-bright);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
-            color: var(--text-light);
+            gap: 0.8rem;
         }
 
-        .specs-list li i {
-            color: var(--gold-primary);
-            font-size: 0.85rem;
+        .spec-item h4 i {
+            font-size: 1rem;
+            color: var(--gold-matte);
         }
 
-        /* Footer */
-        footer {
-            padding: 4rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        .spec-item p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        footer p span {
-            color: var(--gold-primary);
-        }
-
-        /* Responsive Mobile */
-        @media(max-width: 768px) {
-            .nav-links { display: none; }
-            .grid-split { grid-template-columns: 1fr; }
-            .card-content { padding: 2rem; }
-            .section-title { font-size: 2.2rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navigazione minimale -->
-    <header>
-        <div class="logo">VIZSLA<span>.</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#varianti">Le Varianti</a></li>
-            <li><a href="https://github.com" target="_blank">Repository</a></li>
-        </ul>
-    </header>
-
-    <!-- Sezione Principale (Hero) -->
-    <section class="hero" id="home">
-        <div class="hero-tag">Nobile per Natura, Eccellente per Attitudine</div>
-        <h1>Il Bracco Ungherese. Elegante Aristocrazia, <span>Doppia Anima.</span></h1>
-        <a href="#varianti" class="hero-cta">Esplora le Varianti</a>
-    </section>
-
-    <!-- Sezione Varianti Split -->
-    <section class="varieties" id="varianti">
-        <h2 class="section-title">Due Stili, <span>Stessa Eccellenza</span></h2>
-        
-        <div class="grid-split">
-            <!-- Pelo Corto -->
-            <div class="card">
-                <!-- Se hai delle foto tue inserisci il link in <img src="..." >, altrimenti questo segnaposto grafico è già ottimizzato e lussuoso -->
-                <div class="card-img-placeholder">
-                    <i class="fa-solid fa-bolt-lightning"></i>
-                    <span>Rovidszoru Vizsla</span>
-                </div>
-                <div class="card-content">
-                    <h3>Pelo Corto <small>Classico</small></h3>
-                    <p>La quintessenza della fluidità muscolare e dell'aerodinamicità. Un mantello fitto, liscio e lucente color oro-ammantato che definisce linee statuarie ed un'eleganza senza tempo.</p>
-                    <ul class="specs-list">
-                        <li><i class="fa-solid fa-circle-check"></i> Mantello liscio, corto e setoso privo di sottopelo</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Colorazione dorata, dal miele al mogano scuro</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Silhouette atletica e slanciata</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Peso: 18-30 kg</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Pelo Lungo -->
-            <div class="card">
-                <div class="card-img-placeholder">
-                    <i class="fa-solid fa-feather"></i>
-                    <span>Drotszoru Vizsla</span>
-                </div>
-                <div class="card-content">
-                    <h3>Pelo Lungo <small>Elegante</small></h3>
-                    <p>La magia della raffinatezza. Un mantello più lungo e setoso che crea un'aura di nobiltà pura. Stesso temperamento, estetica ancora più sofisticata.</p>
-                    <ul class="specs-list">
-                        <li><i class="fa-solid fa-circle-check"></i> Mantello lungo, fine e setoso</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Colorazione identica al cugino corto</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Eleganza regale e distinguibile</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Peso: 18-30 kg</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 The Golden Aristocrat. <span>Vizsla Heritage.</span> | Eleganza Ungherese</p>
-    </footer>
-
-</body>
-</html>
+        /* --- FOOTER --- */
