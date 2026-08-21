@@ -1,318 +1,1290 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Golden Aristocrat | Bracco Ungherese (Vizsla)</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-    <!-- FontAwesome per icone moderne -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    
-    <style>
-        :root {
-            --bg-dark: #0f1115;
-            --bg-card: #161920;
-            --gold-primary: #dfa857;
-            --gold-light: #f3cf98;
-            --text-light: #f3f4f6;
-            --text-muted: #9ca3af;
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Plus Jakarta Sans', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lo Spirito Magiaro — Il Bracco Ungherese nelle varietà a pelo corto e a pelo duro. Storia, selezione e standard di razza ENCI.">
+  <title>Lo Spirito Magiaro | Bracco Ungherese</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: var(--font-sans);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+  <style>
+    :root {
+      --wine: #651c27;
+      --wine-dark: #3d1118;
+      --gold: #c5a15b;
+      --gold-light: #e2ca91;
+      --cream: #f5f0e6;
+      --paper: #ebe4d5;
+      --charcoal: #171615;
+      --muted: #6f685d;
+      --white: #fffdf8;
+      --line: rgba(101, 28, 39, .18);
+      --shadow: 0 25px 60px rgba(40, 20, 10, .14);
+    }
 
-        /* Header / Nav */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5%;
-            position: absolute;
-            width: 100%;
-            z-index: 100;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .logo {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        
-        .logo span {
-            color: var(--gold-primary);
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
+    body {
+      font-family: "Montserrat", sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.7;
+    }
 
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            letter-spacing: 0.5px;
-        }
+    h1, h2, h3, h4 {
+      font-family: "Cormorant Garamond", serif;
+      line-height: 1;
+    }
 
-        .nav-links a:hover {
-            color: var(--gold-primary);
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 1rem;
-            position: relative;
-            background: radial-gradient(circle at center, rgba(223, 168, 87, 0.08) 0%, rgba(15, 17, 21, 0) 70%);
-        }
+    /* =========================
+       NAVBAR
+    ========================= */
 
-        .hero-tag {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-primary);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
+    .navbar {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      width: 100%;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: .4s ease;
+      color: white;
+    }
 
-        .hero h1 {
-            font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            max-width: 900px;
-        }
+    .navbar.scrolled {
+      background: rgba(45, 15, 19, .96);
+      padding: 13px 5%;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+      backdrop-filter: blur(10px);
+    }
 
-        .hero h1 span {
-            font-style: italic;
-            font-weight: 400;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--text-light);
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-        .hero-cta {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: var(--gold-primary);
-            color: var(--bg-dark);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            box-shadow: 0 10px 30px rgba(223, 168, 87, 0.2);
-        }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--gold);
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      font-weight: 700;
+      transform: rotate(45deg);
+    }
 
-        .hero-cta:hover {
-            background-color: var(--gold-light);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(223, 168, 87, 0.4);
-        }
+    .brand-mark span {
+      transform: rotate(-45deg);
+    }
 
-        /* Dual Section (Varianti) */
-        .varieties {
-            padding: 8rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    .brand-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
 
-        .section-title {
-            text-align: center;
-            font-family: var(--font-serif);
-            font-size: 3rem;
-            margin-bottom: 5rem;
-        }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+    }
 
-        .section-title span {
-            color: var(--gold-primary);
-        }
+    .nav-links a {
+      opacity: .88;
+      transition: .3s;
+    }
 
-        .grid-split {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 4rem;
-        }
+    .nav-links a:hover {
+      color: var(--gold-light);
+      opacity: 1;
+    }
 
-        .card {
-            background: var(--bg-card);
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-        }
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: none;
+      color: white;
+      font-size: 27px;
+      cursor: pointer;
+    }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(223, 168, 87, 0.2);
-        }
+    /* =========================
+       HERO
+    ========================= */
 
-        /* Sostituti per immagini reali con placeholder grafici CSS di alto livello */
-        .card-img-placeholder {
-            width: 100%;
-            height: 380px;
-            background: linear-gradient(135deg, #1f242e 0%, #111318 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            color: var(--gold-primary);
-        }
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(30, 10, 12, .92) 0%, rgba(40, 15, 17, .67) 43%, rgba(20, 10, 7, .25) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.55)),
+        url("images/bracco-hero.jpg") center/cover no-repeat;
+    }
 
-        /* Effetto mesh geometrico di sfondo */
-        .card-img-placeholder::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(rgba(223, 168, 87, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(223, 168, 87, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 75% 35%, transparent 0 16%, rgba(0,0,0,.18) 60%),
+        linear-gradient(135deg, transparent 65%, rgba(197,161,91,.12));
+      pointer-events: none;
+    }
 
-        .card-img-placeholder i {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
+    .hero-content {
+      width: min(1150px, 90%);
+      margin: auto;
+      position: relative;
+      z-index: 2;
+      padding-top: 80px;
+    }
 
-        .card-img-placeholder span {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 4px;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
 
-        .card-content {
-            padding: 3rem;
-        }
+    .eyebrow::before {
+      content: "";
+      width: 45px;
+      height: 1px;
+      background: var(--gold);
+    }
 
-        .card-content h3 {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .hero h1 {
+      font-size: clamp(70px, 10vw, 145px);
+      font-weight: 500;
+      letter-spacing: -4px;
+      max-width: 900px;
+      margin-bottom: 12px;
+    }
 
-        .card-content h3 small {
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--gold-primary);
-            background: rgba(223, 168, 87, 0.1);
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            letter-spacing: 1px;
-        }
+    .hero-subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(25px, 3vw, 38px);
+      color: #eee5d2;
+      font-style: italic;
+      margin-bottom: 28px;
+    }
 
-        .card-content p {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
+    .hero-text {
+      max-width: 620px;
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
 
-        .specs-list {
-            list-style: none;
-        }
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-        .specs-list li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
+    .btn {
+      display: inline-block;
+      padding: 15px 26px;
+      border: 1px solid var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      font-weight: 600;
+      transition: .3s;
+    }
 
-        .specs-list li i {
-            color: var(--gold-primary);
-            font-size: 0.85rem;
-        }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--wine-dark);
+    }
 
-        /* Footer */
-        footer {
-            padding: 4rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
 
-        footer p span {
-            color: var(--gold-primary);
-        }
+    .btn-outline {
+      color: white;
+    }
 
-        /* Responsive Mobile */
-        @media(max-width: 768px) {
-            .nav-links { display: none; }
-            .grid-split { grid-template-columns: 1fr; }
-            .card-content { padding: 2rem; }
-            .section-title { font-size: 2.2rem; }
-        }
-    </style>
+    .btn-outline:hover {
+      background: white;
+      color: var(--wine-dark);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      z-index: 2;
+      bottom: 35px;
+      left: 5%;
+      color: var(--gold-light);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .hero-scroll::after {
+      content: "";
+      width: 70px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+      background: var(--paper);
+      padding: 110px 7%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro::before {
+      content: "MAGYAR";
+      position: absolute;
+      right: -30px;
+      top: 20px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 160px;
+      color: rgba(101,28,39,.035);
+      font-weight: 700;
+    }
+
+    .intro-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .intro-label {
+      color: var(--wine);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+
+    .intro h2 {
+      font-size: clamp(48px, 5vw, 74px);
+      color: var(--wine-dark);
+      margin: 18px 0;
+    }
+
+    .intro-copy {
+      color: #575047;
+      font-size: 15px;
+      max-width: 650px;
+    }
+
+    .quote {
+      border-left: 2px solid var(--gold);
+      padding-left: 30px;
+      margin-top: 30px;
+      color: var(--wine);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-style: italic;
+    }
+
+    /* =========================
+       SECTION HEADER
+    ========================= */
+
+    .section {
+      padding: 110px 7%;
+    }
+
+    .section-header {
+      max-width: 1150px;
+      margin: 0 auto 55px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--wine);
+      margin-bottom: 14px;
+    }
+
+    .section-header h2 {
+      color: var(--wine-dark);
+      font-size: clamp(48px, 5vw, 70px);
+    }
+
+    .section-description {
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       TWO VARIETIES
+    ========================= */
+
+    .varieties {
+      background: #faf7f0;
+    }
+
+    .variety-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .variety-card {
+      min-height: 620px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      display: flex;
+      align-items: end;
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    .variety-card.short {
+      background-image:
+        linear-gradient(0deg, rgba(35,10,12,.92), rgba(35,10,12,.05) 75%),
+        url("images/bracco-pelo-corto.jpg");
+    }
+
+    .variety-card.wire {
+      background-image:
+        linear-gradient(0deg, rgba(35,10,12,.92), rgba(35,10,12,.05) 75%),
+        url("images/bracco-pelo-duro.jpg");
+    }
+
+    .variety-card::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(226,202,145,.4);
+      pointer-events: none;
+    }
+
+    .variety-content {
+      position: relative;
+      z-index: 2;
+      padding: 45px;
+    }
+
+    .variety-number {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold-light);
+      font-size: 18px;
+    }
+
+    .variety-content h3 {
+      font-size: 55px;
+      font-weight: 500;
+      margin: 8px 0 12px;
+    }
+
+    .variety-content p {
+      max-width: 450px;
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+    }
+
+    .variety-link {
+      display: inline-block;
+      margin-top: 25px;
+      color: var(--gold-light);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+    }
+
+    /* =========================
+       HISTORY
+    ========================= */
+
+    .history {
+      background: var(--wine-dark);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .history::after {
+      content: "H";
+      position: absolute;
+      right: 4%;
+      top: 30px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 500px;
+      line-height: .7;
+      color: rgba(255,255,255,.025);
+      font-weight: 700;
+    }
+
+    .history .section-kicker {
+      color: var(--gold-light);
+    }
+
+    .history .section-header h2 {
+      color: white;
+    }
+
+    .history .section-description {
+      color: rgba(255,255,255,.55);
+    }
+
+    .history-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .history-card {
+      padding: 55px;
+      border: 1px solid rgba(197,161,91,.3);
+      background: rgba(255,255,255,.035);
+    }
+
+    .history-card h3 {
+      color: var(--gold-light);
+      font-size: 38px;
+      margin-bottom: 25px;
+    }
+
+    .history-card p {
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .timeline {
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .timeline strong {
+      display: block;
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 27px;
+    }
+
+    .timeline span {
+      color: rgba(255,255,255,.5);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       STANDARDS
+    ========================= */
+
+    .standards {
+      background: var(--cream);
+    }
+
+    .standard-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .standard-card {
+      background: white;
+      padding: 48px;
+      border-top: 4px solid var(--wine);
+      box-shadow: 0 12px 40px rgba(50,20,10,.06);
+    }
+
+    .standard-card .badge {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--gold);
+      color: var(--wine);
+      display: grid;
+      place-items: center;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .standard-card h3 {
+      color: var(--wine-dark);
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .standard-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .standard-list {
+      list-style: none;
+      margin-top: 25px;
+    }
+
+    .standard-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 12px;
+    }
+
+    .standard-list span {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .enci-note {
+      max-width: 1150px;
+      margin: 30px auto 0;
+      padding: 25px 30px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* =========================
+       BREEDING PHILOSOPHY
+    ========================= */
+
+    .philosophy {
+      padding: 120px 7%;
+      background:
+        linear-gradient(90deg, rgba(49,15,20,.96), rgba(49,15,20,.78)),
+        url("images/allevamento.jpg") center/cover;
+      color: white;
+      text-align: center;
+    }
+
+    .philosophy-inner {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .philosophy .eyebrow {
+      justify-content: center;
+    }
+
+    .philosophy h2 {
+      font-size: clamp(48px, 6vw, 78px);
+      margin-bottom: 25px;
+    }
+
+    .philosophy p {
+      color: rgba(255,255,255,.7);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #16090b;
+      color: white;
+      padding: 70px 7% 30px;
+    }
+
+    .footer-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+    }
+
+    footer h3 {
+      font-size: 32px;
+      color: var(--gold-light);
+      margin-bottom: 15px;
+    }
+
+    footer h4 {
+      font-family: "Montserrat", sans-serif;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    footer p,
+    footer li {
+      color: rgba(255,255,255,.48);
+      font-size: 12px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      max-width: 1150px;
+      margin: auto;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(255,255,255,.3);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        right: 5%;
+        width: 220px;
+        padding: 25px;
+        flex-direction: column;
+        background: rgba(45,15,19,.98);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .intro-grid,
+      .variety-grid,
+      .history-grid,
+      .standard-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-grid {
+        gap: 40px;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-description {
+        margin-top: 20px;
+      }
+
+      .variety-card {
+        min-height: 520px;
+      }
+
+      .history-card,
+      .standard-card {
+        padding: 35px;
+      }
+
+      .footer-grid {
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .navbar {
+        padding: 15px 5%;
+      }
+
+      .brand-name {
+        font-size: 20px;
+      }
+
+      .brand-mark {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+      }
+
+      .hero-content {
+        padding-top: 50px;
+      }
+
+      .hero h1 {
+        font-size: 65px;
+      }
+
+      .section,
+      .intro {
+        padding: 75px 6%;
+      }
+
+      .variety-content {
+        padding: 35px;
+      }
+
+      .variety-content h3 {
+        font-size: 45px;
+      }
+
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- Navigazione minimale -->
-    <header>
-        <div class="logo">VIZSLA<span>.</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#varianti">Le Varianti</a></li>
-            <li><a href="https://github.com" target="_blank">Repository</a></li>
-        </ul>
-    </header>
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
 
-    <!-- Sezione Principale (Hero) -->
+  <header class="navbar" id="navbar">
+    <a href="#home" class="brand">
+      <div class="brand-mark"><span>SM</span></div>
+      <div class="brand-name">Lo Spirito Magiaro</div>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+      ☰
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#razza">La razza</a></li>
+        <li><a href="#storia">Le storie</a></li>
+        <li><a href="#standard">Standard ENCI</a></li>
+        <li><a href="#filosofia">Selezione</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
     <section class="hero" id="home">
-        <div class="hero-tag">Nobile per Natura, Eccellente per Attitudine</div>
-        <h1>Il Bracco Ungherese. Elegante Aristocrazia, <span>Doppia Anima.</span></h1>
-        <a href="#varianti" class="hero-cta">Esplora le Varianti</a>
+      <div class="hero-content reveal">
+        <div class="eyebrow">Canis familiaris · Magyar Vizsla</div>
+
+        <h1>Lo Spirito<br>Magiaro</h1>
+
+        <div class="hero-subtitle">
+          Il Bracco Ungherese, anima e tradizione.
+        </div>
+
+        <p class="hero-text">
+          Due varietà, una stessa origine. Il Bracco Ungherese a pelo corto
+          e a pelo duro raccontato attraverso storia, cultura, morfologia
+          e passione per la selezione.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#razza" class="btn btn-primary">Scopri la razza</a>
+          <a href="#standard" class="btn btn-outline">Standard ENCI</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll">Esplora</div>
     </section>
 
-    <!-- Sezione Varianti Split -->
-    <section class="varieties" id="varianti">
-        <h2 class="section-title">Due Stili, <span>Stessa Eccellenza</span></h2>
-        
-        <div class="grid-split">
-            <!-- Pelo Corto -->
-            <div class="card">
-                <!-- Se hai delle foto tue inserisci il link in <img src="..." >, altrimenti questo segnaposto grafico è già ottimizzato e lussuoso -->
-                <div class="card-img-placeholder">
-                    <i class="fa-solid fa-bolt-lightning"></i>
-                    <span>Rovidszoru Vizsla</span>
-                </div>
-                <div class="card-content">
-                    <h3>Pelo Corto <small>Classico</small></h3>
-                    <p>La quintessenza della fluidità muscolare e dell'aerodinamicità. Un mantello fitto, liscio e lucente color oro-ammantato che definisce linee statuarie ed un'eleganza senza tempo nelle movenze.</p>
-                    <ul class="specs-list">
-                        <li><i class="fa-solid fa-circle-check"></i> Mantello liscio, corto e setoso privo di sottopelo</li>
+    <!-- =========================
+         INTRO
+    ========================== -->
+
+    <section class="intro" id="razza">
+      <div class="intro-grid">
+
+        <div class="reveal">
+          <div class="intro-label">Una razza · due espressioni</div>
+          <h2>Eleganza.<br>Potenza.<br>Identità.</h2>
+        </div>
+
+        <div class="reveal">
+          <p class="intro-copy">
+            Il Bracco Ungherese è una razza da ferma di antica origine magiara,
+            selezionata per unire efficienza venatoria, resistenza, equilibrio
+            e una straordinaria collaborazione con l'uomo.
+          </p>
+
+          <p class="intro-copy" style="margin-top:18px;">
+            Nella sua storia convivono due espressioni distintive:
+            il <strong>Vizsla a pelo corto</strong>, essenziale e raffinato,
+            e il <strong>Vizsla a pelo duro</strong>, rustico e resistente.
+          </p>
+
+          <div class="quote">
+            «Un cane nato per la caccia, cresciuto nella storia,
+            consacrato dal legame con l'uomo.»
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         VARIETÀ
+    ========================== -->
+
+    <section class="section varieties">
+      <div class="section-header reveal">
+        <div>
+          <div class="section-kicker">Le due varietà</div>
+          <h2>Il Bracco Ungherese</h2>
+        </div>
+
+        <p class="section-description">
+          Due patrimoni genetici e morfologici distinti, accomunati
+          dall'origine magiara e dalla vocazione di cane da ferma.
+        </p>
+      </div>
+
+      <div class="variety-grid">
+
+        <article class="variety-card short reveal">
+          <div class="variety-content">
+            <div class="variety-number">01 / VIZSLA</div>
+            <h3>Pelo Corto</h3>
+            <p>
+              Il tipo classico: linea elegante, pelo fitto e corto,
+              costruzione armoniosa e carattere energico, affettuoso
+              e profondamente orientato alla collaborazione.
+            </p>
+            <a href="#storia-corto" class="variety-link">La sua storia →</a>
+          </div>
+        </article>
+
+        <article class="variety-card wire reveal">
+          <div class="variety-content">
+            <div class="variety-number">02 / VIZSLA</div>
+            <h3>Pelo Duro</h3>
+            <p>
+              Una versione più rustica e protetta, sviluppata per affrontare
+              ambienti difficili mantenendo le qualità venatorie, l'equilibrio
+              e la tipica espressione della razza.
+            </p>
+            <a href="#storia-duro" class="variety-link">La sua storia →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         STORIA
+    ========================== -->
+
+    <section class="section history" id="storia">
+      <div class="section-header reveal">
+        <div>
+          <div class="section-kicker">Le origini</div>
+          <h2>Due storie,<br>un'anima.</h2>
+        </div>
+
+        <p class="section-description">
+          La storia del Vizsla è inseparabile dalla cultura venatoria
+          dell'Ungheria e dall'evoluzione delle razze da ferma europee.
+        </p>
+      </div>
+
+      <div class="history-grid">
+
+        <article class="history-card reveal" id="storia-corto">
+          <h3>01 · Il Pelo Corto</h3>
+
+          <p>
+            Le radici del Bracco Ungherese a pelo corto affondano nella storia
+            dell'antica Ungheria. Cani da caccia di tipo braccoide accompagnarono
+            per secoli nobiltà e cacciatori nelle pianure e nelle campagne
+            magiare.
+          </p>
+
+          <p style="margin-top:18px;">
+            Attraverso una selezione orientata alla funzionalità, alla capacità
+            di cerca e alla collaborazione con il conduttore, si consolidò
+            il moderno Vizsla: un cane elegante, resistente e versatile,
+            capace di lavorare prima e dopo lo sparo.
+          </p>
+
+          <div class="timeline">
+            <div>
+              <strong>Magyar</strong>
+              <span>Origine culturale</span>
+            </div>
+            <div>
+              <strong>Ferma</strong>
+              <span>Vocazione primaria</span>
+            </div>
+            <div>
+              <strong>Eleganza</strong>
+              <span>Tipo moderno</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="history-card reveal" id="storia-duro">
+          <h3>02 · Il Pelo Duro</h3>
+
+          <p>
+            Il Vizsla a pelo duro rappresenta l'evoluzione di un soggetto
+            pensato per condizioni di lavoro più impegnative. La maggiore
+            protezione del mantello risponde alla necessità di affrontare
+            vegetazione, freddo e terreni difficili.
+          </p>
+
+          <p style="margin-top:18px;">
+            La selezione ha cercato di conservare le qualità fondamentali
+            del Bracco Ungherese, introducendo una struttura del mantello
+            differente e una maggiore rusticità, senza perdere equilibrio
+            e attitudine al lavoro.
+          </p>
+
+          <div class="timeline">
+            <div>
+              <strong>Rustico</strong>
+              <span>Attitudine ambientale</span>
+            </div>
+            <div>
+              <strong>Tenace</strong>
+              <span>Resistenza al lavoro</span>
+            </div>
+            <div>
+              <strong>Protetto</strong>
+              <span>Mantello funzionale</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         STANDARD ENCI
+    ========================== -->
+
+    <section class="section standards" id="standard">
+
+      <div class="section-header reveal">
+        <div>
+          <div class="section-kicker">Morfologia & tipicità</div>
+          <h2>Lo Standard ENCI</h2>
+        </div>
+
+        <p class="section-description">
+          Una lettura sintetica dei principali elementi che definiscono
+          il tipo del Bracco Ungherese nelle due varietà.
+        </p>
+      </div>
+
+      <div class="standard-grid">
+
+        <!-- PELO CORTO -->
+
+        <article class="standard-card reveal">
+          <div class="badge">01</div>
+          <h3>Bracco Ungherese<br>a Pelo Corto</h3>
+
+          <p>
+            Cane da ferma di media taglia, elegante e armonico, costruito
+            per unire resistenza, mobilità e capacità di lavoro.
+          </p>
+
+          <ul class="standard-list">
+            <li>
+              <strong>Tipo</strong>
+              <span>Armonico, elegante, atletico</span>
+            </li>
+            <li>
+              <strong>Taglia</strong>
+              <span>Maschi e femmine secondo standard</span>
+            </li>
+            <li>
+              <strong>Testa</strong>
+              <span>Nobile, asciutta, proporzionata</span>
+            </li>
+            <li>
+              <strong>Mantello</strong>
+              <span>Corto, fitto, ruvido al tatto</span>
+            </li>
+            <li>
+              <strong>Colore</strong>
+              <span>Frumento-dorato nelle tonalità previste</span>
+            </li>
+            <li>
+              <strong>Attitudine</strong>
+              <span>Cane da ferma versatile</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- PELO DURO -->
+
+        <article class="standard-card reveal">
+          <div class="badge">02</div>
+          <h3>Bracco Ungherese<br>a Pelo Duro</h3>
+
+          <p>
+            Cane da ferma di media taglia, robusto ma elegante, con un
+            mantello più duro e protettivo che ne caratterizza il tipo.
+          </p>
+
+          <ul class="standard-list">
+            <li>
+              <strong>Tipo</strong>
+              <span>Robusto, equilibrato, funzionale</span>
+            </li>
+            <li>
+              <strong>Taglia</strong>
+              <span>Maschi e femmine secondo standard</span>
+            </li>
+            <li>
+              <strong>Testa</strong>
+              <span>Nobile, proporzionata e asciutta</span>
+            </li>
+            <li>
+              <strong>Mantello</strong>
+              <span>Duro, aderente, più lungo del pelo corto</span>
+            </li>
+            <li>
+              <strong>Colore</strong>
+              <span>Frumento-dorato nelle tonalità previste</span>
+            </li>
+            <li>
+              <strong>Attitudine</strong>
+              <span>Ferma, cerca e lavoro versatile</span>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+
+      <div class="enci-note reveal">
+        <strong>Nota importante:</strong>
+        questa sezione è una sintesi divulgativa. Per valutazioni ufficiali,
+        allevamento, esposizioni e verifiche di conformità fa fede lo
+        standard di razza ufficialmente pubblicato e vigente presso ENCI/FCI.
+      </div>
+
+    </section>
+
+    <!-- =========================
+         FILOSOFIA
+    ========================== -->
+
+    <section class="philosophy" id="filosofia">
+      <div class="philosophy-inner reveal">
+
+        <div class="eyebrow">La filosofia dell'allevamento</div>
+
+        <h2>Non soltanto bellezza.<br>Tipicità, carattere, lavoro.</h2>
+
+        <p>
+          La selezione responsabile nasce dall'equilibrio tra morfologia,
+          salute, temperamento e attitudine. Un Bracco Ungherese deve essere
+          riconoscibile per il suo tipo, ma soprattutto capace di esprimere
+          la funzione per cui la razza è stata costruita.
+        </p>
+
+        <div style="margin-top:35px;">
+          <a href="#home" class="btn btn-primary">Lo Spirito Magiaro</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-grid">
+
+      <div>
+        <h3>Lo Spirito Magiaro</h3>
+        <p>
+          Un progetto dedicato alla cultura, alla storia e alla selezione
+          del Bracco Ungherese nelle sue due varietà.
+        </p>
+      </div>
+
+      <div>
+        <h4>Esplora</h4>
+        <ul>
+          <li><a href="#razza">La razza</a></li>
+          <li><a href="#storia-corto">Pelo corto</a></li>
+          <li><a href="#storia-duro">Pelo duro</a></li>
+          <li><a href="#standard">Standard ENCI</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Identità</h4>
+        <ul>
+          <li>Tradizione magiara</li>
+          <li>Selezione responsabile</li>
+          <li>Cultura cinofila</li>
+          <li>Vocazione venatoria</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Lo Spirito Magiaro</span>
+      <span>Bracco Ungherese · Vizsla</span>
+    </div>
+
+  </footer>
+
+  <script>
+    // Navbar allo scroll
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // Menu mobile
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Chiude il menu dopo il click
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    // Animazioni reveal
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    document.querySelectorAll(".reveal").forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
