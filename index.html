@@ -1,1290 +1,3682 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lo Spirito Magiaro — Il Bracco Ungherese nelle varietà a pelo corto e a pelo duro. Storia, selezione e standard di razza ENCI.">
-  <title>Lo Spirito Magiaro | Bracco Ungherese</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --wine: #651c27;
-      --wine-dark: #3d1118;
-      --gold: #c5a15b;
-      --gold-light: #e2ca91;
-      --cream: #f5f0e6;
-      --paper: #ebe4d5;
-      --charcoal: #171615;
-      --muted: #6f685d;
-      --white: #fffdf8;
-      --line: rgba(101, 28, 39, .18);
-      --shadow: 0 25px 60px rgba(40, 20, 10, .14);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Montserrat", sans-serif;
-      color: var(--charcoal);
-      background: var(--cream);
-      line-height: 1.7;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: "Cormorant Garamond", serif;
-      line-height: 1;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* =========================
-       NAVBAR
-    ========================= */
-
-    .navbar {
-      position: fixed;
-      z-index: 1000;
-      top: 0;
-      width: 100%;
-      padding: 20px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: .4s ease;
-      color: white;
-    }
-
-    .navbar.scrolled {
-      background: rgba(45, 15, 19, .96);
-      padding: 13px 5%;
-      box-shadow: 0 10px 30px rgba(0,0,0,.15);
-      backdrop-filter: blur(10px);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--gold);
-      display: grid;
-      place-items: center;
-      color: var(--gold);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 25px;
-      font-weight: 700;
-      transform: rotate(45deg);
-    }
-
-    .brand-mark span {
-      transform: rotate(-45deg);
-    }
-
-    .brand-name {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 25px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.7px;
-    }
-
-    .nav-links a {
-      opacity: .88;
-      transition: .3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold-light);
-      opacity: 1;
-    }
-
-    .menu-toggle {
-      display: none;
-      border: 0;
-      background: none;
-      color: white;
-      font-size: 27px;
-      cursor: pointer;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      color: white;
-      background:
-        linear-gradient(90deg, rgba(30, 10, 12, .92) 0%, rgba(40, 15, 17, .67) 43%, rgba(20, 10, 7, .25) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.55)),
-        url("images/bracco-hero.jpg") center/cover no-repeat;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 75% 35%, transparent 0 16%, rgba(0,0,0,.18) 60%),
-        linear-gradient(135deg, transparent 65%, rgba(197,161,91,.12));
-      pointer-events: none;
-    }
-
-    .hero-content {
-      width: min(1150px, 90%);
-      margin: auto;
-      position: relative;
-      z-index: 2;
-      padding-top: 80px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 13px;
-      color: var(--gold-light);
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 4px;
-      font-weight: 600;
-      margin-bottom: 22px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 45px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero h1 {
-      font-size: clamp(70px, 10vw, 145px);
-      font-weight: 500;
-      letter-spacing: -4px;
-      max-width: 900px;
-      margin-bottom: 12px;
-    }
-
-    .hero-subtitle {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(25px, 3vw, 38px);
-      color: #eee5d2;
-      font-style: italic;
-      margin-bottom: 28px;
-    }
-
-    .hero-text {
-      max-width: 620px;
-      color: rgba(255,255,255,.78);
-      font-size: 14px;
-      line-height: 1.9;
-      margin-bottom: 40px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 15px 26px;
-      border: 1px solid var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 10px;
-      font-weight: 600;
-      transition: .3s;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--wine-dark);
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: white;
-      color: var(--wine-dark);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      z-index: 2;
-      bottom: 35px;
-      left: 5%;
-      color: var(--gold-light);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .hero-scroll::after {
-      content: "";
-      width: 70px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    /* =========================
-       INTRO
-    ========================= */
-
-    .intro {
-      background: var(--paper);
-      padding: 110px 7%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .intro::before {
-      content: "MAGYAR";
-      position: absolute;
-      right: -30px;
-      top: 20px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 160px;
-      color: rgba(101,28,39,.035);
-      font-weight: 700;
-    }
-
-    .intro-grid {
-      max-width: 1150px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .intro-label {
-      color: var(--wine);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-weight: 700;
-    }
-
-    .intro h2 {
-      font-size: clamp(48px, 5vw, 74px);
-      color: var(--wine-dark);
-      margin: 18px 0;
-    }
-
-    .intro-copy {
-      color: #575047;
-      font-size: 15px;
-      max-width: 650px;
-    }
-
-    .quote {
-      border-left: 2px solid var(--gold);
-      padding-left: 30px;
-      margin-top: 30px;
-      color: var(--wine);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 24px;
-      font-style: italic;
-    }
-
-    /* =========================
-       SECTION HEADER
-    ========================= */
-
-    .section {
-      padding: 110px 7%;
-    }
-
-    .section-header {
-      max-width: 1150px;
-      margin: 0 auto 55px;
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 30px;
-    }
-
-    .section-kicker {
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--wine);
-      margin-bottom: 14px;
-    }
-
-    .section-header h2 {
-      color: var(--wine-dark);
-      font-size: clamp(48px, 5vw, 70px);
-    }
-
-    .section-description {
-      max-width: 420px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* =========================
-       TWO VARIETIES
-    ========================= */
-
-    .varieties {
-      background: #faf7f0;
-    }
-
-    .variety-grid {
-      max-width: 1150px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-    }
-
-    .variety-card {
-      min-height: 620px;
-      position: relative;
-      overflow: hidden;
-      color: white;
-      display: flex;
-      align-items: end;
-      background-size: cover;
-      background-position: center;
-      box-shadow: var(--shadow);
-    }
-
-    .variety-card.short {
-      background-image:
-        linear-gradient(0deg, rgba(35,10,12,.92), rgba(35,10,12,.05) 75%),
-        url("images/bracco-pelo-corto.jpg");
-    }
-
-    .variety-card.wire {
-      background-image:
-        linear-gradient(0deg, rgba(35,10,12,.92), rgba(35,10,12,.05) 75%),
-        url("images/bracco-pelo-duro.jpg");
-    }
-
-    .variety-card::before {
-      content: "";
-      position: absolute;
-      inset: 15px;
-      border: 1px solid rgba(226,202,145,.4);
-      pointer-events: none;
-    }
-
-    .variety-content {
-      position: relative;
-      z-index: 2;
-      padding: 45px;
-    }
-
-    .variety-number {
-      font-family: "Cormorant Garamond", serif;
-      color: var(--gold-light);
-      font-size: 18px;
-    }
-
-    .variety-content h3 {
-      font-size: 55px;
-      font-weight: 500;
-      margin: 8px 0 12px;
-    }
-
-    .variety-content p {
-      max-width: 450px;
-      color: rgba(255,255,255,.78);
-      font-size: 13px;
-    }
-
-    .variety-link {
-      display: inline-block;
-      margin-top: 25px;
-      color: var(--gold-light);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: 6px;
-    }
-
-    /* =========================
-       HISTORY
-    ========================= */
-
-    .history {
-      background: var(--wine-dark);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .history::after {
-      content: "H";
-      position: absolute;
-      right: 4%;
-      top: 30px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 500px;
-      line-height: .7;
-      color: rgba(255,255,255,.025);
-      font-weight: 700;
-    }
-
-    .history .section-kicker {
-      color: var(--gold-light);
-    }
-
-    .history .section-header h2 {
-      color: white;
-    }
-
-    .history .section-description {
-      color: rgba(255,255,255,.55);
-    }
-
-    .history-grid {
-      max-width: 1150px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .history-card {
-      padding: 55px;
-      border: 1px solid rgba(197,161,91,.3);
-      background: rgba(255,255,255,.035);
-    }
-
-    .history-card h3 {
-      color: var(--gold-light);
-      font-size: 38px;
-      margin-bottom: 25px;
-    }
-
-    .history-card p {
-      color: rgba(255,255,255,.68);
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    .timeline {
-      margin-top: 35px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(255,255,255,.12);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    .timeline strong {
-      display: block;
-      color: var(--gold);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 27px;
-    }
-
-    .timeline span {
-      color: rgba(255,255,255,.5);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* =========================
-       STANDARDS
-    ========================= */
-
-    .standards {
-      background: var(--cream);
-    }
-
-    .standard-grid {
-      max-width: 1150px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-    }
-
-    .standard-card {
-      background: white;
-      padding: 48px;
-      border-top: 4px solid var(--wine);
-      box-shadow: 0 12px 40px rgba(50,20,10,.06);
-    }
-
-    .standard-card .badge {
-      width: 48px;
-      height: 48px;
-      border: 1px solid var(--gold);
-      color: var(--wine);
-      display: grid;
-      place-items: center;
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 25px;
-    }
-
-    .standard-card h3 {
-      color: var(--wine-dark);
-      font-size: 38px;
-      margin-bottom: 20px;
-    }
-
-    .standard-card p {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    .standard-list {
-      list-style: none;
-      margin-top: 25px;
-    }
-
-    .standard-list li {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      font-size: 12px;
-    }
-
-    .standard-list span {
-      color: var(--muted);
-      text-align: right;
-    }
-
-    .enci-note {
-      max-width: 1150px;
-      margin: 30px auto 0;
-      padding: 25px 30px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    /* =========================
-       BREEDING PHILOSOPHY
-    ========================= */
-
-    .philosophy {
-      padding: 120px 7%;
-      background:
-        linear-gradient(90deg, rgba(49,15,20,.96), rgba(49,15,20,.78)),
-        url("images/allevamento.jpg") center/cover;
-      color: white;
-      text-align: center;
-    }
-
-    .philosophy-inner {
-      max-width: 850px;
-      margin: auto;
-    }
-
-    .philosophy .eyebrow {
-      justify-content: center;
-    }
-
-    .philosophy h2 {
-      font-size: clamp(48px, 6vw, 78px);
-      margin-bottom: 25px;
-    }
-
-    .philosophy p {
-      color: rgba(255,255,255,.7);
-      font-size: 14px;
-      line-height: 2;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      background: #16090b;
-      color: white;
-      padding: 70px 7% 30px;
-    }
-
-    .footer-grid {
-      max-width: 1150px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 60px;
-      padding-bottom: 60px;
-    }
-
-    footer h3 {
-      font-size: 32px;
-      color: var(--gold-light);
-      margin-bottom: 15px;
-    }
-
-    footer h4 {
-      font-family: "Montserrat", sans-serif;
-      text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-
-    footer p,
-    footer li {
-      color: rgba(255,255,255,.48);
-      font-size: 12px;
-    }
-
-    footer ul {
-      list-style: none;
-    }
-
-    footer li {
-      margin-bottom: 8px;
-    }
-
-    .footer-bottom {
-      max-width: 1150px;
-      margin: auto;
-      padding-top: 25px;
-      border-top: 1px solid rgba(255,255,255,.1);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: rgba(255,255,255,.3);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-
-    /* =========================
-       REVEAL
-    ========================= */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(25px);
-      transition: opacity .8s ease, transform .8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 850px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 75px;
-        right: 5%;
-        width: 220px;
-        padding: 25px;
-        flex-direction: column;
-        background: rgba(45,15,19,.98);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .intro-grid,
-      .variety-grid,
-      .history-grid,
-      .standard-grid,
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .intro-grid {
-        gap: 40px;
-      }
-
-      .section-header {
-        display: block;
-      }
-
-      .section-description {
-        margin-top: 20px;
-      }
-
-      .variety-card {
-        min-height: 520px;
-      }
-
-      .history-card,
-      .standard-card {
-        padding: 35px;
-      }
-
-      .footer-grid {
-        gap: 35px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .navbar {
-        padding: 15px 5%;
-      }
-
-      .brand-name {
-        font-size: 20px;
-      }
-
-      .brand-mark {
-        width: 35px;
-        height: 35px;
-        font-size: 20px;
-      }
-
-      .hero-content {
-        padding-top: 50px;
-      }
-
-      .hero h1 {
-        font-size: 65px;
-      }
-
-      .section,
-      .intro {
-        padding: 75px 6%;
-      }
-
-      .variety-content {
-        padding: 35px;
-      }
-
-      .variety-content h3 {
-        font-size: 45px;
-      }
-
-      .timeline {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dello Spirito Magiaro | Bracco Ungherese</title>
+
+    <meta
+        name="description"
+        content="Dello Spirito Magiaro. Storia, standard di razza e allevamenti con affisso ENCI del Bracco Ungherese a pelo corto e a pelo duro."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: #241c17;
+            background: #f4efe7;
+            line-height: 1.75;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           COLORI
+        ========================================================= */
+
+        :root {
+            --brown-dark: #241711;
+            --brown: #4c2b1b;
+            --brown-soft: #6c4831;
+
+            --gold-dark: #9a6e28;
+            --gold: #c39a4d;
+            --gold-light: #e0c27e;
+
+            --cream: #f4efe7;
+            --cream-dark: #e9dfd0;
+            --paper: #faf7f1;
+            --white: #ffffff;
+
+            --red: #651f26;
+
+            --text: #2b241f;
+            --text-light: #756b61;
+
+            --border: rgba(76, 43, 27, .15);
+
+            --shadow:
+                0 25px 70px rgba(52, 32, 18, .12);
+        }
+
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .navbar {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            padding: 18px 5%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: white;
+
+            transition: all .35s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(36, 23, 17, .96);
+            backdrop-filter: blur(14px);
+            padding: 11px 5%;
+            box-shadow: 0 10px 40px rgba(0,0,0,.18);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand-logo {
+            width: 50px;
+            height: 50px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 2px solid rgba(224,194,126,.9);
+
+            background: #b98a43;
+        }
+
+        .brand-text {
+            font-family: "Playfair Display", serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: var(--gold-light);
+            font-family: "DM Sans", sans-serif;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: rgba(255,255,255,.9);
+            transition: .25s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold-light);
+        }
+
+        .menu-button {
+            display: none;
+            background: none;
+            border: 0;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 75% 30%,
+                    rgba(195,154,77,.22),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    120deg,
+                    #21130d 0%,
+                    #402419 55%,
+                    #6a4928 100%
+                );
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    rgba(25,14,9,.25),
+                    rgba(25,14,9,.55)
+                );
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            right: -280px;
+            top: -180px;
+
+            border: 1px solid rgba(224,194,126,.18);
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 70px rgba(224,194,126,.025),
+                0 0 0 140px rgba(224,194,126,.018);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: min(1150px, 90%);
+
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            align-items: center;
+
+            gap: 80px;
+        }
+
+        .hero-logo {
+            width: min(470px, 100%);
+
+            margin: auto;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 35px 80px rgba(0,0,0,.35);
+
+            border: 1px solid rgba(224,194,126,.25);
+        }
+
+        .hero-kicker {
+            color: var(--gold-light);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 4px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(50px, 7vw, 92px);
+
+            line-height: 1.02;
+
+            font-weight: 600;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: var(--gold-light);
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: rgba(255,255,255,.74);
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 50px;
+
+            padding: 0 24px;
+
+            border: 1px solid var(--gold);
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            font-size: 9px;
+            font-weight: 700;
+
+            transition: all .3s ease;
+        }
+
+        .button-gold {
+            background: var(--gold);
+            color: var(--brown-dark);
+        }
+
+        .button-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            color: white;
+        }
+
+        .button-outline:hover {
+            background: white;
+            color: var(--brown-dark);
+        }
+
+
+        /* =========================================================
+           INTRO
+        ========================================================= */
+
+        .intro {
+            padding: 120px 7%;
+            background: var(--paper);
+        }
+
+        .intro-inner {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+
+            gap: 90px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            color: var(--gold-dark);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .intro h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(42px, 5vw, 68px);
+
+            line-height: 1.1;
+
+            color: var(--brown-dark);
+
+            margin-top: 18px;
+        }
+
+        .intro p {
+            font-size: 14px;
+            color: var(--text-light);
+
+            margin-bottom: 20px;
+        }
+
+        .intro-note {
+            border-left: 3px solid var(--gold);
+
+            padding-left: 22px;
+
+            color: var(--brown);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           HOME - LE DUE VARIETÀ
+        ========================================================= */
+
+        .varieties {
+            padding: 120px 6%;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #241711 0%,
+                    #352016 100%
+                );
+
+            color: white;
+        }
+
+        .section-heading {
+            max-width: 1100px;
+            margin: 0 auto 55px;
+        }
+
+        .section-heading.center {
+            text-align: center;
+        }
+
+        .section-heading .eyebrow {
+            color: var(--gold-light);
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(42px, 5vw, 68px);
+
+            line-height: 1.05;
+
+            margin-top: 15px;
+        }
+
+        .section-heading p {
+            max-width: 650px;
+
+            margin-top: 18px;
+
+            color: rgba(255,255,255,.6);
+
+            font-size: 13px;
+        }
+
+        .section-heading.center p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .variety-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+        .variety-card {
+            min-height: 570px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            border: 1px solid rgba(224,194,126,.25);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(36,23,17,.15),
+                    rgba(36,23,17,.96)
+                );
+
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+
+        .variety-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 30px 70px rgba(0,0,0,.3);
+        }
+
+        .variety-card.short {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(35,18,11,.10),
+                    rgba(35,18,11,.96)
+                ),
+                url("images/pelo-corto.jpg")
+                center/cover no-repeat;
+        }
+
+        .variety-card.wire {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(35,18,11,.10),
+                    rgba(35,18,11,.96)
+                ),
+                url("images/pelo-duro.jpg")
+                center/cover no-repeat;
+        }
+
+        .variety-card::before {
+            content: "";
+
+            position: absolute;
+            inset: 14px;
+
+            border: 1px solid rgba(224,194,126,.35);
+
+            pointer-events: none;
+        }
+
+        .variety-number {
+            color: var(--gold-light);
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .variety-card h3 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 48px;
+
+            margin: 8px 0 12px;
+        }
+
+        .variety-card p {
+            max-width: 450px;
+
+            color: rgba(255,255,255,.75);
+
+            font-size: 13px;
+        }
+
+        .variety-button {
+            margin-top: 25px;
+
+            width: fit-content;
+
+            color: var(--gold-light);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+            border-bottom: 1px solid var(--gold);
+
+            padding-bottom: 7px;
+        }
+
+
+        /* =========================================================
+           RAZZA
+        ========================================================= */
+
+        .breed-section {
+            padding: 120px 7%;
+
+            background: var(--cream);
+        }
+
+        .breed-section:nth-of-type(even) {
+            background: var(--paper);
+        }
+
+        .breed-header {
+            max-width: 1100px;
+            margin: auto auto 70px;
+
+            display: grid;
+            grid-template-columns: 1fr .9fr;
+
+            gap: 80px;
+            align-items: end;
+        }
+
+        .breed-code {
+            display: inline-flex;
+
+            padding: 7px 12px;
+
+            background: var(--brown-dark);
+
+            color: var(--gold-light);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .breed-header h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(48px, 6vw, 82px);
+
+            color: var(--brown-dark);
+
+            line-height: 1.02;
+
+            margin-top: 20px;
+        }
+
+        .breed-header h2 span {
+            display: block;
+
+            color: var(--gold-dark);
+
+            font-size: .45em;
+
+            font-family: "DM Sans", sans-serif;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+        .breed-summary {
+            color: var(--text-light);
+
+            font-size: 14px;
+        }
+
+        .breed-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .meta-item {
+            padding: 10px 14px;
+
+            border: 1px solid var(--border);
+
+            background: white;
+
+            font-size: 10px;
+
+            color: var(--brown);
+        }
+
+
+        /* =========================================================
+           CONTENUTO STORIA
+        ========================================================= */
+
+        .content-grid {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .content-card {
+            background: white;
+
+            padding: 45px;
+
+            border-top: 3px solid var(--gold);
+
+            box-shadow: 0 15px 45px rgba(50,30,15,.06);
+        }
+
+        .content-card.full {
+            grid-column: 1 / -1;
+        }
+
+        .content-card h3 {
+            font-family: "Playfair Display", serif;
+
+            color: var(--brown-dark);
+
+            font-size: 34px;
+
+            margin-bottom: 20px;
+        }
+
+        .content-card h4 {
+            color: var(--gold-dark);
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin: 30px 0 10px;
+        }
+
+        .content-card p {
+            color: var(--text-light);
+
+            font-size: 13px;
+
+            line-height: 1.95;
+
+            margin-bottom: 16px;
+        }
+
+        .historical-timeline {
+            margin-top: 30px;
+
+            border-left: 1px solid var(--gold);
+
+            padding-left: 25px;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+        }
+
+        .timeline-year {
+            color: var(--gold-dark);
+
+            font-weight: 700;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+        }
+
+        .timeline-item p {
+            margin-top: 4px;
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================================
+           STANDARD
+        ========================================================= */
+
+        .standard-section {
+            padding: 120px 7%;
+
+            background: #eee6da;
+        }
+
+        .standard-intro {
+            max-width: 1100px;
+
+            margin: 0 auto 50px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            gap: 30px;
+        }
+
+        .standard-intro h2 {
+            font-family: "Playfair Display", serif;
+
+            color: var(--brown-dark);
+
+            font-size: clamp(42px, 5vw, 65px);
+
+            line-height: 1.05;
+
+            margin-top: 15px;
+        }
+
+        .standard-intro p {
+            max-width: 420px;
+
+            color: var(--text-light);
+
+            font-size: 12px;
+        }
+
+        .standard-grid {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .standard-box {
+            background: white;
+
+            border: 1px solid var(--border);
+        }
+
+        .standard-box summary {
+            cursor: pointer;
+
+            padding: 20px 24px;
+
+            list-style: none;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            color: var(--brown-dark);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+        }
+
+        .standard-box summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .standard-box summary::after {
+            content: "+";
+
+            color: var(--gold-dark);
+
+            font-size: 20px;
+
+            font-weight: 400;
+        }
+
+        .standard-box[open] summary::after {
+            content: "−";
+        }
+
+        .standard-content {
+            padding: 0 24px 25px;
+
+            color: var(--text-light);
+
+            font-size: 12px;
+
+            line-height: 1.9;
+        }
+
+        .standard-content p {
+            margin-bottom: 12px;
+        }
+
+        .standard-content ul {
+            padding-left: 18px;
+        }
+
+        .standard-content li {
+            margin-bottom: 6px;
+        }
+
+        .standard-content strong {
+            color: var(--brown);
+        }
+
+
+        /* =========================================================
+           ALLEVATORI ENCI
+        ========================================================= */
+
+        .breeders {
+            padding: 120px 7%;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #291812,
+                    #4a291a
+                );
+
+            color: white;
+        }
+
+        .breeders-inner {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .breeder-panel {
+            border: 1px solid rgba(224,194,126,.3);
+
+            padding: 45px;
+
+            background: rgba(255,255,255,.035);
+        }
+
+        .breeder-panel h3 {
+            font-family: "Playfair Display", serif;
+
+            color: var(--gold-light);
+
+            font-size: 35px;
+
+            margin-bottom: 15px;
+        }
+
+        .breeder-panel p {
+            color: rgba(255,255,255,.62);
+
+            font-size: 12px;
+
+            line-height: 1.9;
+
+            margin-bottom: 25px;
+        }
+
+        .official-label {
+            display: inline-block;
+
+            margin-bottom: 15px;
+
+            color: var(--gold-light);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            font-weight: 700;
+        }
+
+        .breeder-note {
+            max-width: 1100px;
+
+            margin: 25px auto 0;
+
+            padding: 20px 25px;
+
+            border-left: 2px solid var(--gold);
+
+            color: rgba(255,255,255,.58);
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           FONTI
+        ========================================================= */
+
+        .sources {
+            padding: 100px 7%;
+
+            background: var(--paper);
+        }
+
+        .sources-inner {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .sources h2 {
+            font-family: "Playfair Display", serif;
+
+            color: var(--brown-dark);
+
+            font-size: 45px;
+
+            margin-bottom: 30px;
+        }
+
+        .source-list {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .source-link {
+            display: block;
+
+            padding: 20px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            color: var(--brown);
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            transition: .25s;
+        }
+
+        .source-link:hover {
+            border-color: var(--gold);
+
+            transform: translateY(-2px);
+        }
+
+        .source-link small {
+            display: block;
+
+            margin-top: 5px;
+
+            color: var(--text-light);
+
+            font-weight: 400;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            background: #160d09;
+
+            color: white;
+
+            padding: 70px 7% 25px;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1.4fr 1fr 1fr;
+
+            gap: 60px;
+
+            padding-bottom: 50px;
+        }
+
+        footer h3 {
+            font-family: "Playfair Display", serif;
+
+            color: var(--gold-light);
+
+            font-size: 31px;
+
+            margin-bottom: 15px;
+        }
+
+        footer h4 {
+            color: var(--gold);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer li {
+            color: rgba(255,255,255,.45);
+
+            font-size: 11px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255,255,255,.1);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: rgba(255,255,255,.28);
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        /* =========================================================
+           ANIMAZIONI
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .nav-menu {
+                display: none;
+
+                position: absolute;
+
+                right: 5%;
+                top: 75px;
+
+                width: 230px;
+
+                padding: 25px;
+
+                flex-direction: column;
+
+                background: #241711;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                gap: 40px;
+
+                padding-top: 80px;
+            }
+
+            .hero-logo {
+                width: min(320px, 80vw);
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .intro-inner,
+            .breed-header,
+            .content-grid,
+            .breeders-inner,
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-inner {
+                gap: 45px;
+            }
+
+            .breed-header {
+                gap: 30px;
+            }
+
+            .variety-grid,
+            .standard-grid,
+            .source-list {
+                grid-template-columns: 1fr;
+            }
+
+            .standard-intro {
+                display: block;
+            }
+
+            .standard-intro p {
+                margin-top: 20px;
+            }
+
+            .content-card.full {
+                grid-column: auto;
+            }
+
+            .footer-inner {
+                gap: 35px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .brand-text {
+                font-size: 15px;
+            }
+
+            .brand-logo {
+                width: 42px;
+                height: 42px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero {
+                padding-bottom: 40px;
+            }
+
+            .intro,
+            .varieties,
+            .breed-section,
+            .standard-section,
+            .breeders,
+            .sources {
+                padding: 80px 6%;
+            }
+
+            .variety-card {
+                min-height: 500px;
+
+                padding: 35px;
+            }
+
+            .variety-card h3 {
+                font-size: 40px;
+            }
+
+            .content-card,
+            .breeder-panel {
+                padding: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
 
-  <header class="navbar" id="navbar">
+<!-- =========================================================
+     NAVIGAZIONE
+========================================================= -->
+
+<header class="navbar" id="navbar">
+
     <a href="#home" class="brand">
-      <div class="brand-mark"><span>SM</span></div>
-      <div class="brand-name">Lo Spirito Magiaro</div>
+
+        <img
+            src="images/logo-dello-spirito-magiaro.jpg"
+            alt="Dello Spirito Magiaro"
+            class="brand-logo"
+        >
+
+        <div class="brand-text">
+            DELLO SPIRITO MAGIARO
+            <span>Bracco Ungherese</span>
+        </div>
+
     </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
-      ☰
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Apri il menu"
+    >
+        ☰
     </button>
 
+
     <nav>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#razza">La razza</a></li>
-        <li><a href="#storia">Le storie</a></li>
-        <li><a href="#standard">Standard ENCI</a></li>
-        <li><a href="#filosofia">Selezione</a></li>
-      </ul>
+
+        <ul class="nav-menu" id="navMenu">
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#pelo-corto">Pelo corto</a>
+            </li>
+
+            <li>
+                <a href="#pelo-duro">Pelo duro</a>
+            </li>
+
+            <li>
+                <a href="#allevatori">Allevamenti ENCI</a>
+            </li>
+
+            <li>
+                <a href="#fonti">Fonti</a>
+            </li>
+
+        </ul>
+
     </nav>
-  </header>
 
-  <!-- =========================
-       HERO
-  ========================== -->
+</header>
 
-  <main>
 
-    <section class="hero" id="home">
-      <div class="hero-content reveal">
-        <div class="eyebrow">Canis familiaris · Magyar Vizsla</div>
 
-        <h1>Lo Spirito<br>Magiaro</h1>
+<!-- =========================================================
+     HOME
+========================================================= -->
 
-        <div class="hero-subtitle">
-          Il Bracco Ungherese, anima e tradizione.
+<main id="home">
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+
+            <div>
+
+                <img
+                    src="images/logo-dello-spirito-magiaro.jpg"
+                    alt="Logo Dello Spirito Magiaro"
+                    class="hero-logo"
+                >
+
+            </div>
+
+
+            <div>
+
+                <div class="hero-kicker">
+                    Magyar Vizsla · Bracco Ungherese
+                </div>
+
+
+                <h1>
+                    DELLO<br>
+                    SPIRITO<br>
+                    <span>MAGIARO</span>
+                </h1>
+
+
+                <p class="hero-description">
+                    Un progetto dedicato al Bracco Ungherese nelle sue due
+                    varietà riconosciute: a pelo corto e a pelo duro.
+                    Storia, morfologia, carattere, standard di razza e
+                    allevamenti con affisso ENCI.
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#varieta"
+                        class="button button-gold"
+                    >
+                        Esplora la razza
+                    </a>
+
+                    <a
+                        href="#fonti"
+                        class="button button-outline"
+                    >
+                        Fonti ufficiali
+                    </a>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <p class="hero-text">
-          Due varietà, una stessa origine. Il Bracco Ungherese a pelo corto
-          e a pelo duro raccontato attraverso storia, cultura, morfologia
-          e passione per la selezione.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#razza" class="btn btn-primary">Scopri la razza</a>
-          <a href="#standard" class="btn btn-outline">Standard ENCI</a>
-        </div>
-      </div>
-
-      <div class="hero-scroll">Esplora</div>
     </section>
 
-    <!-- =========================
-         INTRO
-    ========================== -->
 
-    <section class="intro" id="razza">
-      <div class="intro-grid">
 
-        <div class="reveal">
-          <div class="intro-label">Una razza · due espressioni</div>
-          <h2>Eleganza.<br>Potenza.<br>Identità.</h2>
+    <!-- =====================================================
+         INTRODUZIONE
+    ====================================================== -->
+
+    <section class="intro">
+
+        <div class="intro-inner">
+
+
+            <div class="reveal">
+
+                <div class="eyebrow">
+                    Il Bracco Ungherese
+                </div>
+
+                <h2>
+                    Due varietà.<br>
+                    Una razza.
+                </h2>
+
+            </div>
+
+
+            <div class="reveal">
+
+                <p>
+                    Il Bracco Ungherese appartiene al Gruppo 7 FCI,
+                    Cani da ferma. ENCI riconosce la varietà a pelo corto
+                    con codice FCI 057 e la varietà a pelo duro con codice
+                    FCI 239.
+                </p>
+
+                <p>
+                    Il pelo corto rappresenta la forma storica della razza
+                    riconosciuta dalla FCI nel 1936. Il pelo duro nasce invece
+                    negli anni Trenta del XX secolo attraverso il lavoro
+                    selettivo sul Bracco Ungherese a pelo corto e sul Cane
+                    da ferma tedesco a pelo forte.
+                </p>
+
+                <div class="intro-note">
+                    Le informazioni presenti nel sito sono costruite a partire
+                    dalle fonti ENCI e dall'Associazione Magyar Vizsla Club
+                    Italiano.
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="reveal">
-          <p class="intro-copy">
-            Il Bracco Ungherese è una razza da ferma di antica origine magiara,
-            selezionata per unire efficienza venatoria, resistenza, equilibrio
-            e una straordinaria collaborazione con l'uomo.
-          </p>
-
-          <p class="intro-copy" style="margin-top:18px;">
-            Nella sua storia convivono due espressioni distintive:
-            il <strong>Vizsla a pelo corto</strong>, essenziale e raffinato,
-            e il <strong>Vizsla a pelo duro</strong>, rustico e resistente.
-          </p>
-
-          <div class="quote">
-            «Un cane nato per la caccia, cresciuto nella storia,
-            consacrato dal legame con l'uomo.»
-          </div>
-        </div>
-
-      </div>
     </section>
 
-    <!-- =========================
-         VARIETÀ
-    ========================== -->
 
-    <section class="section varieties">
-      <div class="section-header reveal">
-        <div>
-          <div class="section-kicker">Le due varietà</div>
-          <h2>Il Bracco Ungherese</h2>
-        </div>
 
-        <p class="section-description">
-          Due patrimoni genetici e morfologici distinti, accomunati
-          dall'origine magiara e dalla vocazione di cane da ferma.
-        </p>
-      </div>
+    <!-- =====================================================
+         LE DUE VARIETÀ
+    ====================================================== -->
 
-      <div class="variety-grid">
+    <section
+        class="varieties"
+        id="varieta"
+    >
 
-        <article class="variety-card short reveal">
-          <div class="variety-content">
-            <div class="variety-number">01 / VIZSLA</div>
-            <h3>Pelo Corto</h3>
+        <div class="section-heading center reveal">
+
+            <div class="eyebrow">
+                Scegli la varietà
+            </div>
+
+            <h2>
+                Il Magyar Vizsla
+            </h2>
+
             <p>
-              Il tipo classico: linea elegante, pelo fitto e corto,
-              costruzione armoniosa e carattere energico, affettuoso
-              e profondamente orientato alla collaborazione.
+                Seleziona una delle due varietà per accedere alla storia,
+                alle caratteristiche e allo standard morfologico.
             </p>
-            <a href="#storia-corto" class="variety-link">La sua storia →</a>
-          </div>
-        </article>
 
-        <article class="variety-card wire reveal">
-          <div class="variety-content">
-            <div class="variety-number">02 / VIZSLA</div>
-            <h3>Pelo Duro</h3>
+        </div>
+
+
+        <div class="variety-grid">
+
+
+            <a
+                href="#pelo-corto"
+                class="variety-card short reveal"
+            >
+
+                <div class="variety-number">
+                    FCI 057
+                </div>
+
+                <h3>
+                    Pelo Corto
+                </h3>
+
+                <p>
+                    Bracco Ungherese a pelo corto, cane da caccia
+                    polivalente di media taglia, elegante, distinto,
+                    asciutto e armonico.
+                </p>
+
+                <span class="variety-button">
+                    Approfondisci →
+                </span>
+
+            </a>
+
+
+            <a
+                href="#pelo-duro"
+                class="variety-card wire reveal"
+            >
+
+                <div class="variety-number">
+                    FCI 239
+                </div>
+
+                <h3>
+                    Pelo Duro
+                </h3>
+
+                <p>
+                    Bracco Ungherese a pelo duro, più robusto nella
+                    costituzione, con mantello duro e protettivo e
+                    caratteristiche venatorie polivalenti.
+                </p>
+
+                <span class="variety-button">
+                    Approfondisci →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PELO CORTO - INTRO
+    ====================================================== -->
+
+    <section
+        class="breed-section"
+        id="pelo-corto"
+    >
+
+        <div class="breed-header">
+
+
+            <div class="reveal">
+
+                <span class="breed-code">
+                    FCI 057
+                </span>
+
+                <h2>
+
+                    <span>
+                        Bracco Ungherese
+                    </span>
+
+                    Pelo Corto
+
+                </h2>
+
+            </div>
+
+
+            <div class="reveal">
+
+                <p class="breed-summary">
+                    Cane da caccia polivalente di origine ungherese.
+                    Lo standard FCI lo colloca nel Gruppo 7, Cani da ferma,
+                    Sezione 1, cani da ferma continentali tipo bracco,
+                    con prova di lavoro in pianura e acqua.
+                </p>
+
+
+                <div class="breed-meta">
+
+                    <span class="meta-item">
+                        Origine: Ungheria
+                    </span>
+
+                    <span class="meta-item">
+                        Gruppo 7 FCI
+                    </span>
+
+                    <span class="meta-item">
+                        Tipo bracco
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STORIA PELO CORTO
+        ================================================== -->
+
+        <div class="content-grid">
+
+
+            <article class="content-card full reveal">
+
+                <h3>
+                    Storia del Bracco Ungherese a pelo corto
+                </h3>
+
+
+                <p>
+                    Secondo lo standard ENCI, gli antenati del Bracco Ungherese
+                    arrivarono nel Bacino dei Carpazi con le tribù ungheresi
+                    durante le loro migrazioni. Dal XIV secolo il cane compare
+                    nella documentazione scritta e pittorica.
+                </p>
+
+                <p>
+                    L'importanza del cane nella caccia aumentò ulteriormente
+                    dopo il XVIII secolo. Dalla fine del XIX secolo vennero
+                    organizzate in Ungheria gare per cani da ferma e i Bracchi
+                    Ungheresi vi parteciparono con successo.
+                </p>
+
+                <p>
+                    Il Magyar Vizsla Club Italiano ricostruisce una storia più
+                    ampia e articolata, distinguendo le testimonianze storiche
+                    certe dalle ipotesi sulle origini più remote della razza.
+                    Il Club sottolinea infatti che non è possibile identificare
+                    con certezza il moderno Vizsla con i cani indicati nelle
+                    testimonianze medievali solamente attraverso il termine
+                    "Vizsla".
+                </p>
+
+                <p>
+                    Durante il periodo ottomano una parte della documentazione
+                    relativa ai cani da caccia ungheresi andò perduta.
+                    La storia successiva della razza comprende influenze di
+                    differenti cani da ferma europei e una progressiva
+                    definizione del tipo moderno.
+                </p>
+
+                <p>
+                    All'inizio del XX secolo la razza attraversò una fase
+                    critica. Nel 1917 furono individuati alcuni soggetti
+                    utilizzati per la ricostruzione della popolazione.
+                    Il lavoro di selezione portò alla costituzione di un
+                    nuovo libro genealogico nel 1920.
+                </p>
+
+                <p>
+                    Il primo standard della razza venne completato nel 1928,
+                    modificato nel 1934 e pubblicato nel 1936 dal Vizsla Club
+                    Nazionale. Lo stesso 1936 viene indicato da ENCI come
+                    l'anno di riconoscimento FCI del Bracco Ungherese a pelo
+                    corto.
+                </p>
+
+                <p>
+                    La Seconda guerra mondiale determinò una nuova drastica
+                    riduzione della popolazione. La ricostruzione del
+                    dopoguerra consentì alla razza di riprendere la propria
+                    diffusione internazionale.
+                </p>
+
+                <p>
+                    In Italia la diffusione della razza è stata legata anche
+                    all'attività di allevatori storici e, successivamente,
+                    all'attività dell'Associazione Magyar Vizsla Club Italiano,
+                    società specializzata riconosciuta da ENCI per entrambe
+                    le varietà.
+                </p>
+
+            </article>
+
+
+
+            <article class="content-card reveal">
+
+                <h3>
+                    Cronologia essenziale
+                </h3>
+
+                <div class="historical-timeline">
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            XIV secolo
+                        </div>
+
+                        <p>
+                            Il cane compare in documenti scritti e
+                            rappresentazioni pittoriche.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            XVIII secolo
+                        </div>
+
+                        <p>
+                            Aumenta l'importanza del cane nella caccia.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            1920
+                        </div>
+
+                        <p>
+                            Inizia l'allevamento mirato e controllato.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            1928
+                        </div>
+
+                        <p>
+                            Viene completato il primo standard della razza.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            1936
+                        </div>
+
+                        <p>
+                            Il Bracco Ungherese a pelo corto viene
+                            riconosciuto dalla FCI.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="content-card reveal">
+
+                <h3>
+                    Utilizzazione
+                </h3>
+
+                <p>
+                    Lo standard FCI descrive il Vizsla come cane da caccia
+                    polivalente, destinato al lavoro in pianura, nel bosco
+                    e nell'acqua.
+                </p>
+
+                <p>
+                    Tra le attitudini indicate figurano un eccellente fiuto,
+                    la ferma, il riporto e la capacità di seguire la pista
+                    del selvatico anche a nuoto.
+                </p>
+
+                <p>
+                    Lo standard richiede inoltre capacità di adattamento
+                    ai terreni difficili e alle variazioni meteorologiche.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STANDARD PELO CORTO
+    ====================================================== -->
+
+    <section class="standard-section">
+
+        <div class="standard-intro reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    Standard FCI n. 57
+                </div>
+
+                <h2>
+                    Standard<br>
+                    Pelo Corto
+                </h2>
+
+            </div>
+
             <p>
-              Una versione più rustica e protetta, sviluppata per affrontare
-              ambienti difficili mantenendo le qualità venatorie, l'equilibrio
-              e la tipica espressione della razza.
+                Sintesi completa dei principali capitoli morfologici e
+                funzionali dello standard FCI n. 57, sulla base della
+                versione pubblicata da ENCI.
             </p>
-            <a href="#storia-duro" class="variety-link">La sua storia →</a>
-          </div>
-        </article>
 
-      </div>
+        </div>
+
+
+        <div class="standard-grid">
+
+
+            <details class="standard-box reveal" open>
+
+                <summary>
+                    Classificazione e utilizzazione
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Origine:</strong> Ungheria.
+                    </p>
+
+                    <p>
+                        <strong>Gruppo:</strong> 7, Cani da ferma.
+                    </p>
+
+                    <p>
+                        <strong>Sezione:</strong> 1, Cani da ferma
+                        continentali tipo bracco.
+                    </p>
+
+                    <p>
+                        È prevista la prova di lavoro in pianura e acqua.
+                    </p>
+
+                    <p>
+                        Il cane è destinato alla caccia polivalente in
+                        pianura, bosco e acqua, con fiuto, ferma e riporto
+                        ben sviluppati e attitudine al lavoro in acqua.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Aspetto e proporzioni
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Cane da caccia di media taglia, elegante e distinto,
+                        con costituzione piuttosto leggera, asciutta e senza
+                        peso superfluo.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            La lunghezza del corpo supera leggermente
+                            l'altezza al garrese.
+                        </li>
+
+                        <li>
+                            La profondità del torace è leggermente inferiore
+                            alla metà dell'altezza al garrese.
+                        </li>
+
+                        <li>
+                            Il muso è leggermente più corto della metà
+                            della lunghezza totale della testa.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Comportamento e carattere
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Temperamento vivace, amabile ed equilibrato.
+                        È facile da educare e deve mantenere un forte
+                        contatto con il conduttore durante il lavoro.
+                    </p>
+
+                    <p>
+                        Non sopporta il trattamento brutale e non deve
+                        essere né aggressivo né timido.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Testa
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Testa secca, nobile, ben proporzionata e cesellata.
+                    </p>
+
+                    <p>
+                        <strong>Cranio:</strong> moderatamente largo,
+                        leggermente bombato, con sutura metopica poco
+                        pronunciata e arcate sopraccigliari moderate.
+                    </p>
+
+                    <p>
+                        <strong>Stop:</strong> moderato.
+                    </p>
+
+                    <p>
+                        <strong>Tartufo:</strong> largo, ben sviluppato,
+                        con narici aperte; pigmentazione in armonia con
+                        il mantello e più scura.
+                    </p>
+
+                    <p>
+                        <strong>Muso:</strong> tronco, non appuntito;
+                        canna nasale diritta; mascelle forti e muscolose.
+                    </p>
+
+                    <p>
+                        <strong>Labbra:</strong> aderenti e tese, non pendule.
+                    </p>
+
+                    <p>
+                        <strong>Denti:</strong> chiusura a forbice completa,
+                        regolare; 42 denti sani secondo la formula dentaria
+                        del cane.
+                    </p>
+
+                    <p>
+                        <strong>Occhi:</strong> leggermente ovali, medi,
+                        palpebre aderenti, espressione viva e intelligente;
+                        colore bruno, preferibilmente scuro.
+                    </p>
+
+                    <p>
+                        <strong>Orecchi:</strong> inseriti a media altezza,
+                        leggermente arretrati, fini, aderenti alle guance,
+                        con estremità a V arrotondata; lunghezza circa
+                        tre quarti della testa.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Collo e corpo
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Collo:</strong> di media lunghezza, armonico,
+                        muscoloso e leggermente arcuato; pelle della gola tesa.
+                    </p>
+
+                    <p>
+                        <strong>Garrese:</strong> marcato e muscoloso.
+                    </p>
+
+                    <p>
+                        <strong>Dorso:</strong> forte, muscoloso, fermo e
+                        diritto; le apofisi della colonna devono essere
+                        nascoste dalla muscolatura.
+                    </p>
+
+                    <p>
+                        <strong>Rene:</strong> corto, largo, fermo e
+                        muscoloso, diritto o leggermente arcuato.
+                    </p>
+
+                    <p>
+                        <strong>Groppa:</strong> larga, sufficientemente
+                        lunga, leggermente inclinata verso la coda e
+                        muscolosa.
+                    </p>
+
+                    <p>
+                        <strong>Torace:</strong> ben disceso e largo,
+                        petto marcato e muscoloso, costole moderatamente
+                        cerchiate e false costole ben discese.
+                    </p>
+
+                    <p>
+                        <strong>Linea inferiore:</strong> tesa, con
+                        leggera risalita posteriore.
+                    </p>
+
+                    <p>
+                        <strong>Coda:</strong> inserita un po' bassa,
+                        forte alla radice e progressivamente più sottile.
+                        Se integra raggiunge il garretto; in movimento
+                        viene portata quasi orizzontale.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Arti anteriori
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Diritti e paralleli visti frontalmente; in appiombo
+                        se osservati di profilo. Ossatura solida e forte
+                        muscolatura.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Spalla lunga, obliqua e ben aderente.
+                        </li>
+
+                        <li>
+                            Braccio il più lungo possibile e muscoloso.
+                        </li>
+
+                        <li>
+                            Gomiti aderenti ma non chiusi.
+                        </li>
+
+                        <li>
+                            Avambraccio lungo, diritto e muscoloso.
+                        </li>
+
+                        <li>
+                            Carpo asciutto e solido.
+                        </li>
+
+                        <li>
+                            Metacarpo corto e leggermente obliquo.
+                        </li>
+
+                        <li>
+                            Piedi anteriori leggermente ovali, dita
+                            chiuse, arcuate e forti.
+                        </li>
+
+                        <li>
+                            Unghie brune e cuscinetti compatti,
+                            resistenti e color ardesia.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Arti posteriori
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Visti posteriormente, diritti e paralleli,
+                        con buone angolazioni e ossatura solida.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Coscia lunga e muscolosa.
+                        </li>
+
+                        <li>
+                            Buona angolazione di ginocchio.
+                        </li>
+
+                        <li>
+                            Gamba lunga, muscolosa e nervosa.
+                        </li>
+
+                        <li>
+                            Garretto solido, asciutto e relativamente basso.
+                        </li>
+
+                        <li>
+                            Metatarso verticale, corto e asciutto.
+                        </li>
+
+                        <li>
+                            Piedi posteriori come quelli anteriori.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Andatura e pelle
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        L'andatura tipica è un trotto energico, facile,
+                        elegante e capace di coprire terreno, con forte
+                        spinta dei posteriori e corrispondente allungo
+                        degli anteriori.
+                    </p>
+
+                    <p>
+                        Nella ricerca in pianura il cane utilizza un
+                        galoppo sostenuto. Il dorso rimane fermo e la
+                        linea superiore orizzontale.
+                    </p>
+
+                    <p>
+                        L'ambio deve essere evitato.
+                    </p>
+
+                    <p>
+                        La pelle deve essere aderente, senza pieghe e
+                        ben pigmentata.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Mantello e colore
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Pelo:</strong> corto e fitto, ruvido e duro
+                        al tatto. Sulla testa e sugli orecchi è più fine,
+                        serico e corto. Sulla parte inferiore della coda
+                        è leggermente più lungo.
+                    </p>
+
+                    <p>
+                        Il pelo ricopre tutto il corpo. Sul ventre è
+                        leggermente più rado. Non è previsto sottopelo.
+                    </p>
+
+                    <p>
+                        <strong>Colore:</strong> diverse tonalità del
+                        frumento-dorato. Gli orecchi possono essere
+                        leggermente più scuri, mentre il resto del corpo
+                        deve essere uniforme.
+                    </p>
+
+                    <p>
+                        Toni rossi, brunastri o slavati non sono desiderati.
+                    </p>
+
+                    <p>
+                        Una piccola macchia bianca sul petto o nella zona
+                        della gola, fino a 5 cm di diametro, e macchie
+                        bianche sulle dita non sono penalizzate.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Taglia
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Maschi:</strong> 58–64 cm al garrese.
+                    </p>
+
+                    <p>
+                        <strong>Femmine:</strong> 54–60 cm al garrese.
+                    </p>
+
+                    <p>
+                        Lo standard indica di non ricercare l'aumento
+                        della taglia, privilegiando la taglia media,
+                        l'equilibrio statico e dinamico e l'armonia
+                        della costruzione.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Difetti ed elementi eliminatori
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Ogni deviazione dallo standard deve essere
+                        valutata come difetto in rapporto alla sua gravità.
+                    </p>
+
+                    <p>
+                        Tra gli elementi eliminatori indicati dallo
+                        standard rientrano:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            forte divergenza dal tipo di razza;
+                        </li>
+
+                        <li>
+                            forte deviazione dalle caratteristiche sessuali;
+                        </li>
+
+                        <li>
+                            testa atipica;
+                        </li>
+
+                        <li>
+                            tartufo depigmentato;
+                        </li>
+
+                        <li>
+                            labbra pendule;
+                        </li>
+
+                        <li>
+                            enognatismo, prognatismo o arcata deviata;
+                        </li>
+
+                        <li>
+                            determinate assenze dentarie;
+                        </li>
+
+                        <li>
+                            palato diviso o labbro leporino;
+                        </li>
+
+                        <li>
+                            alterazioni oculari indicate dallo standard;
+                        </li>
+
+                        <li>
+                            giogaia marcata;
+                        </li>
+
+                        <li>
+                            speroni;
+                        </li>
+
+                        <li>
+                            andatura molto difettosa;
+                        </li>
+
+                        <li>
+                            mantello atipico;
+                        </li>
+
+                        <li>
+                            colore non conforme;
+                        </li>
+
+                        <li>
+                            piedi bianchi;
+                        </li>
+
+                        <li>
+                            carenza di pigmentazione;
+                        </li>
+
+                        <li>
+                            difetti caratteriali;
+                        </li>
+
+                        <li>
+                            altezza oltre i limiti previsti dallo standard.
+                        </li>
+
+                    </ul>
+
+                    <p>
+                        I maschi devono presentare due testicoli
+                        apparentemente normali e completamente discesi
+                        nello scroto.
+                    </p>
+
+                </div>
+
+            </details>
+
+        </div>
+
     </section>
 
-    <!-- =========================
-         STORIA
-    ========================== -->
 
-    <section class="section history" id="storia">
-      <div class="section-header reveal">
+
+    <!-- =====================================================
+         PELO DURO - INTRO
+    ====================================================== -->
+
+    <section
+        class="breed-section"
+        id="pelo-duro"
+    >
+
+        <div class="breed-header">
+
+
+            <div class="reveal">
+
+                <span class="breed-code">
+                    FCI 239
+                </span>
+
+                <h2>
+
+                    <span>
+                        Bracco Ungherese
+                    </span>
+
+                    Pelo Duro
+
+                </h2>
+
+            </div>
+
+
+            <div class="reveal">
+
+                <p class="breed-summary">
+                    Varietà di Bracco Ungherese sviluppata negli anni Trenta
+                    del XX secolo attraverso l'incrocio tra Bracco Ungherese
+                    a pelo corto e Cane da ferma tedesco a pelo forte.
+                </p>
+
+
+                <div class="breed-meta">
+
+                    <span class="meta-item">
+                        Origine: Ungheria
+                    </span>
+
+                    <span class="meta-item">
+                        Gruppo 7 FCI
+                    </span>
+
+                    <span class="meta-item">
+                        Tipo bracco
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STORIA PELO DURO
+        ================================================== -->
+
+        <div class="content-grid">
+
+
+            <article class="content-card full reveal">
+
+                <h3>
+                    Storia del Bracco Ungherese a pelo duro
+                </h3>
+
+
+                <p>
+                    ENCI indica che il Bracco Ungherese a pelo duro è il
+                    risultato di un incrocio realizzato negli anni Trenta
+                    del XX secolo tra il Bracco Ungherese a pelo corto e
+                    il Cane da ferma tedesco a pelo forte.
+                </p>
+
+                <p>
+                    L'obiettivo storico era mantenere le caratteristiche
+                    fondamentali del Vizsla a pelo corto ottenendo però
+                    un mantello maggiormente protettivo.
+                </p>
+
+                <p>
+                    La ricostruzione pubblicata dal Magyar Vizsla Club
+                    Italiano descrive l'avvio del lavoro da parte di
+                    József Vasas, allevatore di Hejőcsaba, successivamente
+                    affiancato da László Gresznárik dell'affisso "Selle",
+                    con esperienza nell'allevamento del Drahthaar.
+                </p>
+
+                <p>
+                    Due femmine di Vizsla a pelo corto furono accoppiate
+                    con il Drahthaar marrone Astor von Pottatal.
+                    Dalle successive cucciolate vennero selezionati i
+                    soggetti di colore crusca e il lavoro portò alla
+                    nascita di Dia de Selle, indicato dal Club come il
+                    primo Bracco Ungherese a pelo duro color crusca.
+                </p>
+
+                <p>
+                    Nel 1943 József Vasas presentò una richiesta al
+                    Magyar Vizsla Kennel Club Ungherese per ottenere
+                    sostegno al progetto di allevamento del Bracco
+                    Ungherese a pelo duro.
+                </p>
+
+                <p>
+                    Il Club nazionale accolse il progetto e consentì
+                    l'ammissione dei soggetti a mostre e concorsi,
+                    istituendo anche una registrazione genealogica
+                    non ufficiale in attesa della definizione del
+                    riconoscimento.
+                </p>
+
+                <p>
+                    La selezione mirava a conservare carattere, struttura
+                    e attitudini del Bracco Ungherese a pelo corto,
+                    mantenendo il colore giallo crusca e introducendo
+                    un mantello duro e forte.
+                </p>
+
+                <p>
+                    Il Drahthaar contribuì a una struttura ossea più
+                    robusta e a un mantello più duro e lungo.
+                </p>
+
+                <p>
+                    La Seconda guerra mondiale provocò gravi danni
+                    alla popolazione. Dopo il conflitto il lavoro
+                    di ricostruzione proseguì in Ungheria e anche
+                    attraverso allevamenti esteri.
+                </p>
+
+                <p>
+                    Il Bracco Ungherese a pelo duro venne riconosciuto
+                    dalla FCI nel 1966 come razza ungherese distinta,
+                    con codice FCI 239.
+                </p>
+
+                <p>
+                    Il Club riporta inoltre che il numero di soggetti
+                    è rimasto storicamente molto inferiore rispetto
+                    alla varietà a pelo corto, rendendo più complessa
+                    la selezione e la conservazione delle caratteristiche
+                    del mantello.
+                </p>
+
+            </article>
+
+
+
+            <article class="content-card reveal">
+
+                <h3>
+                    Cronologia
+                </h3>
+
+                <div class="historical-timeline">
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            Anni 1930
+                        </div>
+
+                        <p>
+                            Inizia il progetto per una varietà a pelo duro.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            1943
+                        </div>
+
+                        <p>
+                            József Vasas chiede sostegno ufficiale
+                            al Club nazionale ungherese.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            1944
+                        </div>
+
+                        <p>
+                            Vengono registrati soggetti a pelo duro
+                            in Ungheria.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            1966
+                        </div>
+
+                        <p>
+                            La FCI riconosce la varietà come razza
+                            ungherese con codice 239.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-year">
+                            1976
+                        </div>
+
+                        <p>
+                            In Ungheria vengono organizzate gare
+                            dedicate specificamente al pelo duro.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="content-card reveal">
+
+                <h3>
+                    Identità funzionale
+                </h3>
+
+                <p>
+                    Lo standard FCI definisce il pelo duro come un cane
+                    da caccia polivalente, resistente, efficace e
+                    poco esigente.
+                </p>
+
+                <p>
+                    Deve lavorare in pianura, bosco e acqua e possedere
+                    fiuto, ferma e capacità di riporto.
+                </p>
+
+                <p>
+                    Rispetto al pelo corto, lo standard descrive una
+                    costituzione più robusta e un mantello specificamente
+                    sviluppato per offrire protezione dalle intemperie
+                    e dalle ferite.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STANDARD PELO DURO
+    ====================================================== -->
+
+    <section class="standard-section">
+
+        <div class="standard-intro reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    Standard FCI n. 239
+                </div>
+
+                <h2>
+                    Standard<br>
+                    Pelo Duro
+                </h2>
+
+            </div>
+
+            <p>
+                Sintesi completa dei capitoli morfologici e funzionali
+                dello standard FCI n. 239 pubblicato da ENCI.
+            </p>
+
+        </div>
+
+
+        <div class="standard-grid">
+
+
+            <details class="standard-box reveal" open>
+
+                <summary>
+                    Classificazione e utilizzazione
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Origine:</strong> Ungheria.
+                    </p>
+
+                    <p>
+                        <strong>Gruppo:</strong> 7, Cani da ferma.
+                    </p>
+
+                    <p>
+                        <strong>Sezione:</strong> 1, Cani da ferma
+                        continentali tipo bracco.
+                    </p>
+
+                    <p>
+                        Prova di lavoro in pianura e acqua.
+                    </p>
+
+                    <p>
+                        Cane da caccia polivalente con fiuto eccellente,
+                        ferma, riporto e attitudine al lavoro nell'acqua.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Aspetto e proporzioni
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Cane da caccia vivace, di media taglia,
+                        color frumento-dorato, con costituzione
+                        più robusta rispetto al pelo corto.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Lunghezza del corpo leggermente superiore
+                            all'altezza al garrese.
+                        </li>
+
+                        <li>
+                            Profondità del torace leggermente inferiore
+                            alla metà dell'altezza al garrese.
+                        </li>
+
+                        <li>
+                            Muso leggermente più corto della metà
+                            della lunghezza totale della testa.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Comportamento e carattere
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Cane affezionato al padrone, intelligente,
+                        facile da educare e consapevole delle proprie
+                        capacità.
+                    </p>
+
+                    <p>
+                        Cerca con passione e perseveranza, possiede
+                        un ottimo fiuto e una ferma ben sviluppata.
+                    </p>
+
+                    <p>
+                        Non sopporta il trattamento brutale.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Testa
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Cranio:</strong> moderatamente largo,
+                        leggermente bombato, con sutura metopica poco
+                        pronunciata e arcate sopraccigliari moderate.
+                    </p>
+
+                    <p>
+                        <strong>Stop:</strong> moderato.
+                    </p>
+
+                    <p>
+                        <strong>Tartufo:</strong> largo, ben sviluppato,
+                        con narici molto aperte e pigmentazione in
+                        armonia con il mantello.
+                    </p>
+
+                    <p>
+                        <strong>Muso:</strong> tronco, non appuntito,
+                        con canna nasale diritta e mascelle forti.
+                    </p>
+
+                    <p>
+                        <strong>Labbra:</strong> aderenti e tese,
+                        non pendule.
+                    </p>
+
+                    <p>
+                        <strong>Denti:</strong> chiusura a forbice
+                        completa e regolare; 42 denti sani secondo
+                        la formula dentaria del cane.
+                    </p>
+
+                    <p>
+                        <strong>Occhi:</strong> leggermente ovali,
+                        medi, palpebre aderenti, colore bruno
+                        armonico con il mantello.
+                    </p>
+
+                    <p>
+                        <strong>Orecchi:</strong> inseriti a media
+                        altezza, leggermente arretrati, fini e aderenti
+                        alle guance, con estremità a V arrotondata.
+                        Sono leggermente più corti rispetto a quelli
+                        del pelo corto.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Collo e corpo
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Collo:</strong> medio, armonico,
+                        molto muscoloso e leggermente arcuato.
+                    </p>
+
+                    <p>
+                        <strong>Garrese:</strong> marcato e muscoloso.
+                    </p>
+
+                    <p>
+                        <strong>Dorso:</strong> fermo, solido,
+                        diritto e ben muscoloso.
+                    </p>
+
+                    <p>
+                        <strong>Rene:</strong> corto, largo,
+                        fermo e muscoloso, diritto o leggermente arcuato.
+                    </p>
+
+                    <p>
+                        <strong>Groppa:</strong> larga, sufficientemente
+                        lunga, leggermente inclinata verso la coda
+                        e molto muscolosa.
+                    </p>
+
+                    <p>
+                        <strong>Torace:</strong> ben disceso e largo,
+                        petto marcato, muscoloso e mediamente bombato;
+                        costole moderate e false costole ben discese.
+                    </p>
+
+                    <p>
+                        <strong>Linea inferiore:</strong> tesa,
+                        con leggera risalita posteriore.
+                    </p>
+
+                    <p>
+                        <strong>Coda:</strong> inserita a media altezza,
+                        forte alla radice e progressivamente più sottile;
+                        arriva al garretto se integra.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Arti
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Gli arti anteriori sono diritti e paralleli
+                        visti frontalmente e in appiombo di profilo,
+                        con ossatura solida e forte muscolatura.
+                    </p>
+
+                    <p>
+                        La spalla è lunga e obliqua; il braccio è lungo
+                        e muscoloso; gomiti aderenti; avambraccio lungo,
+                        diritto e sufficientemente muscoloso.
+                    </p>
+
+                    <p>
+                        I piedi anteriori sono leggermente ovali,
+                        con dita chiuse e arcuate, unghie brune e
+                        cuscinetti compatti color ardesia.
+                    </p>
+
+                    <p>
+                        Gli arti posteriori sono diritti e paralleli
+                        visti da dietro, con buona angolazione,
+                        coscia lunga e muscolosa, gamba lunga e nervosa,
+                        garretto solido e relativamente basso.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Andatura e pelle
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Il trotto è energico, facile, elegante e
+                        capace di coprire molto terreno, con spinta
+                        dei posteriori e corrispondente allungo
+                        degli anteriori.
+                    </p>
+
+                    <p>
+                        Nella ricerca in pianura utilizza un galoppo
+                        sostenuto. Il dorso rimane fermo e la linea
+                        superiore orizzontale.
+                    </p>
+
+                    <p>
+                        L'ambio deve essere evitato.
+                    </p>
+
+                    <p>
+                        La pelle è aderente, senza pieghe e ben pigmentata.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Mantello e colore
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Pelo:</strong> di tipo fil di ferro,
+                        aderente, forte, fitto e opaco.
+                    </p>
+
+                    <p>
+                        Il pelo di copertura misura circa 2–3 cm.
+                        Il sottopelo è denso e impermeabile all'acqua.
+                    </p>
+
+                    <p>
+                        Il mantello deve proteggere dalle intemperie
+                        e dalle ferite senza nascondere il profilo
+                        del corpo con una lunghezza eccessiva.
+                    </p>
+
+                    <p>
+                        Sulla testa e sugli orecchi il pelo è più corto
+                        e leggermente più scuro. Le sopracciglia sono
+                        marcate e la barba, dura e forte, misura circa
+                        2–3 cm. Sul collo è presente il pelo a spazzola
+                        disposto a V.
+                    </p>
+
+                    <p>
+                        <strong>Colore:</strong> diverse tonalità
+                        del frumento-dorato. Gli orecchi possono essere
+                        più scuri; il resto del mantello deve essere
+                        uniforme.
+                    </p>
+
+                    <p>
+                        Toni rossi, brunastri, giallo chiaro o slavati
+                        non sono desiderati.
+                    </p>
+
+                    <p>
+                        Una piccola macchia bianca sul petto o nella
+                        zona della gola, fino a 5 cm, e macchie bianche
+                        sulle dita non sono penalizzate.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Taglia
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        <strong>Maschi:</strong> 58–64 cm al garrese.
+                    </p>
+
+                    <p>
+                        <strong>Femmine:</strong> 54–60 cm al garrese.
+                    </p>
+
+                    <p>
+                        Lo standard indica di ricercare una taglia media.
+                        Equilibrio statico e dinamico e armonia della
+                        costruzione sono più importanti della semplice
+                        misura in centimetri.
+                    </p>
+
+                </div>
+
+            </details>
+
+
+
+            <details class="standard-box reveal">
+
+                <summary>
+                    Difetti ed elementi eliminatori
+                </summary>
+
+                <div class="standard-content">
+
+                    <p>
+                        Ogni deviazione dalle caratteristiche previste
+                        viene considerata difetto e valutata secondo
+                        la gravità.
+                    </p>
+
+                    <p>
+                        Tra gli elementi eliminatori indicati dallo
+                        standard rientrano:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            forte deviazione dalle caratteristiche sessuali;
+                        </li>
+
+                        <li>
+                            testa atipica;
+                        </li>
+
+                        <li>
+                            tartufo depigmentato;
+                        </li>
+
+                        <li>
+                            labbra pendule;
+                        </li>
+
+                        <li>
+                            enognatismo, prognatismo o arcata dentaria deviata;
+                        </li>
+
+                        <li>
+                            determinate assenze dentarie;
+                        </li>
+
+                        <li>
+                            denti in eccedenza fuori allineamento;
+                        </li>
+
+                        <li>
+                            palato diviso o labbro leporino;
+                        </li>
+
+                        <li>
+                            determinate alterazioni oculari;
+                        </li>
+
+                        <li>
+                            giogaia marcata;
+                        </li>
+
+                        <li>
+                            speroni;
+                        </li>
+
+                        <li>
+                            andatura molto difettosa;
+                        </li>
+
+                        <li>
+                            pelo rado o assenza di sottopelo;
+                        </li>
+
+                        <li>
+                            pelo lungo, molle, serico, irsuto,
+                            crespo o lanoso;
+                        </li>
+
+                        <li>
+                            assenza del pelo a spazzola agli arti;
+                        </li>
+
+                        <li>
+                            colore non conforme;
+                        </li>
+
+                        <li>
+                            macchia bianca sul petto superiore a 5 cm;
+                        </li>
+
+                        <li>
+                            piedi bianchi;
+                        </li>
+
+                        <li>
+                            mancanza di pigmentazione;
+                        </li>
+
+                        <li>
+                            difetti caratteriali;
+                        </li>
+
+                        <li>
+                            altezza oltre i limiti previsti.
+                        </li>
+
+                    </ul>
+
+                    <p>
+                        I maschi devono presentare due testicoli
+                        apparentemente normali e completamente discesi
+                        nello scroto.
+                    </p>
+
+                </div>
+
+            </details>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ALLEVAMENTI CON AFFIX ENCI
+    ====================================================== -->
+
+    <section
+        class="breeders"
+        id="allevatori"
+    >
+
+        <div class="section-heading center reveal">
+
+            <div class="eyebrow">
+                Registro ufficiale
+            </div>
+
+            <h2>
+                Allevamenti con affisso ENCI
+            </h2>
+
+            <p>
+                Per mantenere i dati corretti nel tempo, il sito utilizza
+                direttamente il database ufficiale ENCI degli allevatori
+                con affisso, anziché pubblicare un elenco statico che
+                potrebbe diventare obsoleto.
+            </p>
+
+        </div>
+
+
+        <div class="breeders-inner">
+
+
+            <article class="breeder-panel reveal">
+
+                <span class="official-label">
+                    ENCI · FCI 057
+                </span>
+
+                <h3>
+                    Bracco Ungherese
+                    <br>
+                    a Pelo Corto
+                </h3>
+
+                <p>
+                    Consulta il registro ENCI relativo alla varietà a
+                    pelo corto. La ricerca ufficiale permette di
+                    verificare gli allevatori con affisso, la regione
+                    e le razze dichiarate nel registro.
+                </p>
+
+                <a
+                    href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=057"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button button-gold"
+                >
+                    Registro ENCI
+                </a>
+
+            </article>
+
+
+
+            <article class="breeder-panel reveal">
+
+                <span class="official-label">
+                    ENCI · FCI 239
+                </span>
+
+                <h3>
+                    Bracco Ungherese
+                    <br>
+                    a Pelo Duro
+                </h3>
+
+                <p>
+                    Consulta il registro ENCI relativo alla varietà a
+                    pelo duro. La ricerca ufficiale permette di
+                    verificare gli allevatori con affisso, la regione
+                    e le razze dichiarate nel registro.
+                </p>
+
+                <a
+                    href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=239"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button button-gold"
+                >
+                    Registro ENCI
+                </a>
+
+            </article>
+
+        </div>
+
+
+        <div class="breeder-note reveal">
+
+            L'elenco degli allevatori con affisso viene lasciato al
+            database ufficiale ENCI per evitare di attribuire a un
+            allevamento informazioni non aggiornate o non verificabili.
+            La presenza nel registro ENCI è la fonte di riferimento
+            per questa sezione.
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FONTI
+    ====================================================== -->
+
+    <section
+        class="sources"
+        id="fonti"
+    >
+
+        <div class="sources-inner">
+
+
+            <div class="eyebrow">
+                Documentazione
+            </div>
+
+            <h2>
+                Fonti utilizzate
+            </h2>
+
+
+            <div class="source-list">
+
+
+                <a
+                    href="https://www.enci.it/libro-genealogico/razze/bracco-ungherese-a-pelo-corto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    ENCI
+                    <small>
+                        Bracco Ungherese a pelo corto · FCI 057
+                    </small>
+                </a>
+
+
+                <a
+                    href="https://www.enci.it/libro-genealogico/razze/bracco-ungherese-a-pelo-duro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    ENCI
+                    <small>
+                        Bracco Ungherese a pelo duro · FCI 239
+                    </small>
+                </a>
+
+
+                <a
+                    href="https://www.enci.it/media/2329/057.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    ENCI · Standard FCI 057
+                    <small>
+                        Standard ufficiale in italiano
+                    </small>
+                </a>
+
+
+                <a
+                    href="https://www.enci.it/media/2504/239.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    ENCI · Standard FCI 239
+                    <small>
+                        Standard ufficiale in italiano
+                    </small>
+                </a>
+
+
+                <a
+                    href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-corto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    Magyar Vizsla Club Italiano
+                    <small>
+                        Storia del Vizsla a pelo corto
+                    </small>
+                </a>
+
+
+                <a
+                    href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-duro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    Magyar Vizsla Club Italiano
+                    <small>
+                        Storia del Vizsla a pelo duro
+                    </small>
+                </a>
+
+
+                <a
+                    href="https://www.vizslaclub.it/index.php/standard"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    Magyar Vizsla Club Italiano
+                    <small>
+                        Standard morfologico
+                    </small>
+                </a>
+
+
+                <a
+                    href="https://www.enci.it/allevatori/allevatori-con-affisso"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="source-link"
+                >
+                    ENCI
+                    <small>
+                        Allevatori con affisso
+                    </small>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+
         <div>
-          <div class="section-kicker">Le origini</div>
-          <h2>Due storie,<br>un'anima.</h2>
+
+            <h3>
+                Dello Spirito Magiaro
+            </h3>
+
+            <p>
+                Bracco Ungherese a pelo corto e a pelo duro.
+                Storia, standard e documentazione cinofila.
+            </p>
+
         </div>
 
-        <p class="section-description">
-          La storia del Vizsla è inseparabile dalla cultura venatoria
-          dell'Ungheria e dall'evoluzione delle razze da ferma europee.
-        </p>
-      </div>
 
-      <div class="history-grid">
-
-        <article class="history-card reveal" id="storia-corto">
-          <h3>01 · Il Pelo Corto</h3>
-
-          <p>
-            Le radici del Bracco Ungherese a pelo corto affondano nella storia
-            dell'antica Ungheria. Cani da caccia di tipo braccoide accompagnarono
-            per secoli nobiltà e cacciatori nelle pianure e nelle campagne
-            magiare.
-          </p>
-
-          <p style="margin-top:18px;">
-            Attraverso una selezione orientata alla funzionalità, alla capacità
-            di cerca e alla collaborazione con il conduttore, si consolidò
-            il moderno Vizsla: un cane elegante, resistente e versatile,
-            capace di lavorare prima e dopo lo sparo.
-          </p>
-
-          <div class="timeline">
-            <div>
-              <strong>Magyar</strong>
-              <span>Origine culturale</span>
-            </div>
-            <div>
-              <strong>Ferma</strong>
-              <span>Vocazione primaria</span>
-            </div>
-            <div>
-              <strong>Eleganza</strong>
-              <span>Tipo moderno</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="history-card reveal" id="storia-duro">
-          <h3>02 · Il Pelo Duro</h3>
-
-          <p>
-            Il Vizsla a pelo duro rappresenta l'evoluzione di un soggetto
-            pensato per condizioni di lavoro più impegnative. La maggiore
-            protezione del mantello risponde alla necessità di affrontare
-            vegetazione, freddo e terreni difficili.
-          </p>
-
-          <p style="margin-top:18px;">
-            La selezione ha cercato di conservare le qualità fondamentali
-            del Bracco Ungherese, introducendo una struttura del mantello
-            differente e una maggiore rusticità, senza perdere equilibrio
-            e attitudine al lavoro.
-          </p>
-
-          <div class="timeline">
-            <div>
-              <strong>Rustico</strong>
-              <span>Attitudine ambientale</span>
-            </div>
-            <div>
-              <strong>Tenace</strong>
-              <span>Resistenza al lavoro</span>
-            </div>
-            <div>
-              <strong>Protetto</strong>
-              <span>Mantello funzionale</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- =========================
-         STANDARD ENCI
-    ========================== -->
-
-    <section class="section standards" id="standard">
-
-      <div class="section-header reveal">
         <div>
-          <div class="section-kicker">Morfologia & tipicità</div>
-          <h2>Lo Standard ENCI</h2>
+
+            <h4>
+                Varietà
+            </h4>
+
+            <ul>
+
+                <li>
+                    <a href="#pelo-corto">
+                        Bracco Ungherese a pelo corto
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#pelo-duro">
+                        Bracco Ungherese a pelo duro
+                    </a>
+                </li>
+
+            </ul>
+
         </div>
 
-        <p class="section-description">
-          Una lettura sintetica dei principali elementi che definiscono
-          il tipo del Bracco Ungherese nelle due varietà.
-        </p>
-      </div>
 
-      <div class="standard-grid">
+        <div>
 
-        <!-- PELO CORTO -->
+            <h4>
+                Documentazione
+            </h4>
 
-        <article class="standard-card reveal">
-          <div class="badge">01</div>
-          <h3>Bracco Ungherese<br>a Pelo Corto</h3>
+            <ul>
 
-          <p>
-            Cane da ferma di media taglia, elegante e armonico, costruito
-            per unire resistenza, mobilità e capacità di lavoro.
-          </p>
+                <li>
+                    <a href="#allevatori">
+                        Allevamenti con affisso ENCI
+                    </a>
+                </li>
 
-          <ul class="standard-list">
-            <li>
-              <strong>Tipo</strong>
-              <span>Armonico, elegante, atletico</span>
-            </li>
-            <li>
-              <strong>Taglia</strong>
-              <span>Maschi e femmine secondo standard</span>
-            </li>
-            <li>
-              <strong>Testa</strong>
-              <span>Nobile, asciutta, proporzionata</span>
-            </li>
-            <li>
-              <strong>Mantello</strong>
-              <span>Corto, fitto, ruvido al tatto</span>
-            </li>
-            <li>
-              <strong>Colore</strong>
-              <span>Frumento-dorato nelle tonalità previste</span>
-            </li>
-            <li>
-              <strong>Attitudine</strong>
-              <span>Cane da ferma versatile</span>
-            </li>
-          </ul>
-        </article>
+                <li>
+                    <a href="#fonti">
+                        Fonti
+                    </a>
+                </li>
 
-        <!-- PELO DURO -->
+                <li>
+                    <a href="#home">
+                        Torna all'inizio
+                    </a>
+                </li>
 
-        <article class="standard-card reveal">
-          <div class="badge">02</div>
-          <h3>Bracco Ungherese<br>a Pelo Duro</h3>
+            </ul>
 
-          <p>
-            Cane da ferma di media taglia, robusto ma elegante, con un
-            mantello più duro e protettivo che ne caratterizza il tipo.
-          </p>
-
-          <ul class="standard-list">
-            <li>
-              <strong>Tipo</strong>
-              <span>Robusto, equilibrato, funzionale</span>
-            </li>
-            <li>
-              <strong>Taglia</strong>
-              <span>Maschi e femmine secondo standard</span>
-            </li>
-            <li>
-              <strong>Testa</strong>
-              <span>Nobile, proporzionata e asciutta</span>
-            </li>
-            <li>
-              <strong>Mantello</strong>
-              <span>Duro, aderente, più lungo del pelo corto</span>
-            </li>
-            <li>
-              <strong>Colore</strong>
-              <span>Frumento-dorato nelle tonalità previste</span>
-            </li>
-            <li>
-              <strong>Attitudine</strong>
-              <span>Ferma, cerca e lavoro versatile</span>
-            </li>
-          </ul>
-        </article>
-
-      </div>
-
-      <div class="enci-note reveal">
-        <strong>Nota importante:</strong>
-        questa sezione è una sintesi divulgativa. Per valutazioni ufficiali,
-        allevamento, esposizioni e verifiche di conformità fa fede lo
-        standard di razza ufficialmente pubblicato e vigente presso ENCI/FCI.
-      </div>
-
-    </section>
-
-    <!-- =========================
-         FILOSOFIA
-    ========================== -->
-
-    <section class="philosophy" id="filosofia">
-      <div class="philosophy-inner reveal">
-
-        <div class="eyebrow">La filosofia dell'allevamento</div>
-
-        <h2>Non soltanto bellezza.<br>Tipicità, carattere, lavoro.</h2>
-
-        <p>
-          La selezione responsabile nasce dall'equilibrio tra morfologia,
-          salute, temperamento e attitudine. Un Bracco Ungherese deve essere
-          riconoscibile per il suo tipo, ma soprattutto capace di esprimere
-          la funzione per cui la razza è stata costruita.
-        </p>
-
-        <div style="margin-top:35px;">
-          <a href="#home" class="btn btn-primary">Lo Spirito Magiaro</a>
         </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    <div class="footer-grid">
-
-      <div>
-        <h3>Lo Spirito Magiaro</h3>
-        <p>
-          Un progetto dedicato alla cultura, alla storia e alla selezione
-          del Bracco Ungherese nelle sue due varietà.
-        </p>
-      </div>
-
-      <div>
-        <h4>Esplora</h4>
-        <ul>
-          <li><a href="#razza">La razza</a></li>
-          <li><a href="#storia-corto">Pelo corto</a></li>
-          <li><a href="#storia-duro">Pelo duro</a></li>
-          <li><a href="#standard">Standard ENCI</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Identità</h4>
-        <ul>
-          <li>Tradizione magiara</li>
-          <li>Selezione responsabile</li>
-          <li>Cultura cinofila</li>
-          <li>Vocazione venatoria</li>
-        </ul>
-      </div>
 
     </div>
+
 
     <div class="footer-bottom">
-      <span>© 2026 Lo Spirito Magiaro</span>
-      <span>Bracco Ungherese · Vizsla</span>
+
+        <span>
+            DELLO SPIRITO MAGIARO
+        </span>
+
+        <span>
+            Bracco Ungherese · Magyar Vizsla
+        </span>
+
     </div>
 
-  </footer>
+</footer>
 
-  <script>
-    // Navbar allo scroll
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
     const navbar = document.getElementById("navbar");
 
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
+
+        if (window.scrollY > 40) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+
     });
 
-    // Menu mobile
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
 
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+
+    /* =========================================================
+       MENU MOBILE
+    ========================================================= */
+
+    const menuButton = document.getElementById("menuButton");
+    const navMenu = document.getElementById("navMenu");
+
+    menuButton.addEventListener("click", () => {
+
+        navMenu.classList.toggle("active");
+
     });
 
-    // Chiude il menu dopo il click
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-      });
-    });
 
-    // Animazioni reveal
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
+    document.querySelectorAll(".nav-menu a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("active");
+
         });
-      },
-      {
-        threshold: 0.12
-      }
+
+    });
+
+
+
+    /* =========================================================
+       ANIMAZIONI
+    ========================================================= */
+
+    const observer = new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.10
+        }
+
     );
 
-    document.querySelectorAll(".reveal").forEach(el => {
-      observer.observe(el);
-    });
-  </script>
+
+    document
+        .querySelectorAll(".reveal")
+        .forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+</script>
 
 </body>
 </html>
