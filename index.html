@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Golden Aristocrat | Bracco Ungherese (Vizsla)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+    <!-- FontAwesome per icone moderne -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f1115;
+            --bg-card: #161920;
+            --gold-primary: #dfa857;
+            --gold-light: #f3cf98;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header / Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--gold-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(223, 168, 87, 0.08) 0%, rgba(15, 17, 21, 0) 70%);
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            font-weight: 400;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-light);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--gold-primary);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(223, 168, 87, 0.2);
+        }
+
+        .hero-cta:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(223, 168, 87, 0.4);
+        }
+
+        /* Dual Section (Varianti) */
+        .varieties {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .section-title span {
+            color: var(--gold-primary);
+        }
+
+        .grid-split {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 4rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(223, 168, 87, 0.2);
+        }
+
+        /* Sostituti per immagini reali con placeholder grafici CSS di alto livello */
+        .card-img-placeholder {
+            width: 100%;
+            height: 380px;
+            background: linear-gradient(135deg, #1f242e 0%, #111318 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: var(--gold-primary);
+        }
+
+        /* Effetto mesh geometrico di sfondo */
+        .card-img-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(223, 168, 87, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(223, 168, 87, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .card-img-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .card-img-placeholder span {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .card-content {
+            padding: 3rem;
+        }
+
+        .card-content h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-content h3 small {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--gold-primary);
+            background: rgba(223, 168, 87, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .specs-list li i {
+            color: var(--gold-primary);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p span {
+            color: var(--gold-primary);
+        }
+
+        /* Responsive Mobile */
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            .grid-split { grid-template-columns: 1fr; }
+            .card-content { padding: 2rem; }
+            .section-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigazione minimale -->
+    <header>
+        <div class="logo">VIZSLA<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#varianti">Le Varianti</a></li>
+            <li><a href="https://github.com" target="_blank">Repository</a></li>
+        </ul>
+    </header>
+
+    <!-- Sezione Principale (Hero) -->
+    <section class="hero" id="home">
+        <div class="hero-tag">Nobile per Natura, Eccellente per Attitudine</div>
+        <h1>Il Bracco Ungherese. Elegante Aristocrazia, <span>Doppia Anima.</span></h1>
+        <a href="#varianti" class="hero-cta">Esplora le Varianti</a>
+    </section>
+
+    <!-- Sezione Varianti Split -->
+    <section class="varieties" id="varianti">
+        <h2 class="section-title">Due Stili, <span>Stessa Eccellenza</span></h2>
+        
+        <div class="grid-split">
+            <!-- Pelo Corto -->
+            <div class="card">
+                <!-- Se hai delle foto tue inserisci il link in <img src="..." >, altrimenti questo segnaposto grafico è già ottimizzato e lussuoso -->
+                <div class="card-img-placeholder">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                    <span>Rovidszoru Vizsla</span>
+                </div>
+                <div class="card-content">
+                    <h3>Pelo Corto <small>Classico</small></h3>
+                    <p>La quintessenza della fluidità muscolare e dell'aerodinamicità. Un mantello fitto, liscio e lucente color oro-ammantato che definisce linee statuarie ed un'eleganza senza tempo.</p>
+                    <ul class="specs-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Mantello liscio, corto e setoso privo di sottopelo</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Colorazione dorata, dal miele al mogano scuro</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Silhouette atletica e slanciata</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Peso: 18-30 kg</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pelo Lungo -->
+            <div class="card">
+                <div class="card-img-placeholder">
+                    <i class="fa-solid fa-feather"></i>
+                    <span>Drotszoru Vizsla</span>
+                </div>
+                <div class="card-content">
+                    <h3>Pelo Lungo <small>Elegante</small></h3>
+                    <p>La magia della raffinatezza. Un mantello più lungo e setoso che crea un'aura di nobiltà pura. Stesso temperamento, estetica ancora più sofisticata.</p>
+                    <ul class="specs-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Mantello lungo, fine e setoso</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Colorazione identica al cugino corto</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Eleganza regale e distinguibile</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Peso: 18-30 kg</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 The Golden Aristocrat. <span>Vizsla Heritage.</span> | Eleganza Ungherese</p>
+    </footer>
+
+</body>
+</html>
