@@ -29,8 +29,21 @@ h1,h2,h3{font-family:"Playfair Display",serif;font-weight:600;color:#fff}
 .nav-menu a.on{background:rgba(217,180,106,.22);color:var(--gold-l);box-shadow:inset 0 0 0 1px rgba(217,180,106,.45)}
 .menu-button{display:none;background:none;border:0;color:#fff;font-size:24px;cursor:pointer}
 
+
+/* PULSANTE FONTI */
+.nav-menu .sep{width:1px;height:22px;background:var(--glass-b);margin:0 8px;align-self:center}
+.fonti{position:relative}
+.fonti button{font:inherit;font-size:12px;font-weight:600;letter-spacing:.5px;padding:8px 18px;border-radius:100px;cursor:pointer;color:var(--gold-l);background:transparent;border:1px solid rgba(217,180,106,.55);transition:.25s}
+.fonti button:hover,.fonti button[aria-expanded="true"]{background:rgba(217,180,106,.2)}
+.fpanel{display:none;position:absolute;right:0;top:calc(100% + 18px);width:340px;padding:18px 20px;border-radius:20px;background:rgba(30,18,12,.92);border:1px solid var(--glass-b);backdrop-filter:blur(22px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.fpanel.open{display:block}
+.fpanel h4{color:var(--gold-l);font-size:10px;text-transform:uppercase;letter-spacing:2px;margin:12px 0 6px}
+.fpanel h4:first-child{margin-top:0}
+.fpanel a{display:block;padding:5px 0;font-size:12px;color:var(--tx)}
+.fpanel a:hover{color:#fff;text-decoration:underline}
+
 /* PAGINE */
-.page{display:none;padding:110px 0 40px}
+.page{display:none;padding:110px 0 80px}
 body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pelo-duro"] #pelo-duro,body[data-p="allevamenti"] #allevamenti{display:block}
 .wrap{width:min(1120px,92%);margin:auto}
 
@@ -97,18 +110,13 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 .alle .lead{max-width:640px;font-size:14px;margin-bottom:34px}
 .pan{padding:38px}.pan h2{font-size:30px;margin:10px 0 12px}.pan p{font-size:13px}
 
-/* FOOTER */
-footer{margin:50px auto 24px;width:min(1120px,92%);padding:36px;font-size:12px}
-.fin{display:grid;grid-template-columns:1.2fr 1fr 1.4fr;gap:36px}
-footer h3{font-size:24px;margin-bottom:8px}
-footer h4{color:var(--gold-l);font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
-footer li{list-style:none;margin-bottom:6px}footer a:hover{color:#fff;text-decoration:underline}
-.cred{margin-top:24px;padding-top:16px;border-top:1px solid var(--glass-b);font-size:10.5px;color:var(--tx2)}
 
 @media(max-width:860px){
 .navbar{border-radius:26px}
 .nav-menu{display:none;position:absolute;left:0;right:0;top:62px;padding:12px;flex-direction:column;border-radius:22px;background:rgba(30,18,12,.85);backdrop-filter:blur(22px)}
 .nav-menu.active{display:flex}.menu-button{display:block}
+.nav-menu .sep{width:auto;height:1px;margin:8px 0}
+.fpanel{position:static;width:auto;margin-top:10px;box-shadow:none}
 .razze,.testata,.grid2,.acc,.fin{grid-template-columns:1fr}
 .testata .txt{padding:32px}.card{min-height:470px;padding:20px}
 }
@@ -125,6 +133,20 @@ footer li{list-style:none;margin-bottom:6px}footer a:hover{color:#fff;text-decor
 <li><a href="?pagina=pelo-corto" data-l="pelo-corto">Pelo corto</a></li>
 <li><a href="?pagina=pelo-duro" data-l="pelo-duro">Pelo duro</a></li>
 <li><a href="?pagina=allevamenti" data-l="allevamenti">Allevamenti ENCI</a></li>
+<li class="sep" aria-hidden="true"></li>
+<li class="fonti"><button type="button" id="fb" aria-expanded="false" aria-controls="fp">Fonti</button>
+<div class="fpanel" id="fp">
+<h4>Standard e schede ufficiali</h4>
+<a href="https://www.enci.it/media/2329/057.pdf">ENCI · Standard FCI n. 57 (pelo corto)</a>
+<a href="https://www.enci.it/media/2504/239.pdf">ENCI · Standard FCI n. 239 (pelo duro)</a>
+<a href="https://www.enci.it/libro-genealogico/razze/bracco-ungherese-a-pelo-corto">enci.it · scheda pelo corto</a>
+<a href="https://www.enci.it/libro-genealogico/razze/bracco-ungherese-a-pelo-duro">enci.it · scheda pelo duro</a>
+<h4>Magyar Vizsla Club Italiano</h4>
+<a href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-corto">vizslaclub.it · storia pelo corto</a>
+<a href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-duro">vizslaclub.it · storia pelo duro</a>
+<h4>Immagini (Wikimedia Commons)</h4>
+<span id="fimg"></span>
+</div></li>
 </ul></nav>
 </header>
 
@@ -162,20 +184,6 @@ footer li{list-style:none;margin-bottom:6px}footer a:hover{color:#fff;text-decor
 </div></div></section>
 </main>
 
-<footer class="glass">
-<div class="fin">
-<div><h3>Spirito Magiaro</h3><p>Bracco Ungherese a pelo corto e a pelo duro. Informazioni tratte da ENCI/FCI e dall’Associazione Magyar Vizsla Club Italiano.</p></div>
-<div><h4>Sezioni</h4><ul><li><a href="?">Home</a></li><li><a href="?pagina=pelo-corto">Pelo corto</a></li><li><a href="?pagina=pelo-duro">Pelo duro</a></li><li><a href="?pagina=allevamenti">Allevamenti ENCI</a></li></ul></div>
-<div><h4>Fonti</h4><ul>
-<li><a href="https://www.enci.it/media/2329/057.pdf">ENCI · Standard FCI n. 57 (pelo corto)</a></li>
-<li><a href="https://www.enci.it/media/2504/239.pdf">ENCI · Standard FCI n. 239 (pelo duro)</a></li>
-<li><a href="https://www.enci.it/libro-genealogico/razze/bracco-ungherese-a-pelo-corto">enci.it · scheda pelo corto</a></li>
-<li><a href="https://www.enci.it/libro-genealogico/razze/bracco-ungherese-a-pelo-duro">enci.it · scheda pelo duro</a></li>
-<li><a href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-corto">vizslaclub.it · storia pelo corto</a></li>
-<li><a href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-duro">vizslaclub.it · storia pelo duro</a></li></ul></div>
-</div>
-<div class="cred" id="cred"></div>
-</footer>
 
 <script>
 /* ========== IMMAGINI E LOGHI ==========
@@ -300,9 +308,12 @@ document.querySelector('[data-l="'+cur+'"]').classList.add("on");
 /* sfondo sfocato per l'effetto glass */
 const bk=cur==="pelo-duro"?"duro":"corto";
 const bi=new Image();bi.alt="";bi.onload=()=>document.getElementById("amb").appendChild(bi);bi.src=src(bk);
-document.getElementById("cred").innerHTML="Foto: Wikimedia Commons, file con licenza libera — "+
- Object.keys(IMG).map(k=>'<a href="'+scheda(k)+'">'+IMG[k].nome+'</a>').join(" · ")+
- ". Verifica autore e licenza (obbligo di attribuzione, se previsto) nella scheda di ciascun file. I loghi ENCI e FCI appartengono ai rispettivi titolari.";
+
+/* FONTI: pulsante con pannello */
+document.getElementById("fimg").innerHTML=Object.keys(IMG).map(k=>'<a href="'+scheda(k)+'">'+IMG[k].nome+'</a>').join("");
+const fb=document.getElementById("fb"),fp=document.getElementById("fp");
+fb.onclick=e=>{e.stopPropagation();const o=fp.classList.toggle("open");fb.setAttribute("aria-expanded",o)};
+document.addEventListener("click",e=>{if(!fp.contains(e.target)){fp.classList.remove("open");fb.setAttribute("aria-expanded","false")}});
 const nm=document.getElementById("nm");
 document.getElementById("mb").onclick=()=>nm.classList.toggle("active");
 </script>
