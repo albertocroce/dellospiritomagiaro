@@ -44,8 +44,13 @@ h1,h2,h3{font-family:"Playfair Display",serif;font-weight:600;color:#fff}
 
 /* PAGINE */
 .page{display:none;padding:110px 0 80px}
-body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pelo-duro"] #pelo-duro,body[data-p="allevamenti"] #allevamenti{display:block}
-.wrap{width:min(1120px,92%);margin:auto}
+body[data-p="home"] #home,
+body[data-p="pelo-corto"] #pelo-corto,
+body[data-p="pelo-duro"] #pelo-duro,
+body[data-p="allevamenti"] #allevamenti,
+body[data-p="campioni"] #campioni {
+  display: block;
+}.wrap{width:min(1120px,92%);margin:auto}
 
 /* HOME */
 .hero{text-align:center;padding:60px 0 40px}
@@ -435,14 +440,70 @@ function costruisci(id){
  el.querySelectorAll("[data-img]").forEach(i=>{i.src=src(i.dataset.img);i.onerror=()=>i.remove()});
 }
 costruisci("pelo-corto");costruisci("pelo-duro");
+  
+/* ========== TABELLE CAMPIONI PROCLAMATI ========== */
 
+const intestazioniCampioni = [
+  "Anno",
+  "Campione Italiano di Bellezza",
+  "Campione Italiano di Lavoro",
+  "Campione Italiano Assoluto",
+  "Campione Internazionale di Bellezza",
+  "Campione Internazionale di Lavoro",
+  "Campione Internazionale Assoluto",
+  "Campione Internazionale di Esposizione",
+  "Campione Italiano Veterano",
+  "Campione Estero",
+  "Campione Riproduttore"
+];
+
+function creaTabellaCampioni(id, dati) {
+  const tabella = document.getElementById(id);
+
+  if (!tabella) return;
+
+  let html = "<thead><tr>";
+
+  intestazioniCampioni.forEach(titolo => {
+    html += `<th>${titolo}</th>`;
+  });
+
+  html += "</tr></thead><tbody>";
+
+  dati.forEach(riga => {
+    html += "<tr>";
+
+    riga.forEach((valore, indice) => {
+      html += `<td>${valore || '<span class="empty">—</span>'}</td>`;
+    });
+
+    html += "</tr>";
+  });
+
+  html += "</tbody>";
+
+  tabella.innerHTML = html;
+}
+  
 /* ========== NAVIGAZIONE ?pagina= ========== */
-const ok=["pelo-corto","pelo-duro","allevamenti","campioni"];
-const p=new URLSearchParams(location.search).get("pagina");
-const cur=ok.includes(p)?p:"home";
-document.body.dataset.p=cur;
-document.title=(cur==="home"?"Spirito Magiaro":(RAZZE[cur]?RAZZE[cur].titolo:"Allevamenti ENCI")+" | Spirito Magiaro");
-document.querySelector('[data-l="'+cur+'"]').classList.add("on");
+const ok = [
+  "pelo-corto",
+  "pelo-duro",
+  "allevamenti",
+  "campioni"
+];
+const p = new URLSearchParams(location.search).get("pagina");
+const cur = ok.includes(p) ? p : "home";
+
+document.body.dataset.p = cur;
+const titoliPagine = {
+  home: "Spirito Magiaro",
+  "pelo-corto": "Pelo Corto | Spirito Magiaro",
+  "pelo-duro": "Pelo Duro | Spirito Magiaro",
+  allevamenti: "Allevamenti ENCI | Spirito Magiaro",
+  campioni: "Campioni Proclamati | Spirito Magiaro"
+};
+document.title = titoliPagine[cur];document.querySelector('[data-l="'+cur+'"]').classList.add("on");
 /* sfondo sfocato per l'effetto glass */
 const bk=cur==="pelo-duro"?"duro":"corto";
 const bi=new Image();bi.alt="";bi.onload=()=>document.getElementById("amb").appendChild(bi);bi.src=src(bk);
