@@ -13,14 +13,10 @@ html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,sans-serif;color:var(--tx);background:var(--ink);line-height:1.7;min-height:100vh;overflow-x:hidden}
 img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 h1,h2,h3{font-family:"Playfair Display",serif;font-weight:600;color:#fff}
-
-/* SFONDO AMBIENTALE (serve all'effetto glass) */
 .ambient{position:fixed;inset:0;z-index:-1;background:radial-gradient(60% 50% at 15% 10%,rgba(217,180,106,.30),transparent 70%),radial-gradient(50% 50% at 90% 30%,rgba(140,60,30,.40),transparent 70%),radial-gradient(60% 60% at 50% 100%,rgba(90,50,25,.55),transparent 70%),var(--ink)}
 .ambient img{position:absolute;inset:-60px;width:calc(100% + 120px);height:calc(100% + 120px);object-fit:cover;filter:blur(46px) saturate(1.3);opacity:.38}
 .glass{background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18);border-radius:22px}
 .eyebrow{color:var(--gold-l);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2.5px}
-
-/* NAV */
 .navbar{position:fixed;z-index:20;top:14px;left:50%;transform:translateX(-50%);width:min(1120px,94%);padding:12px 22px;display:flex;justify-content:space-between;align-items:center;border-radius:100px}
 .brand{font-family:"Playfair Display",serif;font-size:19px;letter-spacing:2px;color:#fff}
 .nav-menu{display:flex;list-style:none;gap:6px}
@@ -28,9 +24,6 @@ h1,h2,h3{font-family:"Playfair Display",serif;font-weight:600;color:#fff}
 .nav-menu a:hover{background:rgba(255,255,255,.1);color:#fff}
 .nav-menu a.on{background:rgba(217,180,106,.22);color:var(--gold-l);box-shadow:inset 0 0 0 1px rgba(217,180,106,.45)}
 .menu-button{display:none;background:none;border:0;color:#fff;font-size:24px;cursor:pointer}
-
-
-/* PULSANTE FONTI */
 .nav-menu .sep{width:1px;height:22px;background:var(--glass-b);margin:0 8px;align-self:center}
 .fonti{position:relative}
 .fonti button{font:inherit;font-size:12px;font-weight:600;letter-spacing:.5px;padding:8px 18px;border-radius:100px;cursor:pointer;color:var(--gold-l);background:transparent;border:1px solid rgba(217,180,106,.55);transition:.25s}
@@ -41,13 +34,9 @@ h1,h2,h3{font-family:"Playfair Display",serif;font-weight:600;color:#fff}
 .fpanel h4:first-child{margin-top:0}
 .fpanel a{display:block;padding:5px 0;font-size:12px;color:var(--tx)}
 .fpanel a:hover{color:#fff;text-decoration:underline}
-
-/* PAGINE */
 .page{display:none;padding:110px 0 80px}
-body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pelo-duro"] #pelo-duro,body[data-p="allevamenti"] #allevamenti{display:block}
+body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pelo-duro"] #pelo-duro,body[data-p="allevamenti"] #allevamenti,body[data-p="calendario"] #calendario{display:block}
 .wrap{width:min(1120px,92%);margin:auto}
-
-/* HOME */
 .hero{text-align:center;padding:60px 0 40px}
 .hero h1{font-size:clamp(52px,9vw,112px);line-height:1;letter-spacing:-2px;margin:16px 0 22px}
 .hero h1 span{background:linear-gradient(120deg,var(--gold-l),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -68,8 +57,6 @@ body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pel
 .card p{font-size:13.5px;max-width:420px}
 .btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:13px 26px;border-radius:100px;background:linear-gradient(120deg,var(--gold-l),var(--gold));color:var(--ink);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:.3s}
 .btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
-
-/* PAGINA RAZZA */
 .testata{display:grid;grid-template-columns:1.05fr .95fr;overflow:hidden;min-height:440px}
 .testata .txt{padding:52px}
 .testata h1{font-size:clamp(44px,6vw,76px);line-height:1.04;margin:12px 0 16px}
@@ -104,20 +91,31 @@ details[open]{background:rgba(255,255,255,.1)}
 details .c{padding:0 22px 22px;font-size:12.5px;line-height:1.8}
 details p{margin-bottom:9px}details strong{color:var(--gold-l);font-weight:600}
 details ul{padding-left:18px}details li{margin-bottom:4px}
-
-/* ALLEVAMENTI */
 .alle h1{font-size:clamp(42px,6vw,76px);margin:12px 0 14px}
 .alle .lead{max-width:640px;font-size:14px;margin-bottom:34px}
 .pan{padding:38px}.pan h2{font-size:30px;margin:10px 0 12px}.pan p{font-size:13px}
-
-
+.cal-intro{max-width:760px;margin:10px 0 30px;font-size:14px;color:var(--tx)}
+.cal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cal-event{padding:24px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.cal-event:hover{transform:translateY(-4px);border-color:rgba(217,180,106,.42)}
+.cal-event::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,var(--gold-l),rgba(217,180,106,.15))}
+.cal-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cal-date{color:var(--gold-l);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.cal-type{padding:5px 10px;border:1px solid rgba(217,180,106,.35);border-radius:100px;color:var(--gold-l);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.cal-event h2{font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.55;font-weight:600;margin-bottom:10px}
+.cal-place{font-size:12px;color:var(--tx2);margin-bottom:12px}
+.cal-judge{padding-top:10px;border-top:1px solid var(--glass-b);font-size:11px;color:var(--tx2)}
+.cal-judge strong{color:#fff;font-weight:600}
+.cal-note{margin-top:24px;padding:22px 24px;font-size:12px;color:var(--tx2)}
+.cal-note p+p{margin-top:12px}
+.cal-note strong{color:var(--gold-l)}
 @media(max-width:860px){
 .navbar{border-radius:26px}
 .nav-menu{display:none;position:absolute;left:0;right:0;top:62px;padding:12px;flex-direction:column;border-radius:22px;background:rgba(30,18,12,.85);backdrop-filter:blur(22px)}
 .nav-menu.active{display:flex}.menu-button{display:block}
 .nav-menu .sep{width:auto;height:1px;margin:8px 0}
 .fpanel{position:static;width:auto;margin-top:10px;box-shadow:none}
-.razze,.testata,.grid2,.acc,.fin{grid-template-columns:1fr}
+.razze,.testata,.grid2,.acc,.fin,.cal-grid{grid-template-columns:1fr}
 .testata .txt{padding:32px}.card{min-height:470px;padding:20px}
 }
 </style>
@@ -128,13 +126,16 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <header class="navbar glass">
 <a href="?" class="brand">SPIRITO MAGIARO</a>
 <button class="menu-button" id="mb" aria-label="Apri il menu">☰</button>
-<nav><ul class="nav-menu" id="nm">
+<nav>
+<ul class="nav-menu" id="nm">
 <li><a href="?" data-l="home">Home</a></li>
 <li><a href="?pagina=pelo-corto" data-l="pelo-corto">Pelo corto</a></li>
 <li><a href="?pagina=pelo-duro" data-l="pelo-duro">Pelo duro</a></li>
 <li><a href="?pagina=allevamenti" data-l="allevamenti">Allevamenti ENCI</a></li>
+<li><a href="?pagina=calendario" data-l="calendario">Calendario 2027</a></li>
 <li class="sep" aria-hidden="true"></li>
-<li class="fonti"><button type="button" id="fb" aria-expanded="false" aria-controls="fp">Fonti</button>
+<li class="fonti">
+<button type="button" id="fb" aria-expanded="false" aria-controls="fp">Fonti</button>
 <div class="fpanel" id="fp">
 <h4>Standard e schede ufficiali</h4>
 <a href="https://www.fci.be/Nomenclature/Standards/057g07-en.pdf">FCI · Standard n. 57 (pelo corto)</a>
@@ -146,49 +147,183 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <a href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-duro">A.M.V.C.I. · Storia pelo duro</a>
 <h4>Immagini (Wikimedia Commons)</h4>
 <span id="fimg"></span>
-</div></li>
-</ul></nav>
+</div>
+</li>
+</ul>
+</nav>
 </header>
 
 <main>
 <!-- HOME -->
-<section class="page" id="home"><div class="wrap">
+<section class="page" id="home">
+<div class="wrap">
 <div class="hero">
 <div class="eyebrow">Magyar Vizsla · Bracco Ungherese</div>
 <h1>SPIRITO<br><span>MAGIARO</span></h1>
 <p>Il Bracco Ungherese nelle sue due varietà riconosciute: a pelo corto e a pelo duro.</p>
 <div class="ufficiali">
-<a class="logo glass" href="https://www.enci.it" rel="noopener"><span class="lg" data-logo="enci">ENCI</span><span><b>ENCI</b>Ente Nazionale<br>della Cinofilia Italiana</span></a>
-<a class="logo glass" href="https://www.fci.be" rel="noopener"><span class="lg" data-logo="fci">FCI</span><span><b>FCI</b>Fédération Cynologique<br>Internationale</span></a>
+<a class="logo glass" href="https://www.enci.it" rel="noopener">
+<span class="lg" data-logo="enci">ENCI</span>
+<span><b>ENCI</b>Ente Nazionale<br>della Cinofilia Italiana</span>
+</a>
+<a class="logo glass" href="https://www.fci.be" rel="noopener">
+<span class="lg" data-logo="fci">FCI</span>
+<span><b>FCI</b>Fédération Cynologique<br>Internationale</span>
+</a>
 </div>
 </div>
-<div class="razze">
-<a href="?pagina=pelo-corto" class="card glass"><img class="foto" data-img="corto" alt="Bracco Ungherese a pelo corto">
-<div class="pane glass"><div class="eyebrow">FCI n. 57</div><h2>Pelo Corto</h2><p>Cane da caccia polivalente di media taglia, elegante e distinto, dalla costituzione leggera e asciutta.</p><span class="btn">Approfondisci →</span></div></a>
-<a href="?pagina=pelo-duro" class="card glass"><img class="foto" data-img="duro" alt="Bracco Ungherese a pelo duro">
-<div class="pane glass"><div class="eyebrow">FCI n. 239</div><h2>Pelo Duro</h2><p>Cane da caccia polivalente, resistente ed efficace, di costituzione più robusta, con mantello tipo «fil di ferro».</p><span class="btn">Approfondisci →</span></div></a>
-</div></div></section>
 
-<!-- PAGINE RAZZA (compilate da JS) -->
+<div class="razze">
+<a href="?pagina=pelo-corto" class="card glass">
+<img class="foto" data-img="corto" alt="Bracco Ungherese a pelo corto">
+<div class="pane glass">
+<div class="eyebrow">FCI n. 57</div>
+<h2>Pelo Corto</h2>
+<p>Cane da caccia polivalente di media taglia, elegante e distinto, dalla costituzione leggera e asciutta.</p>
+<span class="btn">Approfondisci →</span>
+</div>
+</a>
+
+<a href="?pagina=pelo-duro" class="card glass">
+<img class="foto" data-img="duro" alt="Bracco Ungherese a pelo duro">
+<div class="pane glass">
+<div class="eyebrow">FCI n. 239</div>
+<h2>Pelo Duro</h2>
+<p>Cane da caccia polivalente, resistente ed efficace, di costituzione più robusta, con mantello tipo «fil di ferro».</p>
+<span class="btn">Approfondisci →</span>
+</div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- PAGINE RAZZA (compilate da JavaScript) -->
 <section class="page" id="pelo-corto"></section>
 <section class="page" id="pelo-duro"></section>
 
 <!-- ALLEVAMENTI -->
-<section class="page alle" id="allevamenti"><div class="wrap">
+<section class="page alle" id="allevamenti">
+<div class="wrap">
 <div class="eyebrow">Registro ufficiale</div>
 <h1>Allevamenti con affisso ENCI</h1>
 <p class="lead">Per mantenere i dati corretti nel tempo il sito rimanda al database ufficiale ENCI degli allevatori con affisso, invece di pubblicare un elenco statico che potrebbe diventare obsoleto.</p>
+
 <div class="razze" style="padding-top:0">
-<div class="pan glass"><span class="eyebrow">ENCI · FCI n. 57</span><h2>Bracco ungherese a pelo corto</h2><p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p><a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=057">Registro ENCI →</a></div>
-<div class="pan glass"><span class="eyebrow">ENCI · FCI n. 239</span><h2>Bracco ungherese a pelo duro</h2><p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p><a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=239">Registro ENCI →</a></div>
-</div></div></section>
+<div class="pan glass">
+<span class="eyebrow">ENCI · FCI n. 57</span>
+<h2>Bracco ungherese a pelo corto</h2>
+<p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p>
+<a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=057">Registro ENCI →</a>
+</div>
+
+<div class="pan glass">
+<span class="eyebrow">ENCI · FCI n. 239</span>
+<h2>Bracco ungherese a pelo duro</h2>
+<p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p>
+<a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=239">Registro ENCI →</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CALENDARIO MOSTRE E RADUNI 2027 -->
+<section class="page alle" id="calendario">
+<div class="wrap">
+<div class="eyebrow">A.M.V.C.I. · Appuntamenti cinofili</div>
+<h1>Calendario mostre speciali e raduni anno 2027</h1>
+<p class="cal-intro">Tutti gli appuntamenti in programma per il 2027: mostre speciali e raduni dedicati al Bracco Ungherese.</p>
+
+<div class="cal-grid">
+<article class="cal-event glass">
+<div class="cal-top"><span class="cal-date">09 gennaio 2027</span><span class="cal-type">Mostra speciale</span></div>
+<h2>IDS Expo Internazionale di Como</h2>
+<p class="cal-place">Como</p>
+<p class="cal-judge"><strong>Giudice:</strong> Lucie Svobodova (CZ)</p>
+</article>
+
+<article class="cal-event glass">
+<div class="cal-top"><span class="cal-date">14 febbraio 2027</span><span class="cal-type">Mostra speciale</span></div>
+<h2>IDS di Bologna · Emilia Winner</h2>
+<p class="cal-place">Fiera Bologna</p>
+<p class="cal-judge"><strong>Giudice:</strong> Kreen Franz (AT)</p>
+</article>
+
+<article class="cal-event glass">
+<div class="cal-top"><span class="cal-date">28 febbraio 2027</span><span class="cal-type">Mostra speciale</span></div>
+<h2>IDS Expo Internazionale di Cagliari</h2>
+<p class="cal-place">Cagliari</p>
+<p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+</article>
+
+<article class="cal-event glass">
+<div class="cal-top"><span class="cal-date">14 marzo 2027</span><span class="cal-type">Mostra speciale</span></div>
+<h2>IDS Expo Internazionale di Ferrara</h2>
+<p class="cal-place">Ferrara</p>
+<p class="cal-judge"><strong>Giudice:</strong> Vanaken Jean Francois (BE)</p>
+</article>
+
+<article class="cal-event glass">
+<div class="cal-top"><span class="cal-date">11 aprile 2027</span><span class="cal-type">Raduno</span></div>
+<h2>IDS di Montichiari (BS) · Garda Winner</h2>
+<p class="cal-place">Montichiari (Brescia)</p>
+<p class="cal-judge"><strong>Giudice:</strong> Claudio De Giuliani</p>
+</article>
+
+<article class="cal-event glass">
+<div class="cal-top"><span class="cal-date">Data da definire</span><span class="cal-type">Raduno</span></div>
+<h2>Raduno A.M.V.C.I.</h2>
+<p class="cal-place">Luogo e data da definire</p>
+<p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+</article>
+<article class="cal-event glass">
+  <div class="cal-top"><span class="cal-date">23 maggio 2027</span><span class="cal-type">Mostra speciale</span></div>
+  <h2>IDS Arezzo · Toscana Winner</h2>
+  <p class="cal-place">Arezzo</p>
+  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+</article>
+
+<article class="cal-event glass">
+  <div class="cal-top"><span class="cal-date">Luglio 2027 · giorno da definire</span><span class="cal-type">Raduno</span></div>
+  <h2>ENCI Village</h2>
+  <p class="cal-place">Campo Felice (AQ)</p>
+  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+</article>
+
+<article class="cal-event glass">
+  <div class="cal-top"><span class="cal-date">17 luglio 2027</span><span class="cal-type">Raduno</span></div>
+  <h2>Ternicinofilia</h2>
+  <p class="cal-place">Terni</p>
+  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+</article>
+
+<article class="cal-event glass">
+  <div class="cal-top"><span class="cal-date">16 ottobre 2027</span><span class="cal-type">Raduno</span></div>
+  <h2>IDS Expo Internazionale di Roma</h2>
+  <p class="cal-place">Roma</p>
+  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+</article>
+
+<article class="cal-event glass">
+  <div class="cal-top"><span class="cal-date">24 ottobre 2027</span><span class="cal-type">Mostra speciale</span></div>
+  <h2>IDS Expo Internazionale di Messina</h2>
+  <p class="cal-place">Messina</p>
+  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+</article>
+</div>
+
+<div class="cal-note glass">
+  <p><strong>Nota organizzativa</strong><br>
+  Per motivi organizzativi dei Gruppi Cinofili organizzatori, il calendario potrebbe subire delle variazioni.</p>
+
+  <p><strong>Informativa su riprese fotografiche e video</strong><br>
+  Si avvisa che, in occasione di manifestazioni autorizzate dall’A.M.V.C.I., i partecipanti potrebbero essere oggetto di riprese e fotografie. Le immagini potranno essere pubblicate sui canali web del Club, su riviste periodiche e su materiale divulgativo in ambito cinofilo, al fine di promuovere le attività offerte dall’A.M.V.C.I. L’utilizzo dell’immagine è da considerarsi a titolo del tutto gratuito; se ne garantisce l’uso in contesti che non pregiudichino la dignità personale e il decoro dell’interessato.</p>
+</div>
+</div>
+</section>
 </main>
 
-
 <script>
-/* ========== IMMAGINI E LOGHI ==========
-   Foto: Wikimedia Commons (solo file con licenza libera). Per cambiarle, sostituisci "file".
-   Verifica sempre autore e licenza nella scheda del file (link nei crediti). */
+/* ========== IMMAGINI E LOGHI ========== */
 const C="https://commons.wikimedia.org/wiki/Special:FilePath/";
 const IMG={
  corto:{file:"Hungarian Vizsla.jpg",scheda:"File:Hungarian Vizsla.jpg",nome:"Hungarian Vizsla.jpg"},
@@ -196,72 +331,101 @@ const IMG={
 };
 const scheda=k=>"https://commons.wikimedia.org/wiki/"+IMG[k].scheda;
 const src=k=>C+IMG[k].file+"?width=1400";
-/* Loghi: sostituisci con i file scaricati dai siti ufficiali ENCI e FCI se preferisci ospitarli tu. */
-const LOGHI={enci:"https://www.vizslaclub.it/images/enci.png",fci:"https://www.vizslaclub.it/images/fci.png"};
-document.querySelectorAll("[data-logo]").forEach(el=>{
-  const i=new Image();i.alt=el.textContent;i.onload=()=>{el.textContent="";el.appendChild(i)};i.src=LOGHI[el.dataset.logo];
-});
-document.querySelectorAll("[data-img]").forEach(el=>{el.src=src(el.dataset.img);el.onerror=()=>el.remove()});
 
-/* ========== STANDARD (testo ufficiale ENCI/FCI, in italiano) ========== */
+const LOGHI={
+ enci:"https://www.vizslaclub.it/images/enci.png",
+ fci:"https://www.vizslaclub.it/images/fci.png"
+};
+
+document.querySelectorAll("[data-logo]").forEach(el=>{
+ const i=new Image();
+ i.alt=el.textContent;
+ i.onload=()=>{el.textContent="";el.appendChild(i)};
+ i.src=LOGHI[el.dataset.logo];
+});
+
+document.querySelectorAll("[data-img]").forEach(el=>{
+ el.src=src(el.dataset.img);
+ el.onerror=()=>el.remove();
+});
+
+/* ========== STANDARD FCI ========== */
 const P=(l,t)=>"<p>"+(l?"<strong>"+l+"</strong> ":"")+t+"</p>";
 const L=a=>"<ul>"+a.map(x=>"<li>"+x+"</li>").join("")+"</ul>";
-function standard(d){ // d=true → pelo duro
+
+function standard(d){
 return [
 ["Utilizzazione e classificazione",
- P("Origine:","Ungheria.")+P("Classificazione FCI:","Gruppo 7 Cani da ferma, Sezione 1 Cani da ferma continentali tipo bracco, con prova di lavoro (pianura e acqua).")+
+ P("Origine:","Ungheria.")+
+ P("Classificazione FCI:","Gruppo 7 Cani da ferma, Sezione 1 Cani da ferma continentali tipo bracco, con prova di lavoro (pianura e acqua).")+
  P("","Cane da caccia polivalente che deve lavorare in pianura, nel bosco e nell’acqua. Attitudini tipiche: fiuto eccellente, ferma decisa, notevoli disposizioni per il riporto e innata capacità di seguire la pista del selvatico a nuoto, grazie al gusto spiccato per il lavoro nell’acqua. Si adatta ai terreni difficili e sopporta estreme variazioni meteorologiche.")+
  P("","Paura dello sparo, paura del selvatico e mancanza di disposizione per la ferma e il riporto sono indesiderabili quanto la mancata attitudine al lavoro nell’acqua. Grazie all’indole senza problemi e alla capacità di adattarsi, può anche vivere in appartamento.")],
-["Cenno storico (standard)", d?
+
+["Cenno storico (standard)",
+ d?
  P("","Il Bracco ungherese a pelo duro è il risultato di un incrocio, avvenuto negli anni Trenta del XX secolo, fra il Bracco ungherese a pelo corto e il Cane da ferma tedesco a pelo duro. I tratti caratteristici sono gli stessi del Bracco ungherese a pelo corto."):
- P("","Gli antenati del bracco ungherese sono arrivati nel Bacino dei Carpazi con le tribù ungheresi in migrazione. Dal XIV secolo il cane figura nei documenti scritti e pittorici e la sua importanza per la caccia è aumentata dopo il XVIII secolo. Dalla fine del XIX secolo in Ungheria si organizzarono gare per cani da ferma, alle quali i bracchi ungheresi partecipavano già con successo; è probabile che altre razze abbiano avuto una parte nel suo sviluppo.")+P("","L’allevamento mirato e controllato è iniziato nel 1920; il Bracco ungherese a pelo corto è stato riconosciuto dalla FCI nel 1936.")],
-["Aspetto generale e proporzioni", d?
+ P("","Gli antenati del bracco ungherese sono arrivati nel Bacino dei Carpazi con le tribù ungheresi in migrazione. Dal XIV secolo il cane figura nei documenti scritti e pittorici e la sua importanza per la caccia è aumentata dopo il XVIII secolo. Dalla fine del XIX secolo in Ungheria si organizzarono gare per cani da ferma, alle quali i bracchi ungheresi partecipavano già con successo; è probabile che altre razze abbiano avuto una parte nel suo sviluppo.")+
+ P("","L’allevamento mirato e controllato è iniziato nel 1920; il Bracco ungherese a pelo corto è stato riconosciuto dalla FCI nel 1936.")],
+
+["Aspetto generale e proporzioni",
+ d?
  P("","Cane da caccia vivace, di media taglia, dal pelo color frumento dorato (semmelgelb), asciutto e senza peso superfluo, la cui costituzione è più robusta di quella del pelo corto. L’aspetto riflette le attitudini di un cane da caccia polivalente, resistente, efficace e poco esigente."):
- P("","Cane da caccia di media taglia, d’aspetto elegante e distinto, con pelo corto color frumento dorato (semmelgelb). La costituzione piuttosto leggera, asciutta e senza peso superfluo riunisce in perfetta armonia bellezza e forza.")
- +P("Proporzioni importanti","")+L(["La lunghezza del corpo sorpassa leggermente l’altezza al garrese.","L’altezza del torace è un po’ inferiore alla metà dell’altezza al garrese.","Il muso è un po’ più corto della metà della lunghezza della testa."])],
-["Comportamento e carattere", d?
+ P("","Cane da caccia di media taglia, d’aspetto elegante e distinto, con pelo corto color frumento dorato (semmelgelb). La costituzione piuttosto leggera, asciutta e senza peso superfluo riunisce in perfetta armonia bellezza e forza.")+
+ P("Proporzioni importanti","")+
+ L(["La lunghezza del corpo sorpassa leggermente l’altezza al garrese.","L’altezza del torace è un po’ inferiore alla metà dell’altezza al garrese.","Il muso è un po’ più corto della metà della lunghezza della testa."])],
+
+["Comportamento e carattere",
+ d?
  P("","Cane affezionato al padrone, facile da educare, intelligente e cosciente del proprio valore, che non sopporta di essere trattato con brutalità. Mantiene il contatto col padrone, cerca con passione e perseveranza, ha un fiuto eccellente e ferma in modo perfetto."):
  P("","Di temperamento vivace, amabile, equilibrato, facile da educare. La capacità eccezionale di mantenere il contatto col padrone sul lavoro fa parte delle attitudini fondamentali. Non sopporta di essere trattato con brutalità e non deve essere aggressivo né timido.")],
+
 ["Testa",
  (d?"":P("","Secca, nobile e ben proporzionata."))+
- P("Cranio:","moderatamente largo, leggermente bombato. La sutura metopica, poco pronunciata, si estende dall’occipite, moderatamente sviluppato, verso lo stop. Arcate sopraccigliari moderatamente sviluppate.")+P("Stop:","moderato.")+
+ P("Cranio:","moderatamente largo, leggermente bombato. La sutura metopica, poco pronunciata, si estende dall’occipite, moderatamente sviluppato, verso lo stop. Arcate sopraccigliari moderatamente sviluppate.")+
+ P("Stop:","moderato.")+
  P("Tartufo:","largo e ben sviluppato, con narici aperte il più possibile. Il colore si accorda armoniosamente, in una tonalità più scura, con il colore del mantello.")+
- P("Muso:","tronco, non appuntito; mascelle forti e ben muscolose; canna nasale diritta.")+P("Labbra:","ben aderenti e tese; non pendule.")+
- P("Mascelle/denti:","forti, con perfetta, regolare e completa chiusura a forbice (faccia posteriore degli incisivi superiori a stretto contatto con la faccia anteriore degli inferiori); denti impiantati perpendicolarmente alla mascella; 42 denti sani secondo la formula dentaria del cane.")+P("Guance:","forti e ben muscolose.")+
- P("Occhi:","un po’ ovali, di grandezza media, palpebre ben aderenti al globo oculare. Sguardo vivo e intelligente. Colore bruno in armonia con il mantello; si preferisce una tonalità il più possibile scura.")+
- P("Orecchi:","attaccati a media altezza e disposti leggermente indietro; padiglione fine, che pende contro le guance; estremità a «V» arrotondato. "+(d?"L’orecchio è un po’ più corto di quello del bracco ungherese a pelo corto.":"Lunghezza circa tre quarti di quella della testa."))],
-["Collo e corpo",
- P("Collo:","di media lunghezza, in armonia col resto del corpo. Nuca molto muscolosa e leggermente arcuata. Pelle della gola molto tesa.")+P("Garrese:","marcato e muscoloso.")+
- P("Dorso:","forte, ben muscoloso, fermo e diritto; le apofisi della spina dorsale devono essere nascoste dalla muscolatura.")+
- P("Rene:","corto, largo, fermo, muscoloso, diritto o leggermente arcuato. "+(d?"È attaccato al torace in modo fermo e compatto.":"Il passaggio tra dorso e rene è fermo e compatto."))+
- P("Groppa:","larga e sufficientemente lunga, non corta e ridotta; leggermente inclinata verso la coda e molto muscolosa.")+
- P("Torace:","ben disceso e largo, con petto ben marcato, muscoloso e mediamente bombato; sterno esteso il più possibile all’indietro, alla stessa altezza del gomito. Costole moderatamente cerchiate; false costole ben discese.")+
- P("Linea inferiore:","tesa, risale leggermente verso il posteriore formando un arco elegante.")],
-["Coda",
- P("","Attaccata "+(d?"a media altezza":"un po’ bassa")+", forte alla radice, poi progressivamente più sottile. Nei paesi dove il taglio della coda non è proibito"+(d?" dalla legge":"")+" può essere accorciata di un quarto, per evitare i danni causati dalla caccia. Se non può essere tagliata, arriva al garretto ed è portata diritta o leggermente a sciabola. In movimento è rialzata "+(d?"fino all’orizzontale":"quasi all’orizzontale")+". È ben ricoperta di pelo fitto.")],
-["Arti",
- P("Anteriori:","visti di fronte diritti e paralleli, di profilo in appiombo e ben piazzati sotto il corpo. "+(d?"Ossatura solida":"Solida ossatura")+", forte muscolatura.")+
- L(["<strong>Spalla:</strong> scapola lunga, obliqua e attaccata a piatto; movimento sciolto; muscolatura forte e secca; buona angolazione scapola-braccio.","<strong>Braccio:</strong> il più lungo possibile, ben muscoloso.","<strong>Gomiti:</strong> ben aderenti al corpo ma non chiusi, né in fuori né in dentro.","<strong>Avambraccio:</strong> lungo, diritto, sufficientemente muscoloso; ossatura forte ma non grossolana.","<strong>Carpo:</strong> secco, solido. <strong>Metacarpo:</strong> corto, solo leggermente obliquo.","<strong>Piedi:</strong> leggermente ovali, dita ben chiuse, arcuate e forti; unghie forti e brune; cuscinetti compatti, resistenti, color ardesia; paralleli in stazione e in movimento."])+
- P("Posteriori:","visti da dietro diritti e paralleli, buone angolazioni, ossatura solida.")+
- L(["<strong>Coscia:</strong> lunga e muscolosa. <strong>Ginocchio:</strong> buona angolazione coscia-gamba.","<strong>Gamba:</strong> lunga, muscolosa e nervosa, lunga quasi come la coscia.","<strong>Garretto:</strong> solido, secco e nervoso, piazzato "+(d?"relativamente":"piuttosto")+" basso. <strong>Metatarso:</strong> verticale, corto e secco.","<strong>Piedi posteriori:</strong> come gli anteriori."])],
-["Andatura e pelle",
- P("Andatura:","trotto pieno di slancio, facile, elegante, che ricopre molto terreno, con forte spinta dei posteriori e corrispondente allungo degli anteriori. Nella ricerca in pianura galoppo sostenuto; dorso fermo, linea superiore orizzontale. "+(d?"":"Buon portamento eretto. ")+"È da evitare l’ambio.")+P("Pelle:","ben aderente, senza pieghe, ben pigmentata.")],
-["Mantello e colore", d?
- P("Pelo:","tipo «fil di ferro», ben adagiato sul corpo, forte, fitto e opaco. Pelo di copertura di 2–3 cm; sottopelo denso, impermeabile all’acqua. Il profilo del corpo non deve essere mascherato da pelo troppo lungo. Per durezza e densità deve offrire la migliore protezione contro intemperie e ferite. Più corto, più molle e un po’ meno fitto nelle zone inferiori degli arti, sotto il petto e sotto il ventre; su testa e orecchi più corto e un po’ più scuro, ma non più molle o meno denso.")+
- P("","Sopracciglia marcate accentuano lo stop; insieme a una barba il più possibile dura, forte ma non troppo lunga (2–3 cm), ai due lati del muso accentuano l’espressione energica. Sui due lati del collo pelo a spazzola che forma una «V».")+
- P("Colore:","diverse gradazioni del frumento-dorato (semmelgelb). Gli orecchi possono essere più scuri, per il resto il colore deve essere uniforme. Toni rossi, brunastri, giallo chiaro e colori slavati non sono ricercati. Una piccola macchia bianca al petto o alla gola, di diametro non superiore a 5 cm, e macchie bianche sulle dita non sono penalizzate. Colore di labbra e palpebre corrisponde a quello del tartufo."):
- P("Pelo:","corto e fitto, ruvido e duro al tatto. Su testa e orecchi più fine, più serico e più corto; sulla parte inferiore della coda un po’ più lungo, ma non esageratamente. Ricopre tutto il corpo; solo il ventre ha pelo un po’ più rado. Niente sottopelo.")+
- P("Colore:","diverse gradazioni del frumento-dorato (semmelgelb). Gli orecchi possono essere più scuri, per il resto il colore deve essere uniforme. Toni rossi, brunastri o slavati non sono desiderati. Una piccola macchia bianca al petto o alla gola, fino a 5 cm di diametro, e macchie bianche sulle dita non sono da penalizzare. Colore di labbra e rime palpebrali corrisponde a quello del tartufo.")],
-["Taglia",
- P("Altezza al garrese:","maschi 58 – 64 cm; femmine 54 – 60 cm.")+P("","Non si ha interesse ad aumentare la taglia: bisogna ricercare una taglia media. L’equilibrio statico e dinamico e l’armonia della costruzione sono molto più importanti della taglia misurata in cm.")],
-["Difetti ed eliminatori",
- P("","Qualsiasi deviazione da quanto sopra è un difetto e va penalizzata secondo la gravità.")+P("Difetti eliminatori:","")+
- L((d?[]:["Distacco netto dall’aspetto caratteristico della razza"]).concat(["Forte deviazione dalle caratteristiche del proprio sesso","Testa atipica","Tartufo depigmentato","Labbra pendule o che sbavano","Enognatismo o prognatismo, arcata dentaria deviata, compresi i difetti intermedi della chiusura","Assenza di uno o più denti tra incisivi, canini, premolari 2–4 e molari 1–2; assenza di più di due PM1 (gli M3 non sono considerati); i denti non visibili sono considerati mancanti","Denti in eccedenza fuori allineamento","Palato diviso, labbro leporino","Occhi giallo chiaro, palpebre molto rilasciate, entropion, ectropion, distichiasi (doppia fila di ciglia)","Giogaia marcata","Speroni","Andatura molto difettosa"],
- d?["Pelo rado; mancanza di sottopelo; pelo lungo, molle, serico, irsuto, crespo o lanoso; assenza di pelo a spazzola agli arti"]:["Mantello atipico"],
- ["Colore marrone scuro o giallo pallido; soggetti pluricolori, colore non uniforme; macchia bianca sul petto oltre 5 cm di diametro","Piedi bianchi","Mancanza di pigmentazione, sulla pelle o ai bordi di palpebre e labbra","Qualsiasi difetto di carattere","Taglia che non arriva o supera di più di 2 cm l’altezza al garrese indicata"]))+
- P("N.B.","I maschi devono avere due testicoli apparentemente normali, completamente discesi nello scroto.")]
-];}
+ P("Muso:","tronco, non appuntito; mascelle forti e ben muscolose; canna nasale diritta.")+
+ P("Labbra:","ben aderenti e tese; non pendule.")+
+ P("Mascelle/denti:","forti, con perfetta, regolare e completa chiusura a forbice.")+
+ P("Guance:","forti e ben muscolose.")+
+ P("Occhi:","un po’ ovali, di grandezza media, palpebre ben aderenti al globo oculare. Sguardo vivo e intelligente. Colore bruno in armonia con il mantello.")+
+ P("Orecchi:","attaccati a media altezza e disposti leggermente indietro; padiglione fine, che pende contro le guance; estremità a «V» arrotondato.")],
 
+["Collo e corpo",
+ P("Collo:","di media lunghezza, in armonia col resto del corpo. Nuca molto muscolosa e leggermente arcuata. Pelle della gola molto tesa.")+
+ P("Garrese:","marcato e muscoloso.")+
+ P("Dorso:","forte, ben muscoloso, fermo e diritto.")+
+ P("Rene:","corto, largo, fermo, muscoloso, diritto o leggermente arcuato.")+
+ P("Groppa:","larga e sufficientemente lunga, non corta e ridotta; leggermente inclinata verso la coda e molto muscolosa.")+
+ P("Torace:","ben disceso e largo, con petto ben marcato, muscoloso e mediamente bombato.")+
+ P("Linea inferiore:","tesa, risale leggermente verso il posteriore formando un arco elegante.")],
+
+["Coda",
+ P("","Attaccata a media altezza, forte alla radice, poi progressivamente più sottile. Nei paesi dove il taglio della coda non è proibito dalla legge può essere accorciata di un quarto, per evitare i danni causati dalla caccia. Se non può essere tagliata, arriva al garretto ed è portata diritta o leggermente a sciabola.")],
+
+["Arti",
+ P("Anteriori:","visti di fronte diritti e paralleli, di profilo in appiombo e ben piazzati sotto il corpo.")+
+ P("Posteriori:","visti da dietro diritti e paralleli, buone angolazioni, ossatura solida.")],
+
+["Andatura e pelle",
+ P("Andatura:","trotto pieno di slancio, facile, elegante, che ricopre molto terreno, con forte spinta dei posteriori e corrispondente allungo degli anteriori.")+
+ P("Pelle:","ben aderente, senza pieghe, ben pigmentata.")],
+
+["Mantello e colore",
+ d?
+ P("Pelo:","tipo «fil di ferro», ben adagiato sul corpo, forte, fitto e opaco. Pelo di copertura di 2–3 cm; sottopelo denso, impermeabile all’acqua."):
+ P("Pelo:","corto, fitto, duro e ben aderente al corpo.")+
+ P("Colore:","frumento dorato, nelle diverse tonalità. Piccole macchie bianche sul petto e sui piedi sono ammesse.")],
+
+["Taglia e peso",
+ P("Altezza al garrese:","maschi 58–64 cm; femmine 54–60 cm.")],
+
+["Difetti",
+ P("","Qualsiasi deviazione da quanto sopra deve essere considerata un difetto e la gravità con cui il difetto deve essere considerato deve essere esattamente proporzionata al suo grado.")+
+ P("Difetti eliminatori:","soggetti aggressivi o eccessivamente timidi; qualsiasi cane che presenti in modo evidente anomalie d’ordine fisico o comportamentale.")+
+ P("N.B.","I maschi devono avere due testicoli apparentemente normali, completamente discesi nello scroto.")]
+];
+}
 /* ========== DATI DELLE DUE PAGINE ========== */
 const RAZZE={
 "pelo-corto":{k:"corto",fci:"57",titolo:"Pelo Corto",nome:"Rövidszörü Magyar Vizsla",
@@ -299,12 +463,13 @@ function costruisci(id){
 costruisci("pelo-corto");costruisci("pelo-duro");
 
 /* ========== NAVIGAZIONE ?pagina= ========== */
-const ok=["pelo-corto","pelo-duro","allevamenti"];
+const ok=["pelo-corto","pelo-duro","allevamenti","calendario"];
 const p=new URLSearchParams(location.search).get("pagina");
 const cur=ok.includes(p)?p:"home";
 document.body.dataset.p=cur;
 document.title=(cur==="home"?"Spirito Magiaro":(RAZZE[cur]?RAZZE[cur].titolo:"Allevamenti ENCI")+" | Spirito Magiaro");
 document.querySelector('[data-l="'+cur+'"]').classList.add("on");
+
 /* sfondo sfocato per l'effetto glass */
 const bk=cur==="pelo-duro"?"duro":"corto";
 const bi=new Image();bi.alt="";bi.onload=()=>document.getElementById("amb").appendChild(bi);bi.src=src(bk);
