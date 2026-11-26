@@ -110,6 +110,94 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 .alle .lead{max-width:640px;font-size:14px;margin-bottom:34px}
 .pan{padding:38px}.pan h2{font-size:30px;margin:10px 0 12px}.pan p{font-size:13px}
 
+/* CAMPIONI PROCLAMATI */
+
+.champions {
+  padding: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) rgba(255,255,255,.08);
+}
+
+.champions table {
+  width: 100%;
+  min-width: 1550px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.champions th {
+  background: rgba(217,180,106,.17);
+  color: var(--gold-l);
+  padding: 16px 12px;
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(217,180,106,.4);
+  position: sticky;
+  top: 0;
+}
+
+.champions td {
+  padding: 13px 12px;
+  vertical-align: top;
+  min-width: 130px;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  color: var(--tx);
+}
+
+.champions td:first-child {
+  color: var(--gold-l);
+  font-weight: 700;
+  min-width: 65px;
+}
+
+.champions tr:hover td {
+  background: rgba(217,180,106,.08);
+}
+
+.champions td ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.champions td li {
+  margin-bottom: 7px;
+}
+
+.champions td li:last-child {
+  margin-bottom: 0;
+}
+
+.champions .empty {
+  color: rgba(255,255,255,.2);
+}
+
+@media(max-width:860px) {
+  .champions {
+    padding: 12px;
+  }
+
+  .champions table {
+    min-width: 1400px;
+    font-size: 11px;
+  }
+
+  .champions th,
+  .champions td {
+    padding: 11px 9px;
+  }
+}
 
 @media(max-width:860px){
 .navbar{border-radius:26px}
@@ -183,6 +271,55 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <div class="pan glass"><span class="eyebrow">ENCI · FCI n. 57</span><h2>Bracco ungherese a pelo corto</h2><p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p><a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=057">Registro ENCI →</a></div>
 <div class="pan glass"><span class="eyebrow">ENCI · FCI n. 239</span><h2>Bracco ungherese a pelo duro</h2><p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p><a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=239">Registro ENCI →</a></div>
 </div></div></section>
+<!-- CAMPIONI PROCLAMATI -->
+<section class="page alle" id="campioni">
+<div class="wrap">
+
+<div class="eyebrow">Albo dei campioni · Magyar Vizsla</div>
+
+<h1>Campioni Proclamati</h1>
+
+<p class="lead">
+Elenco dei soggetti proclamati Campioni Italiani e Internazionali,
+suddivisi per sesso, anno e titolo conseguito.
+I dati sono consultabili anche presso il
+<a href="https://www.vizslaclub.it/index.php/campioni-proclamati"
+target="_blank" rel="noopener">Magyar Vizsla Club Italiano</a>.
+</p>
+
+<div class="sthead">
+<div class="eyebrow">Archivio ufficiale</div>
+<h2>Campioni Maschi</h2>
+<p>Elenco dei maschi proclamati campioni dal 2012 al 2026.</p>
+</div>
+
+<div class="glass champions">
+<div class="table-scroll">
+<table id="tabMaschi"></table>
+</div>
+</div>
+
+<div class="sthead">
+<div class="eyebrow">Archivio ufficiale</div>
+<h2>Campioni Femmine</h2>
+<p>Elenco delle femmine proclamate campionesse dal 2012 al 2026.</p>
+</div>
+
+<div class="glass champions">
+<div class="table-scroll">
+<table id="tabFemmine"></table>
+</div>
+</div>
+
+<p class="fonte">
+Fonte: Associazione Magyar Vizsla Club Italiano.
+Dati riportati sul libro genealogico online ENCI.
+<a href="https://www.vizslaclub.it/index.php/campioni-proclamati"
+target="_blank" rel="noopener">Consulta la fonte originale.</a>
+</p>
+
+</div>
+</section>
 </main>
 
 
@@ -300,7 +437,7 @@ function costruisci(id){
 costruisci("pelo-corto");costruisci("pelo-duro");
 
 /* ========== NAVIGAZIONE ?pagina= ========== */
-const ok=["pelo-corto","pelo-duro","allevamenti"];
+const ok=["pelo-corto","pelo-duro","allevamenti","campioni"];
 const p=new URLSearchParams(location.search).get("pagina");
 const cur=ok.includes(p)?p:"home";
 document.body.dataset.p=cur;
