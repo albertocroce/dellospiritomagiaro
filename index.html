@@ -76,6 +76,12 @@ body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pel
 .card p{font-size:13.5px;max-width:420px}
 .btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:13px 26px;border-radius:100px;background:linear-gradient(120deg,var(--gold-l),var(--gold));color:var(--ink);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:.3s}
 .btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.scopri{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:0 0 70px}
+.link-card{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:34px;min-height:290px;transition:transform .45s,border-color .45s}
+.link-card:hover{transform:translateY(-8px);border-color:rgba(217,180,106,.42)}
+.link-card h2{font-size:30px;line-height:1.15;margin:10px 0 12px}
+.link-card p{font-size:13.5px}
+.link-card .btn{margin-top:22px}
 .testata{display:grid;grid-template-columns:1.05fr .95fr;overflow:hidden;min-height:440px}
 .testata .txt{padding:52px}
 .testata h1{font-size:clamp(44px,6vw,76px);line-height:1.04;margin:12px 0 16px}
@@ -141,7 +147,7 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 .nav-menu.active{display:flex}.menu-button{display:block}
 .nav-menu .sep{width:auto;height:1px;margin:8px 0}
 .fpanel{position:static;width:auto;margin-top:10px;box-shadow:none}
-.razze,.testata,.grid2,.acc,.fin,.cal-grid{grid-template-columns:1fr}
+.razze,.scopri,.testata,.grid2,.acc,.fin,.cal-grid{grid-template-columns:1fr}
 .testata .txt{padding:32px}.card{min-height:470px;padding:20px}
 }
 </style>
@@ -187,7 +193,7 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <div class="hero">
 <div class="eyebrow">Magyar Vizsla · Bracco Ungherese</div>
 <h1>SPIRITO<br><span>MAGIARO</span></h1>
-<p>Il Bracco Ungherese nelle sue due varietà riconosciute: a pelo corto e a pelo duro.</p>
+<p>Il portale dedicato agli appassionati del bracco ungherese.</p>
 <div class="ufficiali">
 <a class="logo glass" href="https://www.enci.it" rel="noopener">
 <span class="lg" data-logo="enci">ENCI</span>
@@ -200,7 +206,7 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 </div>
 </div>
 
-<div class="razze">
+<div class="razze" style="padding-bottom:24px">
 <a href="?pagina=pelo-corto" class="card glass">
 <img class="foto" data-img="corto" alt="Bracco Ungherese a pelo corto">
 <div class="pane glass">
@@ -219,6 +225,35 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <p>Cane da caccia polivalente, resistente ed efficace, di costituzione più robusta, con mantello tipo «fil di ferro».</p>
 <span class="btn">Approfondisci →</span>
 </div>
+</a>
+</div>
+
+<div class="scopri">
+<a href="?pagina=calendario" class="link-card glass">
+<div>
+<div class="eyebrow">A.M.V.C.I. · 2027</div>
+<h2>Calendario esposizioni</h2>
+<p>Mostre speciali e raduni dedicati al bracco ungherese in programma per il 2027, con sedi e giudici.</p>
+</div>
+<span class="btn">Scopri di più →</span>
+</a>
+
+<a href="?pagina=allevamenti" class="link-card glass">
+<div>
+<div class="eyebrow">Registro ufficiale</div>
+<h2>Allevamenti riconosciuti ENCI</h2>
+<p>Gli allevatori con affisso del bracco ungherese a pelo corto e a pelo duro, consultabili nel database ENCI.</p>
+</div>
+<span class="btn">Scopri di più →</span>
+</a>
+
+<a href="?pagina=standard-lavoro" class="link-card glass">
+<div>
+<div class="eyebrow">Attitudini venatorie</div>
+<h2>Standard di lavoro</h2>
+<p>Le qualità richieste al bracco ungherese sul terreno: cerca, ferma, riporto e rapporto con il conduttore.</p>
+</div>
+<span class="btn">Scopri di più →</span>
 </a>
 </div>
 </div>
