@@ -13,8 +13,27 @@ html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,sans-serif;color:var(--tx);background:var(--ink);line-height:1.7;min-height:100vh;overflow-x:hidden}
 img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 h1,h2,h3{font-family:"Playfair Display",serif;font-weight:600;color:#fff}
-.ambient{position:fixed;inset:0;z-index:-1;background:radial-gradient(60% 50% at 15% 10%,rgba(217,180,106,.30),transparent 70%),radial-gradient(50% 50% at 90% 30%,rgba(140,60,30,.40),transparent 70%),radial-gradient(60% 60% at 50% 100%,rgba(90,50,25,.55),transparent 70%),var(--ink)}
-.ambient img{position:absolute;inset:-60px;width:calc(100% + 120px);height:calc(100% + 120px);object-fit:cover;filter:blur(46px) saturate(1.3);opacity:.38}
+
+/* ========== SFONDO: marrone scuro con riflessi (tutte le pagine) ========== */
+.ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+ radial-gradient(55% 45% at 12% 8%,rgba(214,150,80,.34),transparent 70%),
+ radial-gradient(45% 40% at 92% 22%,rgba(168,84,38,.38),transparent 70%),
+ radial-gradient(50% 45% at 68% 68%,rgba(120,66,32,.30),transparent 72%),
+ radial-gradient(70% 55% at 40% 108%,rgba(96,52,26,.70),transparent 70%),
+ linear-gradient(160deg,#2c1a11 0%,#1b0f09 45%,#100804 100%)}
+.ambient img{position:absolute;inset:-60px;width:calc(100% + 120px);height:calc(100% + 120px);object-fit:cover;filter:blur(46px) saturate(1.2) sepia(.35);opacity:.22;z-index:0}
+/* riflesso luminoso diagonale, lento */
+.ambient::before{content:"";position:absolute;inset:-25%;z-index:1;pointer-events:none;background:linear-gradient(115deg,transparent 34%,rgba(240,205,140,.07) 44%,rgba(255,232,185,.15) 50%,rgba(240,205,140,.07) 56%,transparent 66%);animation:sheen 20s ease-in-out infinite alternate}
+/* aloni caldi + vignettatura ai bordi */
+.ambient::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:
+ radial-gradient(circle at 24% 82%,rgba(217,180,106,.15),transparent 30%),
+ radial-gradient(circle at 82% 14%,rgba(255,205,140,.13),transparent 26%),
+ radial-gradient(circle at 55% 40%,rgba(190,110,60,.10),transparent 34%),
+ radial-gradient(120% 95% at 50% 50%,transparent 55%,rgba(8,4,2,.68) 100%);animation:glow 14s ease-in-out infinite alternate}
+@keyframes sheen{from{transform:translateX(-14%)}to{transform:translateX(14%)}}
+@keyframes glow{from{opacity:.65}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.ambient::before,.ambient::after{animation:none}}
+
 .glass{background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18);border-radius:22px}
 .eyebrow{color:var(--gold-l);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2.5px}
 .navbar{position:fixed;z-index:20;top:14px;left:50%;transform:translateX(-50%);width:min(1120px,94%);padding:12px 22px;display:flex;justify-content:space-between;align-items:center;border-radius:100px}
@@ -73,8 +92,7 @@ body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pel
 .box{padding:36px}
 .box h2,.box h3{font-size:28px;margin-bottom:16px}
 .box p{font-size:13.5px;margin-bottom:13px}
-.box .fonte{font-size:11px;color:var(--tx2);margin-top:18px;padding-top:14px;border-top:
-1px solid var(--glass-b)}
+.box .fonte{font-size:11px;color:var(--tx2);margin-top:18px;padding-top:14px;border-top:1px solid var(--glass-b)}
 .tl{border-left:1px solid rgba(217,180,106,.5);padding-left:20px;max-height:640px;overflow:auto}
 .tl div{margin-bottom:15px;position:relative}
 .tl div::before{content:"";position:absolute;left:-25px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
@@ -284,48 +302,49 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <p class="cal-place">Luogo e data da definire</p>
 <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
 </article>
+
 <article class="cal-event glass">
-  <div class="cal-top"><span class="cal-date">23 maggio 2027</span><span class="cal-type">Mostra speciale</span></div>
-  <h2>IDS Arezzo · Toscana Winner</h2>
-  <p class="cal-place">Arezzo</p>
-  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+<div class="cal-top"><span class="cal-date">23 maggio 2027</span><span class="cal-type">Mostra speciale</span></div>
+<h2>IDS Arezzo · Toscana Winner</h2>
+<p class="cal-place">Arezzo</p>
+<p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
 </article>
 
 <article class="cal-event glass">
-  <div class="cal-top"><span class="cal-date">Luglio 2027 · giorno da definire</span><span class="cal-type">Raduno</span></div>
-  <h2>ENCI Village</h2>
-  <p class="cal-place">Campo Felice (AQ)</p>
-  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+<div class="cal-top"><span class="cal-date">Luglio 2027 · giorno da definire</span><span class="cal-type">Raduno</span></div>
+<h2>ENCI Village</h2>
+<p class="cal-place">Campo Felice (AQ)</p>
+<p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
 </article>
 
 <article class="cal-event glass">
-  <div class="cal-top"><span class="cal-date">17 luglio 2027</span><span class="cal-type">Raduno</span></div>
-  <h2>Ternicinofilia</h2>
-  <p class="cal-place">Terni</p>
-  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+<div class="cal-top"><span class="cal-date">17 luglio 2027</span><span class="cal-type">Raduno</span></div>
+<h2>Ternicinofilia</h2>
+<p class="cal-place">Terni</p>
+<p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
 </article>
 
 <article class="cal-event glass">
-  <div class="cal-top"><span class="cal-date">16 ottobre 2027</span><span class="cal-type">Raduno</span></div>
-  <h2>IDS Expo Internazionale di Roma</h2>
-  <p class="cal-place">Roma</p>
-  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+<div class="cal-top"><span class="cal-date">16 ottobre 2027</span><span class="cal-type">Raduno</span></div>
+<h2>IDS Expo Internazionale di Roma</h2>
+<p class="cal-place">Roma</p>
+<p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
 </article>
 
 <article class="cal-event glass">
-  <div class="cal-top"><span class="cal-date">24 ottobre 2027</span><span class="cal-type">Mostra speciale</span></div>
-  <h2>IDS Expo Internazionale di Messina</h2>
-  <p class="cal-place">Messina</p>
-  <p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
+<div class="cal-top"><span class="cal-date">24 ottobre 2027</span><span class="cal-type">Mostra speciale</span></div>
+<h2>IDS Expo Internazionale di Messina</h2>
+<p class="cal-place">Messina</p>
+<p class="cal-judge"><strong>Giudice:</strong> Da definire</p>
 </article>
 </div>
 
 <div class="cal-note glass">
-  <p><strong>Nota organizzativa</strong><br>
-  Per motivi organizzativi dei Gruppi Cinofili organizzatori, il calendario potrebbe subire delle variazioni.</p>
+<p><strong>Nota organizzativa</strong><br>
+Per motivi organizzativi dei Gruppi Cinofili organizzatori, il calendario potrebbe subire delle variazioni.</p>
 
-  <p><strong>Informativa su riprese fotografiche e video</strong><br>
-  Si avvisa che, in occasione di manifestazioni autorizzate dall’A.M.V.C.I., i partecipanti potrebbero essere oggetto di riprese e fotografie. Le immagini potranno essere pubblicate sui canali web del Club, su riviste periodiche e su materiale divulgativo in ambito cinofilo, al fine di promuovere le attività offerte dall’A.M.V.C.I. L’utilizzo dell’immagine è da considerarsi a titolo del tutto gratuito; se ne garantisce l’uso in contesti che non pregiudichino la dignità personale e il decoro dell’interessato.</p>
+<p><strong>Informativa su riprese fotografiche e video</strong><br>
+Si avvisa che, in occasione di manifestazioni autorizzate dall’A.M.V.C.I., i partecipanti potrebbero essere oggetto di riprese e fotografie. Le immagini potranno essere pubblicate sui canali web del Club, su riviste periodiche e su materiale divulgativo in ambito cinofilo, al fine di promuovere le attività offerte dall’A.M.V.C.I. L’utilizzo dell’immagine è da considerarsi a titolo del tutto gratuito; se ne garantisce l’uso in contesti che non pregiudichino la dignità personale e il decoro dell’interessato.</p>
 </div>
 </div>
 </section>
@@ -333,24 +352,24 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <!-- STANDARD DI LAVORO -->
 <section class="page alle" id="standard-lavoro">
 <div class="wrap">
-  <div class="eyebrow">Magyar Vizsla · Attitudini venatorie</div>
-  <h1>Standard di lavoro</h1>
-  <div class="work-text glass">
-    <p>Il bracco ungherese è animato da grande passione, attento sensibile e polivalente.</p>
-    <p>Dimostra le sue qualità sui terreni pianeggianti, collinari e montuosi e su tutti i tipi di selvaggina sia essa da penna o da pelo ivi compresi gli ungulati.</p>
-    <p>È instancabile nell'azione di lavoro, dimostrandosi, con la sua cerca attiva, un ottimo ausiliare per il conduttore.</p>
-    <p>Durante la fase di ricerca il Vizsla si muove con un galoppo medio armonico ed equilibrato ma sempre sostenuto e con un leggero movimento basculante della linea del dorso.</p>
-    <p>La testa viene portata come se fosse un prolungamento della linea del dorso, si solleva per "prendere a naso" le emanazioni più lontane portate dal vento, in casi specifici chiede intelligentemente appoggio al terreno.</p>
-    <p>La coda deve assumere il prolungamento del rene e resterà perfettamente immobile al momento della ferma.</p>
-    <p>L'azione di ricerca è intelligente e metodica con incroci naturali e si estende a seconda del territorio esplorato adeguandosi alle condizioni ambientali e climatiche.</p>
-    <p class="work-emphasis">IL VIZSLA MANTIENE CONSTANTEMENTE IL COLLEGAMENTO CON IL PROPRIO CONDUTTORE, ADATTANDOSI AI SUOI CAMBIAMENTI DI DIREZIONE, SEGUENDO LA DIREZIONE INDICATA CON UN SEMPLICE GESTO DEL CORPO.</p>
-    <p>Quando è in ferma il collo è teso, lo sguardo sicuro ed attento, la testa portata verso l'emanazione con decisione.</p>
-    <p>Passa dalla posizione eretta nel primo momento di ferma, alla posizione flessa sugli arti quando raggiunge la punta perfetta.</p>
-    <p>Il riporto è innato, diretto e con il dente dolce, anche il riporto dall'acqua deve essere fatto senza tentennamenti cosi come il recupero di fauna acquatica nelle diverse condizioni ambientali.</p>
-    <p>In sunto il Vizsla è un cane da caccia polivalente che lavora indifferentemente sul campo come nel bosco o nell'acqua, in possesso di un'olfatto finissimo che ben si adatta anche alla ricerca degli ungulati feriti, immobile e deciso nella ferma con spiccata predisposizione al recupero e riporto.</p>
-    <p>Si adatta ai terreni difficili e sopporta estreme variazioni meteorologiche.</p>
-    <p>Trattandosi di un cane da ferma efficace e polivalente, la paura dello sparo, la paura del selvatico e la mancanza di disposizione per la ferma e il riporto sono tanto indesiderabili quanto la mancata attitudine del cane al lavoro nell’acqua. Grazie alla sua indole senza problemi e la sua capacità ad adattarsi, può anche facilmente vivere in appartamento.</p>
-  </div>
+<div class="eyebrow">Magyar Vizsla · Attitudini venatorie</div>
+<h1>Standard di lavoro</h1>
+<div class="work-text glass">
+<p>Il bracco ungherese è animato da grande passione, attento sensibile e polivalente.</p>
+<p>Dimostra le sue qualità sui terreni pianeggianti, collinari e montuosi e su tutti i tipi di selvaggina sia essa da penna o da pelo ivi compresi gli ungulati.</p>
+<p>È instancabile nell'azione di lavoro, dimostrandosi, con la sua cerca attiva, un ottimo ausiliare per il conduttore.</p>
+<p>Durante la fase di ricerca il Vizsla si muove con un galoppo medio armonico ed equilibrato ma sempre sostenuto e con un leggero movimento basculante della linea del dorso.</p>
+<p>La testa viene portata come se fosse un prolungamento della linea del dorso, si solleva per "prendere a naso" le emanazioni più lontane portate dal vento, in casi specifici chiede intelligentemente appoggio al terreno.</p>
+<p>La coda deve assumere il prolungamento del rene e resterà perfettamente immobile al momento della ferma.</p>
+<p>L'azione di ricerca è intelligente e metodica con incroci naturali e si estende a seconda del territorio esplorato adeguandosi alle condizioni ambientali e climatiche.</p>
+<p class="work-emphasis">IL VIZSLA MANTIENE CONSTANTEMENTE IL COLLEGAMENTO CON IL PROPRIO CONDUTTORE, ADATTANDOSI AI SUOI CAMBIAMENTI DI DIREZIONE, SEGUENDO LA DIREZIONE INDICATA CON UN SEMPLICE GESTO DEL CORPO.</p>
+<p>Quando è in ferma il collo è teso, lo sguardo sicuro ed attento, la testa portata verso l'emanazione con decisione.</p>
+<p>Passa dalla posizione eretta nel primo momento di ferma, alla posizione flessa sugli arti quando raggiunge la punta perfetta.</p>
+<p>Il riporto è innato, diretto e con il dente dolce, anche il riporto dall'acqua deve essere fatto senza tentennamenti cosi come il recupero di fauna acquatica nelle diverse condizioni ambientali.</p>
+<p>In sunto il Vizsla è un cane da caccia polivalente che lavora indifferentemente sul campo come nel bosco o nell'acqua, in possesso di un'olfatto finissimo che ben si adatta anche alla ricerca degli ungulati feriti, immobile e deciso nella ferma con spiccata predisposizione al recupero e riporto.</p>
+<p>Si adatta ai terreni difficili e sopporta estreme variazioni meteorologiche.</p>
+<p>Trattandosi di un cane da ferma efficace e polivalente, la paura dello sparo, la paura del selvatico e la mancanza di disposizione per la ferma e il riporto sono tanto indesiderabili quanto la mancata attitudine del cane al lavoro nell’acqua. Grazie alla sua indole senza problemi e la sua capacità ad adattarsi, può anche facilmente vivere in appartamento.</p>
+</div>
 </div>
 </section>
 </main>
