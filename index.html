@@ -154,7 +154,6 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 .tabs{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
 .tab{padding:10px 22px;border-radius:100px;cursor:pointer;font:inherit;font-size:12px;font-weight:600;color:var(--tx);background:var(--glass);border:1px solid var(--glass-b)}
 .tab.on{background:rgba(217,180,106,.22);color:var(--gold-l);border-color:rgba(217,180,106,.45)}
-.tabs select{font:inherit;font-size:12px;padding:10px 16px;border-radius:100px;color:#fff;background:rgba(30,18,12,.85);border:1px solid var(--glass-b)}
 .reg-h{font-size:26px;display:flex;align-items:center;gap:12px;margin:34px 0 14px}
 .reg-h em{font:600 11px Inter,sans-serif;color:var(--gold-l);border:1px solid rgba(217,180,106,.4);border-radius:100px;padding:3px 10px}
 .all-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -207,7 +206,7 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 </div>
 </li>
 <li class="lang">
-<button type="button" id="lb" aria-expanded="false" aria-controls="lp">🌐 <span id="lbt">IT</span></button>
+<button type="button" id="lb" aria-expanded="false" aria-controls="lp"><span id="lbt">IT</span></button>
 <div class="fpanel lg" id="lp">
 <button type="button" data-lang="it">Italiano</button>
 <button type="button" data-lang="en">English</button>
@@ -305,7 +304,6 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <div class="tabs">
 <button type="button" class="tab on" data-r="corto">Bracco ungherese a pelo corto (FCI 57)</button>
 <button type="button" class="tab" data-r="duro">Bracco ungherese a pelo duro (FCI 239)</button>
-<select id="regSel" aria-label="Regione"></select>
 <a class="btn" id="enciLink" style="margin:0" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=057">Registro ENCI →</a>
 </div>
 <div id="allBox"></div>
@@ -596,19 +594,39 @@ document.getElementById("mb").onclick=()=>nm.classList.toggle("active");
 /* ========== ALLEVAMENTI PER REGIONE ========== */
 const REG=["Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli-Venezia Giulia","Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino-Alto Adige","Umbria","Valle d'Aosta","Veneto"];
 
-/* >>> QUI vanno inseriti gli allevamenti, copiandoli dal registro ENCI.
-   Formato (una riga per regione, un oggetto per allevamento):
-   ALLEV.corto["Lombardia"]=[
-     {affisso:"Nome affisso",proprietario:"Nome Cognome",indirizzo:"Via Roma 1",localita:"Milano",prov:"MI",tel:"000 000000",email:"nome@esempio.it",ultima:"2025"}
-   ];
-   ALLEV.duro["Veneto"]=[ ... ];
-   I campi vuoti non vengono mostrati. */
-const ALLEV={corto:{},duro:{}};
+/* Per aggiungere un allevamento: inserire una riga nella regione giusta.
+   Campi: affisso, proprietario, prov (provincia); facoltativi: indirizzo, localita, tel, email, ultima.
+   Per una nuova regione basta aggiungere ALLEV.corto["Nome regione"]=[...]; (o ALLEV.duro[...]). */
+const ALLEV={
+ corto:{
+  "Emilia-Romagna":[
+   {affisso:"Vae Victis",proprietario:"Massimiliano Carlo Silvio Scotti",prov:"Parma"},
+   {affisso:"Di Osteria Nuova",proprietario:"Paolo Chiodini",prov:"Bologna"}
+  ],
+  "Lombardia":[
+   {affisso:"Della Comuna",proprietario:"Alessandro Veraldi",prov:"Mantova"},
+   {affisso:"Royal Golden Vizsla",proprietario:"Elena Luisa Pelti",prov:"Varese"},
+   {affisso:"Di San Colombano",proprietario:"Emanuele Merli",prov:"Pavia"},
+   {affisso:"Kten",proprietario:"Christian Callegher",prov:"Como"}
+  ],
+  "Piemonte":[
+   {affisso:"Favoladisamain",proprietario:"Aldo Vercellotti",prov:"Vercelli"},
+   {affisso:"Gelmini Italteam",proprietario:"Gualtiero Gelmini",prov:"Torino"}
+  ],
+  "Toscana":[
+   {affisso:"Del Fatalbecco",proprietario:"Alessandro Poggini",prov:"Arezzo"}
+  ],
+  "Umbria":[
+   {affisso:"Delle Fonti Chianelle",proprietario:"Cinzia Francescangeli",prov:"Terni"}
+  ],
+  "Veneto":[
+   {affisso:"Dei Vizsla",proprietario:"Gabriele Martinello",prov:"Venezia"}
+  ]
+ },
+ duro:{}
+};
 
-let razzaAll="corto",regAll="";
-const regSel=document.getElementById("regSel");
-regSel.innerHTML='<option value="">Tutte le regioni</option>'+REG.map(r=>`<option value="${r}">${r}</option>`).join("");
-regSel.onchange=()=>{regAll=regSel.value;renderAll()};
+let razzaAll="corto";
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
  razzaAll=b.dataset.r;
@@ -617,12 +635,13 @@ document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
 });
 function renderAll(){
  const data=ALLEV[razzaAll];
- document.getElementById("allBox").innerHTML=REG.filter(r=>!regAll||r===regAll).map(r=>{
-  const a=data[r]||[];
-  return `<section><h3 class="reg-h">${r}<em>${a.length}</em></h3>`+(a.length?`<div class="all-grid">`+a.map(x=>{
-   const ind=[x.indirizzo,x.localita?x.localita+(x.prov?" ("+x.prov+")":""):""].filter(Boolean).join(", ");
-   return `<article class="all-card glass"><h4>${x.affisso}</h4>${x.proprietario?`<p>${x.proprietario}</p>`:""}${ind?`<p class="m">${ind}</p>`:""}${x.tel?`<p class="m">Tel. ${x.tel}</p>`:""}${x.email?`<p class="m"><a href="mailto:${x.email}">${x.email}</a></p>`:""}${x.ultima?`<p class="m"><span>Ultima cucciolata</span>: ${x.ultima}</p>`:""}</article>`}).join("")+`</div>`:`<p class="vuoto">Nessun allevamento inserito</p>`)+`</section>`;
- }).join("");
+ const regs=REG.filter(r=>(data[r]||[]).length);
+ document.getElementById("allBox").innerHTML=regs.length?regs.map(r=>{
+  const a=data[r];
+  return `<section><h3 class="reg-h">${r}<em>${a.length}</em></h3><div class="all-grid">`+a.map(x=>{
+   const ind=[x.indirizzo,x.localita].filter(Boolean).join(", ");
+   return `<article class="all-card glass"><span class="eyebrow">Allevamento</span><h4>${x.affisso}</h4>${x.proprietario?`<p>${x.proprietario}</p>`:""}${x.prov?`<p class="m"><span>Provincia</span>: ${x.prov}</p>`:""}${ind?`<p class="m">${ind}</p>`:""}${x.tel?`<p class="m">Tel. ${x.tel}</p>`:""}${x.email?`<p class="m"><a href="mailto:${x.email}">${x.email}</a></p>`:""}${x.ultima?`<p class="m"><span>Ultima cucciolata</span>: ${x.ultima}</p>`:""}</article>`}).join("")+`</div></section>`;
+ }).join(""):`<p class="vuoto" style="margin-top:30px">Nessun allevamento inserito</p>`;
  applyLang();
 }
 
@@ -659,7 +678,7 @@ const T={
 "Elenco degli allevatori con affisso, diviso per regione. Per i dati sempre aggiornati consulta il registro ufficiale ENCI.":["List of breeders with a kennel prefix, by region. For always up-to-date data see the official ENCI register.","A tenyésznévvel rendelkező tenyésztők régiók szerint. A mindig naprakész adatokért nézd az ENCI hivatalos nyilvántartását."],
 "Bracco ungherese a pelo corto (FCI 57)":["Short-haired Hungarian Vizsla (FCI 57)","Rövidszőrű magyar vizsla (FCI 57)"],
 "Bracco ungherese a pelo duro (FCI 239)":["Wire-haired Hungarian Vizsla (FCI 239)","Drótszőrű magyar vizsla (FCI 239)"],
-"Registro ENCI →":["ENCI register →","ENCI nyilvántartás →"],"Tutte le regioni":["All regions","Minden régió"],
+"Registro ENCI →":["ENCI register →","ENCI nyilvántartás →"],"Allevamento":["Kennel","Tenyészet"],"Provincia":["Province","Megye"],
 "Nessun allevamento inserito":["No kennel listed yet","Még nincs felvett tenyészet"],"Ultima cucciolata":["Last litter","Utolsó alom"],
 "Lombardia":["Lombardy","Lombardia"],"Piemonte":["Piedmont","Piemont"],"Toscana":["Tuscany","Toszkána"],"Puglia":["Apulia","Apulia"],
 "Sardegna":["Sardinia","Szardínia"],"Sicilia":["Sicily","Szicília"],"Valle d'Aosta":["Aosta Valley","Aosta-völgy"],
