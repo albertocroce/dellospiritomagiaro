@@ -53,6 +53,15 @@ h1,h2,h3{font-family:"Playfair Display",serif;font-weight:600;color:#fff}
 .fpanel h4:first-child{margin-top:0}
 .fpanel a{display:block;padding:5px 0;font-size:12px;color:var(--tx)}
 .fpanel a:hover{color:#fff;text-decoration:underline}
+
+/* ===== selettore lingua ===== */
+.lang{position:relative}
+.lang>button{font:inherit;font-size:12px;font-weight:600;letter-spacing:.5px;padding:8px 18px;border-radius:100px;cursor:pointer;color:var(--gold-l);background:transparent;border:1px solid rgba(217,180,106,.55);transition:.25s}
+.lang>button:hover,.lang>button[aria-expanded="true"]{background:rgba(217,180,106,.2)}
+.fpanel.lg{width:170px;padding:10px}
+.fpanel.lg button{display:block;width:100%;text-align:left;padding:8px 12px;border:0;background:none;color:var(--tx);font:inherit;font-size:12px;border-radius:10px;cursor:pointer}
+.fpanel.lg button:hover{background:rgba(255,255,255,.1);color:#fff}
+
 .page{display:none;padding:110px 0 80px}
 body[data-p="home"] #home,body[data-p="pelo-corto"] #pelo-corto,body[data-p="pelo-duro"] #pelo-duro,body[data-p="allevamenti"] #allevamenti,body[data-p="calendario"] #calendario,body[data-p="standard-lavoro"] #standard-lavoro{display:block}
 .wrap{width:min(1120px,92%);margin:auto}
@@ -141,13 +150,28 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 .work-text .work-emphasis{color:var(--gold-l);font-weight:700;letter-spacing:.35px}
 @media(max-width:860px){.work-text{padding:24px 20px}}
 
+/* ===== allevamenti per regione ===== */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+.tab{padding:10px 22px;border-radius:100px;cursor:pointer;font:inherit;font-size:12px;font-weight:600;color:var(--tx);background:var(--glass);border:1px solid var(--glass-b)}
+.tab.on{background:rgba(217,180,106,.22);color:var(--gold-l);border-color:rgba(217,180,106,.45)}
+.tabs select{font:inherit;font-size:12px;padding:10px 16px;border-radius:100px;color:#fff;background:rgba(30,18,12,.85);border:1px solid var(--glass-b)}
+.reg-h{font-size:26px;display:flex;align-items:center;gap:12px;margin:34px 0 14px}
+.reg-h em{font:600 11px Inter,sans-serif;color:var(--gold-l);border:1px solid rgba(217,180,106,.4);border-radius:100px;padding:3px 10px}
+.all-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.all-card{padding:22px}
+.all-card h4{font-family:"Playfair Display",serif;font-size:20px;color:#fff;margin-bottom:6px}
+.all-card p{font-size:12.5px;margin-bottom:4px}
+.all-card .m{color:var(--tx2)}
+.all-card a{text-decoration:underline}
+.vuoto{font-size:12.5px;color:var(--tx2)}
+
 @media(max-width:860px){
 .navbar{border-radius:26px}
 .nav-menu{display:none;position:absolute;left:0;right:0;top:62px;padding:12px;flex-direction:column;border-radius:22px;background:rgba(30,18,12,.85);backdrop-filter:blur(22px)}
 .nav-menu.active{display:flex}.menu-button{display:block}
 .nav-menu .sep{width:auto;height:1px;margin:8px 0}
 .fpanel{position:static;width:auto;margin-top:10px;box-shadow:none}
-.razze,.scopri,.testata,.grid2,.acc,.fin,.cal-grid{grid-template-columns:1fr}
+.razze,.scopri,.testata,.grid2,.acc,.fin,.cal-grid,.all-grid{grid-template-columns:1fr}
 .testata .txt{padding:32px}.card{min-height:470px;padding:20px}
 }
 </style>
@@ -180,6 +204,14 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <a href="https://www.vizslaclub.it/index.php/storia-del-vizsla-a-pelo-duro">A.M.V.C.I. · Storia pelo duro</a>
 <h4>Immagini (Wikimedia Commons)</h4>
 <span id="fimg"></span>
+</div>
+</li>
+<li class="lang">
+<button type="button" id="lb" aria-expanded="false" aria-controls="lp">🌐 <span id="lbt">IT</span></button>
+<div class="fpanel lg" id="lp">
+<button type="button" data-lang="it">Italiano</button>
+<button type="button" data-lang="en">English</button>
+<button type="button" data-lang="hu">Magyar</button>
 </div>
 </li>
 </ul>
@@ -268,23 +300,15 @@ details ul{padding-left:18px}details li{margin-bottom:4px}
 <div class="wrap">
 <div class="eyebrow">Registro ufficiale</div>
 <h1>Allevamenti con affisso ENCI</h1>
-<p class="lead">Per mantenere i dati corretti nel tempo il sito rimanda al database ufficiale ENCI degli allevatori con affisso, invece di pubblicare un elenco statico che potrebbe diventare obsoleto.</p>
+<p class="lead">Elenco degli allevatori con affisso, diviso per regione. Per i dati sempre aggiornati consulta il registro ufficiale ENCI.</p>
 
-<div class="razze" style="padding-top:0">
-<div class="pan glass">
-<span class="eyebrow">ENCI · FCI n. 57</span>
-<h2>Bracco ungherese a pelo corto</h2>
-<p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p>
-<a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=057">Registro ENCI →</a>
+<div class="tabs">
+<button type="button" class="tab on" data-r="corto">Bracco ungherese a pelo corto (FCI 57)</button>
+<button type="button" class="tab" data-r="duro">Bracco ungherese a pelo duro (FCI 239)</button>
+<select id="regSel" aria-label="Regione"></select>
+<a class="btn" id="enciLink" style="margin:0" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=057">Registro ENCI →</a>
 </div>
-
-<div class="pan glass">
-<span class="eyebrow">ENCI · FCI n. 239</span>
-<h2>Bracco ungherese a pelo duro</h2>
-<p>Verifica allevatori con affisso, regione e razze dichiarate nel registro.</p>
-<a class="btn" href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci=239">Registro ENCI →</a>
-</div>
-</div>
+<div id="allBox"></div>
 </div>
 </section>
 
@@ -568,6 +592,150 @@ fb.onclick=e=>{e.stopPropagation();const o=fp.classList.toggle("open");fb.setAtt
 document.addEventListener("click",e=>{if(!fp.contains(e.target)){fp.classList.remove("open");fb.setAttribute("aria-expanded","false")}});
 const nm=document.getElementById("nm");
 document.getElementById("mb").onclick=()=>nm.classList.toggle("active");
+
+/* ========== ALLEVAMENTI PER REGIONE ========== */
+const REG=["Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli-Venezia Giulia","Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino-Alto Adige","Umbria","Valle d'Aosta","Veneto"];
+
+/* >>> QUI vanno inseriti gli allevamenti, copiandoli dal registro ENCI.
+   Formato (una riga per regione, un oggetto per allevamento):
+   ALLEV.corto["Lombardia"]=[
+     {affisso:"Nome affisso",proprietario:"Nome Cognome",indirizzo:"Via Roma 1",localita:"Milano",prov:"MI",tel:"000 000000",email:"nome@esempio.it",ultima:"2025"}
+   ];
+   ALLEV.duro["Veneto"]=[ ... ];
+   I campi vuoti non vengono mostrati. */
+const ALLEV={corto:{},duro:{}};
+
+let razzaAll="corto",regAll="";
+const regSel=document.getElementById("regSel");
+regSel.innerHTML='<option value="">Tutte le regioni</option>'+REG.map(r=>`<option value="${r}">${r}</option>`).join("");
+regSel.onchange=()=>{regAll=regSel.value;renderAll()};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
+ razzaAll=b.dataset.r;
+ document.getElementById("enciLink").href="https://www.enci.it/allevatori/allevatori-con-affisso?idRazzaFci="+(razzaAll==="corto"?"057":"239");
+ renderAll();
+});
+function renderAll(){
+ const data=ALLEV[razzaAll];
+ document.getElementById("allBox").innerHTML=REG.filter(r=>!regAll||r===regAll).map(r=>{
+  const a=data[r]||[];
+  return `<section><h3 class="reg-h">${r}<em>${a.length}</em></h3>`+(a.length?`<div class="all-grid">`+a.map(x=>{
+   const ind=[x.indirizzo,x.localita?x.localita+(x.prov?" ("+x.prov+")":""):""].filter(Boolean).join(", ");
+   return `<article class="all-card glass"><h4>${x.affisso}</h4>${x.proprietario?`<p>${x.proprietario}</p>`:""}${ind?`<p class="m">${ind}</p>`:""}${x.tel?`<p class="m">Tel. ${x.tel}</p>`:""}${x.email?`<p class="m"><a href="mailto:${x.email}">${x.email}</a></p>`:""}${x.ultima?`<p class="m"><span>Ultima cucciolata</span>: ${x.ultima}</p>`:""}</article>`}).join("")+`</div>`:`<p class="vuoto">Nessun allevamento inserito</p>`)+`</section>`;
+ }).join("");
+ applyLang();
+}
+
+/* ========== TRADUZIONE IT / EN / HU ========== */
+/* chiave = testo italiano esatto; valore = [inglese, ungherese] */
+const T={
+"Home":["Home","Kezdőlap"],"Pelo corto":["Short-haired","Rövidszőrű"],"Pelo duro":["Wire-haired","Drótszőrű"],
+"Pelo Corto":["Short-haired","Rövidszőrű"],"Pelo Duro":["Wire-haired","Drótszőrű"],
+"Allevamenti ENCI":["ENCI kennels","ENCI tenyészetek"],"Calendario esposizioni 2027":["2027 show calendar","2027-es kiállítási naptár"],
+"Standard di lavoro":["Working standard","Munkastandard"],"Fonti":["Sources","Források"],
+"Standard e schede ufficiali":["Official standards and breed pages","Hivatalos standardok és adatlapok"],
+"Immagini (Wikimedia Commons)":["Images (Wikimedia Commons)","Képek (Wikimedia Commons)"],
+"FCI · Standard n. 57 (pelo corto)":["FCI · Standard no. 57 (short-haired)","FCI · 57. sz. standard (rövidszőrű)"],
+"FCI · Standard n. 239 (pelo duro)":["FCI · Standard no. 239 (wire-haired)","FCI · 239. sz. standard (drótszőrű)"],
+"ENCI · Scheda bracco ungherese a pelo corto":["ENCI · Short-haired Hungarian Vizsla page","ENCI · Rövidszőrű magyar vizsla adatlap"],
+"ENCI · Scheda bracco ungherese a pelo duro":["ENCI · Wire-haired Hungarian Vizsla page","ENCI · Drótszőrű magyar vizsla adatlap"],
+"A.M.V.C.I. · Storia pelo corto":["A.M.V.C.I. · History of the short-haired","A.M.V.C.I. · A rövidszőrű története"],
+"A.M.V.C.I. · Storia pelo duro":["A.M.V.C.I. · History of the wire-haired","A.M.V.C.I. · A drótszőrű története"],
+"Ente Nazionale":["Italian","Olasz Kinológiai"],"della Cinofilia Italiana":["Kennel Club","Nemzeti Szövetség"],
+"Magyar Vizsla · Bracco ungherese":["Magyar Vizsla · Hungarian Vizsla","Magyar Vizsla"],
+"Il portale dedicato agli appassionati del bracco ungherese":["The portal for Hungarian Vizsla enthusiasts","A magyar vizsla szerelmeseinek portálja"],
+"Cane da caccia polivalente di media taglia, elegante e distinto, dalla costituzione leggera e asciutta.":["Medium-sized versatile hunting dog, elegant and distinguished, with a light, dry build.","Közepes termetű, sokoldalú vadászkutya, elegáns és előkelő megjelenésű, könnyű, száraz alkatú."],
+"Cane da caccia polivalente, resistente ed efficace, di costituzione più robusta, con mantello tipo «fil di ferro».":["Versatile, hardy and efficient hunting dog with a sturdier build and a wire-type coat.","Sokoldalú, edzett és hatékony vadászkutya, erősebb alkattal és drótszőrű bundával."],
+"Approfondisci →":["Learn more →","Tudj meg többet →"],"Scopri di più →":["Discover more →","Fedezd fel →"],
+"Calendario esposizioni":["Show calendar","Kiállítási naptár"],
+"Mostre speciali e raduni dedicati al bracco ungherese in programma per il 2027, con sedi e giudici.":["Specialty shows and gatherings dedicated to the Hungarian Vizsla scheduled for 2027, with venues and judges.","A magyar vizslának szentelt 2027-es különkiállítások és találkozók, helyszínekkel és bírókkal."],
+"Registro ufficiale":["Official register","Hivatalos nyilvántartás"],
+"Allevamenti riconosciuti ENCI":["ENCI-recognised kennels","ENCI által elismert tenyészetek"],
+"Gli allevatori con affisso del bracco ungherese a pelo corto e a pelo duro, consultabili nel database ENCI.":["Breeders with a kennel prefix for the short-haired and wire-haired Hungarian Vizsla, listed in the ENCI database.","A rövidszőrű és drótszőrű magyar vizsla tenyésznévvel rendelkező tenyésztői az ENCI adatbázisában."],
+"Attitudini venatorie":["Hunting aptitude","Vadászati képességek"],
+"Le qualità richieste al bracco ungherese sul terreno: cerca, ferma, riporto e rapporto con il conduttore.":["The qualities required of the Hungarian Vizsla in the field: quartering, pointing, retrieving and rapport with the handler.","A magyar vizslától terepen elvárt tulajdonságok: keresés, állás, apportírozás és a vezetővel való kapcsolat."],
+"Magyar Vizsla · Attitudini venatorie":["Magyar Vizsla · Hunting aptitude","Magyar Vizsla · Vadászati képességek"],
+"Allevamenti con affisso ENCI":["ENCI kennels with prefix","ENCI tenyésznévvel rendelkező tenyészetek"],
+"Elenco degli allevatori con affisso, diviso per regione. Per i dati sempre aggiornati consulta il registro ufficiale ENCI.":["List of breeders with a kennel prefix, by region. For always up-to-date data see the official ENCI register.","A tenyésznévvel rendelkező tenyésztők régiók szerint. A mindig naprakész adatokért nézd az ENCI hivatalos nyilvántartását."],
+"Bracco ungherese a pelo corto (FCI 57)":["Short-haired Hungarian Vizsla (FCI 57)","Rövidszőrű magyar vizsla (FCI 57)"],
+"Bracco ungherese a pelo duro (FCI 239)":["Wire-haired Hungarian Vizsla (FCI 239)","Drótszőrű magyar vizsla (FCI 239)"],
+"Registro ENCI →":["ENCI register →","ENCI nyilvántartás →"],"Tutte le regioni":["All regions","Minden régió"],
+"Nessun allevamento inserito":["No kennel listed yet","Még nincs felvett tenyészet"],"Ultima cucciolata":["Last litter","Utolsó alom"],
+"Lombardia":["Lombardy","Lombardia"],"Piemonte":["Piedmont","Piemont"],"Toscana":["Tuscany","Toszkána"],"Puglia":["Apulia","Apulia"],
+"Sardegna":["Sardinia","Szardínia"],"Sicilia":["Sicily","Szicília"],"Valle d'Aosta":["Aosta Valley","Aosta-völgy"],
+"Calendario mostre speciali e raduni anno 2027":["2027 specialty shows and gatherings calendar","2027-es különkiállítások és találkozók naptára"],
+"A.M.V.C.I. · Appuntamenti cinofili":["A.M.V.C.I. · Dog events","A.M.V.C.I. · Kutyás rendezvények"],
+"Tutti gli appuntamenti in programma per il 2027: mostre speciali e raduni dedicati al bracco ungherese.":["All events scheduled for 2027: specialty shows and gatherings dedicated to the Hungarian Vizsla.","A 2027-re tervezett összes rendezvény: a magyar vizslának szentelt különkiállítások és találkozók."],
+"Mostra speciale":["Specialty show","Különkiállítás"],"Raduno":["Gathering","Találkozó"],"Raduno A.M.V.C.I.":["A.M.V.C.I. Gathering","A.M.V.C.I. találkozó"],
+"Data da definire":["Date to be announced","A dátum még nincs meghatározva"],"Da definire":["To be announced","Még nincs meghatározva"],
+"Luogo e data da definire":["Venue and date to be announced","A helyszín és a dátum még nincs meghatározva"],
+"Luglio 2027 · giorno da definire":["July 2027 · day to be announced","2027. július · a nap még nincs meghatározva"],
+"Giudice:":["Judge:","Bíró:"],
+"Nota organizzativa":["Organisational note","Szervezési megjegyzés"],
+"Per motivi organizzativi dei Gruppi Cinofili organizzatori, il calendario potrebbe subire delle variazioni.":["For organisational reasons of the host kennel clubs, the calendar may be subject to changes.","A rendező kutyás csoportok szervezési okai miatt a naptár változhat."],
+"Informativa su riprese fotografiche e video":["Notice on photography and video recording","Tájékoztató fényképezésről és videófelvételről"],
+"Si avvisa che, in occasione di manifestazioni autorizzate dall’A.M.V.C.I., i partecipanti potrebbero essere oggetto di riprese e fotografie. Le immagini potranno essere pubblicate sui canali web del Club, su riviste periodiche e su materiale divulgativo in ambito cinofilo, al fine di promuovere le attività offerte dall’A.M.V.C.I. L’utilizzo dell’immagine è da considerarsi a titolo del tutto gratuito; se ne garantisce l’uso in contesti che non pregiudichino la dignità personale e il decoro dell’interessato.":["Please note that at events authorised by the A.M.V.C.I., participants may be filmed and photographed. The images may be published on the Club’s web channels, in periodicals and in dog-related promotional material, in order to promote the activities offered by the A.M.V.C.I. Use of the image is entirely free of charge; its use is guaranteed in contexts that do not harm personal dignity and decorum.","Felhívjuk a figyelmet, hogy az A.M.V.C.I. által engedélyezett rendezvényeken a résztvevőkről felvételek és fényképek készülhetnek. A felvételek megjelenhetnek a Klub webes csatornáin, időszaki kiadványokban és kutyás ismertetőanyagokban az A.M.V.C.I. tevékenységének népszerűsítése céljából. A kép felhasználása teljesen ingyenes; a felhasználás nem sértheti az érintett méltóságát és tekintélyét."],
+"FCI n. 57 · Bracco Ungherese":["FCI no. 57 · Hungarian Vizsla","FCI 57. sz. · Magyar vizsla"],
+"FCI n. 239 · Bracco Ungherese":["FCI no. 239 · Hungarian Vizsla","FCI 239. sz. · Magyar vizsla"],
+"FCI n. 57":["FCI no. 57","FCI 57. sz."],"FCI n. 239":["FCI no. 239","FCI 239. sz."],
+"Cane da caccia polivalente di origine ungherese. Lo standard FCI lo colloca nel Gruppo 7, Cani da ferma, Sezione 1, cani da ferma continentali tipo bracco, con prova di lavoro in pianura e acqua.":["Versatile hunting dog of Hungarian origin. The FCI standard places it in Group 7, Pointing dogs, Section 1, Continental pointing dogs (Braque type), with working trial (plains and water).","Magyar eredetű, sokoldalú vadászkutya. Az FCI standard a 7. csoportba (vizslák), 1. szekcióba (kontinentális vizslák, braque típus) sorolja, munkavizsgával (síkvidék és víz)."],
+"Varietà nata dall’incrocio, negli anni Trenta del XX secolo, tra il bracco ungherese a pelo corto e il cane da ferma tedesco a pelo duro. Lo standard FCI n. 239 lo definisce «Bracco ungherese a pelo duro».":["Variety created in the 1930s by crossing the short-haired Hungarian Vizsla with the German wire-haired pointer. FCI standard no. 239 calls it “Wire-haired Hungarian Vizsla”.","Az 1930-as években a rövidszőrű magyar vizsla és a német drótszőrű vizsla keresztezéséből született változat. Az FCI 239. sz. standardja „Drótszőrű magyar vizsla” néven említi."],
+"Origine":["Origin","Származás"],"Ungheria":["Hungary","Magyarország"],"Gruppo / Sezione":["Group / Section","Csoport / Szekció"],
+"Gruppo 7 · Sezione 1":["Group 7 · Section 1","7. csoport · 1. szekció"],"Standard FCI":["FCI standard","FCI standard"],
+"Altezza al garrese":["Height at withers","Marmagasság"],"Maschi 58 – 64 · Femmine 54 – 60 cm":["Males 58 – 64 · Females 54 – 60 cm","Kanok 58 – 64 · Szukák 54 – 60 cm"],
+"Pelo":["Coat","Szőrzet"],"Colore":["Colour","Szín"],"Corto, fitto, duro":["Short, dense, hard","Rövid, sűrű, kemény"],
+"Tipo «fil di ferro», con sottopelo":["Wire type, with undercoat","Drótszerű, aljszőrzettel"],"Frumento-dorato":["Golden wheat","Arany-búzasárga"],
+"Storia":["History","Történet"],"Cronologia":["Timeline","Idővonal"],
+"Testo dello standard ufficiale pubblicato da ENCI (pubblicazione dello standard originale vigente: 06.04.2000).":["Text of the official standard published by ENCI (publication of the current original standard: 06.04.2000).","Az ENCI által közzétett hivatalos standard szövege (az érvényes eredeti standard kiadása: 2000.04.06.)."],
+"Standard Pelo Corto":["Short-haired standard","Rövidszőrű standard"],"Standard Pelo Duro":["Wire-haired standard","Drótszőrű standard"],
+"Standard FCI n. 57":["FCI standard no. 57","FCI 57. sz. standard"],"Standard FCI n. 239":["FCI standard no. 239","FCI 239. sz. standard"],
+"Utilizzazione e classificazione":["Use and classification","Felhasználás és besorolás"],"Cenno storico (standard)":["Brief history (standard)","Rövid történet (standard)"],
+"Aspetto generale e proporzioni":["General appearance and proportions","Általános megjelenés és arányok"],"Comportamento e carattere":["Behaviour and temperament","Viselkedés és jellem"],
+"Testa":["Head","Fej"],"Collo e corpo":["Neck and body","Nyak és törzs"],"Coda":["Tail","Farok"],"Arti":["Limbs","Végtagok"],
+"Andatura e pelle":["Gait and skin","Mozgás és bőr"],"Mantello e colore":["Coat and colour","Szőrzet és szín"],"Taglia e peso":["Size and weight","Méret és súly"],"Difetti":["Faults","Hibák"]
+};
+const MESI={gennaio:["January","január"],febbraio:["February","február"],marzo:["March","március"],aprile:["April","április"],maggio:["May","május"],giugno:["June","június"],luglio:["July","július"],agosto:["August","augusztus"],settembre:["September","szeptember"],ottobre:["October","október"],novembre:["November","november"],dicembre:["December","december"]};
+function trDate(k,i){
+ const m=k.match(/^(\d{1,2}) ([a-z]+) (\d{4})$/);
+ if(!m||!MESI[m[2]])return null;
+ const d=+m[1];
+ return i?m[3]+". "+MESI[m[2]][1]+" "+d+".":MESI[m[2]][0]+" "+d+", "+m[3];
+}
+
+let lang="it";
+try{lang=localStorage.getItem("lang")||"it"}catch(e){}
+if(!["it","en","hu"].includes(lang))lang="it";
+const orig=new WeakMap(),baseTitle=document.title;
+
+function applyLang(){
+ const i=lang==="en"?0:1;
+ document.documentElement.lang=lang;
+ const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+ let n;
+ while(n=w.nextNode()){
+  if(!orig.has(n))orig.set(n,n.nodeValue);
+  const o=orig.get(n),k=o.trim();
+  if(lang==="it"||!k){n.nodeValue=o;continue}
+  const v=T[k]?T[k][i]:trDate(k,i);
+  n.nodeValue=v?o.split(k).join(v):o;
+ }
+ const parts=baseTitle.split(" | "),a=parts[0],b=parts[1];
+ document.title=lang==="it"?baseTitle:(T[a]?T[a][i]:a)+(b?" | "+b:"");
+ document.getElementById("lbt").textContent=lang.toUpperCase();
+}
+
+/* pulsante lingua nel menu */
+const lb=document.getElementById("lb"),lp=document.getElementById("lp");
+lb.onclick=e=>{e.stopPropagation();fp.classList.remove("open");fb.setAttribute("aria-expanded","false");const o=lp.classList.toggle("open");lb.setAttribute("aria-expanded",o)};
+fb.addEventListener("click",()=>{lp.classList.remove("open");lb.setAttribute("aria-expanded","false")});
+document.addEventListener("click",()=>{lp.classList.remove("open");lb.setAttribute("aria-expanded","false")});
+lp.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>{
+ lang=b.dataset.lang;
+ try{localStorage.setItem("lang",lang)}catch(e){}
+ applyLang();
+});
+
+renderAll(); /* disegna gli allevamenti e applica la lingua scelta */
 </script>
 </body>
 </html>
